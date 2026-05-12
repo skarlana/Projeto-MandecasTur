@@ -30,10 +30,135 @@ namespace Login.UseControls
             dgvListaDePassageiros.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // Seleciona a linha toda
             dgvListaDePassageiros.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+            dgvListaDePassageiros.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 255, 127);
+            dgvListaDePassageiros.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            dgvListaDePassageiros.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 255, 127);
+
+            // 4. Muda a fonte do conteúdo da Grid também
+            dgvListaDePassageiros.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvListaDePassageiros.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+
+
             // Altura das linhas para dar "respiro" ao design
             dgvListaDePassageiros.RowTemplate.Height = 35;
 
         }
+
+        private void MudarCoresRecursivo(Control container, bool dark)
+        {
+            foreach (Control c in container.Controls)
+            {
+                // Se NÃO for o título (que precisa ser bold), aplica a fonte normal
+                if (c.Name != "lbUCIncluirPassageiros" && c.Name != "lblLista")
+                {
+                    c.Font = new Font("Segoe UI", 10);
+                }
+
+                if (dark)
+                {
+                    if (c is TextBox || c is DateTimePicker)
+                    {
+                        c.BackColor = Color.FromArgb(45, 45, 45);
+                        c.ForeColor = Color.White;
+                    }
+                    if (c is Label) c.ForeColor = Color.Gainsboro;
+                }
+                else
+                {
+                    if (c is TextBox || c is DateTimePicker)
+                    {
+                        c.BackColor = Color.White;
+                        c.ForeColor = Color.Black;
+                    }
+                    // Cor das labels no modo claro
+                    if (c is Label && c.Name != "lbUCIncluirPassageiros" && c.Name != "lblLista")
+                        c.ForeColor = Color.FromArgb(64, 64, 64);
+                }
+
+                if (c.HasChildren) MudarCoresRecursivo(c, dark);
+            }
+        }
+
+        public void AtualizarTema(bool isDark)
+        {
+            if (isDark)
+            {
+                // 1. O Fundo da UC deve ser transparente para mostrar a imagem da Home
+                this.BackColor = Color.Transparent;
+                MudarCoresRecursivo(this, isDark);
+
+                // 2. Painel de Cadastro (Efeito Transparente)
+                pnlIncluir.BackColor = Color.FromArgb(25, 45, 35);
+                lbUCIncluirPassageiros.ForeColor = Color.Gainsboro;
+                lblLista.ForeColor = Color.Gainsboro;
+
+                foreach (Control c in pnlIncluir.Controls)
+                {
+                    if (c is Label) c.ForeColor = Color.Gainsboro;
+                    if (c is TextBox txt)
+                    {
+                        txt.BackColor = Color.FromArgb(45, 45, 45); // Textbox escura
+                        txt.ForeColor = Color.White;
+                        txt.BorderStyle = BorderStyle.FixedSingle;
+                    }
+                }
+
+                //DataGridView 
+                dgvListaDePassageiros.BackgroundColor = Color.FromArgb(20, 35, 30);
+                dgvListaDePassageiros.DefaultCellStyle.BackColor = Color.FromArgb(25, 45, 35);
+                dgvListaDePassageiros.DefaultCellStyle.ForeColor = Color.Gainsboro;
+
+                dgvListaDePassageiros.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(30, 50, 40);
+                dgvListaDePassageiros.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(15, 30, 25);
+                dgvListaDePassageiros.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                dgvListaDePassageiros.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(15, 30, 25); // Evita o azul no clique do topo
+
+                //Seleção Fluorescente: Um verde mais vivo (tipo o do botão buscar)
+                dgvListaDePassageiros.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 255, 127); // Verde SpringGreen
+                dgvListaDePassageiros.DefaultCellStyle.SelectionForeColor = Color.Black; // Texto preto para dar leitura no verde claro
+
+                dgvListaDePassageiros.EnableHeadersVisualStyles = false; // Necessário para a cor do cabeçalho pegar
+            }
+            else // MODO CLARO (Igual à imagem gc5.png)
+            {
+                this.BackColor = Color.FromArgb(239, 239, 239); // O cinza clarinho de fundo da gc5
+                MudarCoresRecursivo(this, false);
+
+                // --- PAINEL DE CADASTRO ---
+                pnlIncluir.BackColor = Color.FromArgb(232, 232, 232); // Cinza do cabeçalho de cadastro
+
+                // Força o Negrito no título que a recursividade tirou
+                lbUCIncluirPassageiros.Font = new Font("Segoe UI", 18, FontStyle.Bold);
+                lbUCIncluirPassageiros.ForeColor = Color.Black;
+
+                lblLista.Font = new Font("Segoe UI", 18, FontStyle.Bold);
+                lblLista.ForeColor = Color.Black;
+
+                // --- DATAGRIDVIEW (Limpeza total do Dark Mode) ---
+                dgvListaDePassageiros.BackgroundColor = Color.White;
+                dgvListaDePassageiros.DefaultCellStyle.BackColor = Color.White;
+                dgvListaDePassageiros.DefaultCellStyle.ForeColor = Color.Black;
+
+                // Remove o fundo verde das linhas alternadas que apareceu na gc6
+                dgvListaDePassageiros.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+
+                // Seleção Fluorescente (Igual à gc5)
+                dgvListaDePassageiros.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 255, 127);
+                dgvListaDePassageiros.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+                // Cabeçalho - Reset para o cinza original
+                dgvListaDePassageiros.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(232, 232, 232);
+                dgvListaDePassageiros.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+                dgvListaDePassageiros.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 255, 127);
+
+            }
+        }
+
+
+
+
+
 
 
         public void CarregarInformacoes(int id)

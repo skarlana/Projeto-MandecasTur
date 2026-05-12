@@ -30,7 +30,7 @@
         {
             panel1 = new Panel();
             btnAtualizar = new BotaoPadraoMandecas();
-            panel2 = new Panel();
+            pnlRelatorio = new Panel();
             cboClienteRelatorio = new ComboBox();
             rbCustoViagem = new RadioButton();
             rbReciboCliente = new RadioButton();
@@ -41,8 +41,8 @@
             cboViagemRelatorio = new ComboBox();
             lbViagemFinanceiro = new Label();
             lbRelatorioFinanceiro = new Label();
-            panel4 = new Panel();
-            label1 = new Label();
+            pnlGerar = new Panel();
+            lblRelatorio_Titulo = new Label();
             pnlDEBusca = new Panel();
             btnBuscarFinanceiro = new BotaoPadraoMandecas();
             lblLimparFiltro = new Label();
@@ -50,17 +50,17 @@
             cboStatus = new ComboBox();
             Panel_Vencidos = new Panel();
             lblVencidos = new Label();
-            label6 = new Label();
+            lblVencido_Titulo = new Label();
             Panel_Pendentes = new Panel();
             lblPendentes = new Label();
-            label4 = new Label();
+            lblPendente_Titulo = new Label();
             Panel_Entrada = new Panel();
             lblEntradas = new Label();
-            label2 = new Label();
+            lblReceita_Titulo = new Label();
             dgv_Financeiro = new DataGridView();
             panel1.SuspendLayout();
-            panel2.SuspendLayout();
-            panel4.SuspendLayout();
+            pnlRelatorio.SuspendLayout();
+            pnlGerar.SuspendLayout();
             pnlDEBusca.SuspendLayout();
             Panel_Vencidos.SuspendLayout();
             Panel_Pendentes.SuspendLayout();
@@ -72,7 +72,7 @@
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.Controls.Add(btnAtualizar);
-            panel1.Controls.Add(panel2);
+            panel1.Controls.Add(pnlRelatorio);
             panel1.Controls.Add(pnlDEBusca);
             panel1.Controls.Add(Panel_Vencidos);
             panel1.Controls.Add(Panel_Pendentes);
@@ -98,25 +98,25 @@
             btnAtualizar.UseVisualStyleBackColor = false;
             btnAtualizar.Click += btnAtualizar_Click;
             // 
-            // panel2
+            // pnlRelatorio
             // 
-            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            panel2.BackColor = SystemColors.ButtonHighlight;
-            panel2.Controls.Add(cboClienteRelatorio);
-            panel2.Controls.Add(rbCustoViagem);
-            panel2.Controls.Add(rbReciboCliente);
-            panel2.Controls.Add(rbListaPassageiros);
-            panel2.Controls.Add(comboBox1);
-            panel2.Controls.Add(label8);
-            panel2.Controls.Add(botaoPadraoMandecas3);
-            panel2.Controls.Add(cboViagemRelatorio);
-            panel2.Controls.Add(lbViagemFinanceiro);
-            panel2.Controls.Add(lbRelatorioFinanceiro);
-            panel2.Controls.Add(panel4);
-            panel2.Location = new Point(808, 80);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(319, 424);
-            panel2.TabIndex = 1;
+            pnlRelatorio.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pnlRelatorio.BackColor = SystemColors.ButtonHighlight;
+            pnlRelatorio.Controls.Add(cboClienteRelatorio);
+            pnlRelatorio.Controls.Add(rbCustoViagem);
+            pnlRelatorio.Controls.Add(rbReciboCliente);
+            pnlRelatorio.Controls.Add(rbListaPassageiros);
+            pnlRelatorio.Controls.Add(comboBox1);
+            pnlRelatorio.Controls.Add(label8);
+            pnlRelatorio.Controls.Add(botaoPadraoMandecas3);
+            pnlRelatorio.Controls.Add(cboViagemRelatorio);
+            pnlRelatorio.Controls.Add(lbViagemFinanceiro);
+            pnlRelatorio.Controls.Add(lbRelatorioFinanceiro);
+            pnlRelatorio.Controls.Add(pnlGerar);
+            pnlRelatorio.Location = new Point(808, 80);
+            pnlRelatorio.Name = "pnlRelatorio";
+            pnlRelatorio.Size = new Size(319, 424);
+            pnlRelatorio.TabIndex = 1;
             // 
             // cboClienteRelatorio
             // 
@@ -225,24 +225,24 @@
             lbRelatorioFinanceiro.TabIndex = 1;
             lbRelatorioFinanceiro.Text = "Cliente:";
             // 
-            // panel4
+            // pnlGerar
             // 
-            panel4.BackColor = Color.FromArgb(68, 252, 124);
-            panel4.Controls.Add(label1);
-            panel4.Location = new Point(0, 0);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(319, 51);
-            panel4.TabIndex = 0;
+            pnlGerar.BackColor = Color.FromArgb(68, 252, 124);
+            pnlGerar.Controls.Add(lblRelatorio_Titulo);
+            pnlGerar.Location = new Point(0, 0);
+            pnlGerar.Name = "pnlGerar";
+            pnlGerar.Size = new Size(319, 51);
+            pnlGerar.TabIndex = 0;
             // 
-            // label1
+            // lblRelatorio_Titulo
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(85, 14);
-            label1.Name = "label1";
-            label1.Size = new Size(156, 25);
-            label1.TabIndex = 0;
-            label1.Text = "Gerar Relatórios";
+            lblRelatorio_Titulo.AutoSize = true;
+            lblRelatorio_Titulo.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblRelatorio_Titulo.Location = new Point(85, 14);
+            lblRelatorio_Titulo.Name = "lblRelatorio_Titulo";
+            lblRelatorio_Titulo.Size = new Size(156, 25);
+            lblRelatorio_Titulo.TabIndex = 0;
+            lblRelatorio_Titulo.Text = "Gerar Relatórios";
             // 
             // pnlDEBusca
             // 
@@ -308,105 +308,105 @@
             Panel_Vencidos.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             Panel_Vencidos.BackColor = Color.Transparent;
             Panel_Vencidos.Controls.Add(lblVencidos);
-            Panel_Vencidos.Controls.Add(label6);
-            Panel_Vencidos.Location = new Point(558, 80);
+            Panel_Vencidos.Controls.Add(lblVencido_Titulo);
+            Panel_Vencidos.Location = new Point(552, 80);
             Panel_Vencidos.Name = "Panel_Vencidos";
-            Panel_Vencidos.Size = new Size(228, 145);
+            Panel_Vencidos.Size = new Size(234, 145);
             Panel_Vencidos.TabIndex = 5;
             Panel_Vencidos.Paint += DesenharCard;
             // 
             // lblVencidos
             // 
-            lblVencidos.AutoSize = true;
             lblVencidos.BackColor = Color.Transparent;
             lblVencidos.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblVencidos.ForeColor = SystemColors.ButtonHighlight;
-            lblVencidos.Location = new Point(70, 65);
+            lblVencidos.Location = new Point(3, 65);
             lblVencidos.Name = "lblVencidos";
-            lblVencidos.Size = new Size(0, 25);
+            lblVencidos.Size = new Size(222, 25);
             lblVencidos.TabIndex = 3;
+            lblVencidos.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label6
+            // lblVencido_Titulo
             // 
-            label6.AutoSize = true;
-            label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label6.ForeColor = SystemColors.ActiveCaptionText;
-            label6.Location = new Point(23, 18);
-            label6.Name = "label6";
-            label6.Size = new Size(185, 21);
-            label6.TabIndex = 2;
-            label6.Text = "Vencidos/Inadimplência";
+            lblVencido_Titulo.BackColor = Color.Transparent;
+            lblVencido_Titulo.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblVencido_Titulo.ForeColor = Color.DimGray;
+            lblVencido_Titulo.Location = new Point(3, 11);
+            lblVencido_Titulo.Name = "lblVencido_Titulo";
+            lblVencido_Titulo.Size = new Size(222, 29);
+            lblVencido_Titulo.TabIndex = 2;
+            lblVencido_Titulo.Text = "Vencidos (Mês)";
+            lblVencido_Titulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Panel_Pendentes
             // 
             Panel_Pendentes.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             Panel_Pendentes.BackColor = Color.Transparent;
             Panel_Pendentes.Controls.Add(lblPendentes);
-            Panel_Pendentes.Controls.Add(label4);
+            Panel_Pendentes.Controls.Add(lblPendente_Titulo);
             Panel_Pendentes.Location = new Point(290, 80);
             Panel_Pendentes.Name = "Panel_Pendentes";
-            Panel_Pendentes.Size = new Size(228, 145);
+            Panel_Pendentes.Size = new Size(233, 145);
             Panel_Pendentes.TabIndex = 6;
             Panel_Pendentes.Paint += DesenharCard;
             // 
             // lblPendentes
             // 
-            lblPendentes.AutoSize = true;
             lblPendentes.BackColor = Color.Transparent;
             lblPendentes.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPendentes.ForeColor = SystemColors.ButtonHighlight;
-            lblPendentes.Location = new Point(74, 65);
+            lblPendentes.Location = new Point(3, 65);
             lblPendentes.Name = "lblPendentes";
-            lblPendentes.Size = new Size(0, 25);
+            lblPendentes.Size = new Size(222, 25);
             lblPendentes.TabIndex = 2;
+            lblPendentes.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label4
+            // lblPendente_Titulo
             // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label4.ForeColor = SystemColors.ActiveCaptionText;
-            label4.Location = new Point(44, 16);
-            label4.Name = "label4";
-            label4.Size = new Size(140, 21);
-            label4.TabIndex = 1;
-            label4.Text = "Contas Pendentes";
+            lblPendente_Titulo.BackColor = Color.Transparent;
+            lblPendente_Titulo.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPendente_Titulo.ForeColor = Color.DimGray;
+            lblPendente_Titulo.Location = new Point(4, 8);
+            lblPendente_Titulo.Name = "lblPendente_Titulo";
+            lblPendente_Titulo.Size = new Size(221, 35);
+            lblPendente_Titulo.TabIndex = 1;
+            lblPendente_Titulo.Text = "Pendentes (Mês)";
+            lblPendente_Titulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Panel_Entrada
             // 
             Panel_Entrada.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             Panel_Entrada.BackColor = Color.Transparent;
             Panel_Entrada.Controls.Add(lblEntradas);
-            Panel_Entrada.Controls.Add(label2);
+            Panel_Entrada.Controls.Add(lblReceita_Titulo);
             Panel_Entrada.Location = new Point(23, 80);
             Panel_Entrada.Name = "Panel_Entrada";
-            Panel_Entrada.Size = new Size(228, 145);
+            Panel_Entrada.Size = new Size(232, 145);
             Panel_Entrada.TabIndex = 4;
             Panel_Entrada.Paint += DesenharCard;
             // 
             // lblEntradas
             // 
-            lblEntradas.AutoSize = true;
             lblEntradas.BackColor = Color.Transparent;
             lblEntradas.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblEntradas.ForeColor = SystemColors.ButtonHighlight;
-            lblEntradas.Location = new Point(74, 65);
+            lblEntradas.Location = new Point(3, 65);
             lblEntradas.Name = "lblEntradas";
-            lblEntradas.Size = new Size(0, 25);
+            lblEntradas.Size = new Size(222, 25);
             lblEntradas.TabIndex = 0;
+            lblEntradas.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // lblReceita_Titulo
             // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label2.ForeColor = SystemColors.ActiveCaptionText;
-            label2.Location = new Point(24, 17);
-            label2.Name = "label2";
-            label2.Size = new Size(181, 21);
-            label2.TabIndex = 0;
-            label2.Text = "Receita Realizada (Mês)";
+            lblReceita_Titulo.BackColor = Color.Transparent;
+            lblReceita_Titulo.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblReceita_Titulo.ForeColor = Color.DimGray;
+            lblReceita_Titulo.Location = new Point(7, 12);
+            lblReceita_Titulo.Name = "lblReceita_Titulo";
+            lblReceita_Titulo.Size = new Size(218, 27);
+            lblReceita_Titulo.TabIndex = 0;
+            lblReceita_Titulo.Text = "Entradas (Mês)";
+            lblReceita_Titulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // dgv_Financeiro
             // 
@@ -436,18 +436,15 @@
             Size = new Size(1172, 577);
             Load += UC_Financeiro_Load;
             panel1.ResumeLayout(false);
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
+            pnlRelatorio.ResumeLayout(false);
+            pnlRelatorio.PerformLayout();
+            pnlGerar.ResumeLayout(false);
+            pnlGerar.PerformLayout();
             pnlDEBusca.ResumeLayout(false);
             pnlDEBusca.PerformLayout();
             Panel_Vencidos.ResumeLayout(false);
-            Panel_Vencidos.PerformLayout();
             Panel_Pendentes.ResumeLayout(false);
-            Panel_Pendentes.PerformLayout();
             Panel_Entrada.ResumeLayout(false);
-            Panel_Entrada.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_Financeiro).EndInit();
             ResumeLayout(false);
         }
@@ -464,14 +461,14 @@
         private DataGridView dgv_Financeiro;
         private BotaoPadraoMandecas btn_buscar_FN;
         private Label lblVencidos;
-        private Label label6;
+        private Label lblVencido_Titulo;
         private Label lblPendentes;
-        private Label label4;
+        private Label lblPendente_Titulo;
         private Label lblEntradas;
-        private Label label2;
-        private Panel panel2;
-        private Panel panel4;
-        private Label label1;
+        private Label lblReceita_Titulo;
+        private Panel pnlRelatorio;
+        private Panel pnlGerar;
+        private Label lblRelatorio_Titulo;
        // private ComboBox comboBox2;
         private Label lbViagemFinanceiro;
         private Label lbRelatorioFinanceiro;

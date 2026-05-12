@@ -93,7 +93,7 @@ namespace Login.UseControls
                 panelEditarCliente.BackColor = Color.White;
 
                 // Força o Negrito no título que a recursividade tirou
-                lbEditarCliente.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+                lbEditarCliente.Font = new Font("Segoe UI", 18, FontStyle.Bold);
                 lbEditarCliente.ForeColor = Color.Black;
 
             }

@@ -56,10 +56,10 @@
             // lbEditarViagem
             // 
             lbEditarViagem.AutoSize = true;
-            lbEditarViagem.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbEditarViagem.Location = new Point(35, 29);
+            lbEditarViagem.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbEditarViagem.Location = new Point(42, 25);
             lbEditarViagem.Name = "lbEditarViagem";
-            lbEditarViagem.Size = new Size(166, 32);
+            lbEditarViagem.Size = new Size(198, 37);
             lbEditarViagem.TabIndex = 2;
             lbEditarViagem.Text = "Editar Viagem";
             // 
@@ -281,7 +281,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.WhiteSmoke;
+            BackColor = Color.Transparent;
             Controls.Add(label1);
             Controls.Add(panelEditarViagem);
             Controls.Add(lbIDViagem);

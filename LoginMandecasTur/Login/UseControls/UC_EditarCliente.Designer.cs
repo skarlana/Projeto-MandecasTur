@@ -61,10 +61,10 @@
             // lbEditarCliente
             // 
             lbEditarCliente.AutoSize = true;
-            lbEditarCliente.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbEditarCliente.Location = new Point(29, 65);
+            lbEditarCliente.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbEditarCliente.Location = new Point(36, 61);
             lbEditarCliente.Name = "lbEditarCliente";
-            lbEditarCliente.Size = new Size(160, 32);
+            lbEditarCliente.Size = new Size(190, 37);
             lbEditarCliente.TabIndex = 12;
             lbEditarCliente.Text = "Editar Cliente";
             // 
@@ -237,6 +237,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Transparent;
             Controls.Add(label1);
             Controls.Add(panelEditarCliente);
             Controls.Add(lbIDCliente);

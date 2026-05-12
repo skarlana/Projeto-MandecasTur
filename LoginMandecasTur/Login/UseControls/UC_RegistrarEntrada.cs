@@ -20,6 +20,96 @@ namespace Login.UseControls
 
         }
 
+        private void MudarCoresRecursivo(Control container, bool dark)
+        {
+            foreach (Control c in container.Controls)
+            {
+                // Se NÃO for o título (que precisa ser bold), aplica a fonte normal
+                if (c.Name != "lblRE" && c.Name != "lblInformativo")
+                {
+                    c.Font = new Font("Segoe UI", 10);
+                }
+
+                if (dark)
+                {
+                    if (c is TextBox || c is DateTimePicker || c is ComboBox)
+                    {
+                        c.BackColor = Color.FromArgb(45, 45, 45);
+                        c.ForeColor = Color.White;
+                    }
+                    if (c is Label) c.ForeColor = Color.Gainsboro;
+                }
+                else
+                {
+                    if (c is TextBox || c is DateTimePicker || c is ComboBox)
+                    {
+                        c.BackColor = Color.White;
+                        c.ForeColor = Color.Black;
+                    }
+                    // Cor das labels no modo claro
+                    if (c is Label && c.Name != "lblRE" && c.Name != "lblInformativo")
+                        c.ForeColor = Color.FromArgb(64, 64, 64);
+                }
+
+                if (c.HasChildren) MudarCoresRecursivo(c, dark);
+            }
+        }
+
+        public void AtualizarTema(bool isDark)
+        {
+            if (isDark)
+            {
+                // 1. O Fundo da UC deve ser transparente para mostrar a imagem da Home
+                this.BackColor = Color.Transparent;
+                MudarCoresRecursivo(this, isDark);
+
+                // 2. Painel de Cadastro (Efeito Transparente)
+                panelRE.BackColor = Color.FromArgb(150, 20, 35, 30);
+                pnlInformativo.BackColor = Color.FromArgb(150, 20, 35, 30);
+                pnlbotoes.BackColor = Color.FromArgb(150, 20, 35, 30);
+                lblRE.ForeColor = Color.Gainsboro;
+                lblInformativo.ForeColor = Color.Gainsboro;
+
+                foreach (Control c in panelRE.Controls)
+                {
+                    if (c is Label) c.ForeColor = Color.Gainsboro;
+                    if (c is TextBox txt)
+                    {
+                        txt.BackColor = Color.FromArgb(45, 45, 45); // Textbox escura
+                        txt.ForeColor = Color.White;
+                        txt.BorderStyle = BorderStyle.FixedSingle;
+                    }
+                }
+
+
+            }
+            else // MODO CLARO
+            {
+                this.BackColor = Color.FromArgb(239, 239, 239); // O cinza clarinho de fundo da gc5
+                MudarCoresRecursivo(this, false);
+
+                // --- PAINEL DE CADASTRO ---
+
+                panelRE.BackColor = Color.White;
+                pnlInformativo.BackColor = Color.White;
+                pnlbotoes.BackColor = Color.White;
+
+
+                // Força o Negrito no título que a recursividade tirou
+                lblRE.Font = new Font("Segoe UI", 18, FontStyle.Bold);
+                lblRE.ForeColor = Color.Black;
+
+                lblInformativo.Font = new Font("Segoe UI", 18, FontStyle.Bold);
+                lblInformativo.ForeColor = Color.Black;
+
+            }
+        }
+
+
+
+
+
+
         private void CarregarViagens()
         {
             // 1. Usa a classe de conexão que vocês criaram (igual à img1)

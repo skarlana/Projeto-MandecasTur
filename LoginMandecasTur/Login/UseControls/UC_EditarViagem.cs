@@ -19,6 +19,88 @@ namespace Login.UseControls
             InitializeComponent();
             id_EditarViagem = idviagem;
         }
+
+        private void MudarCoresRecursivo(Control container, bool dark)
+        {
+            foreach (Control c in container.Controls)
+            {
+                // Se NÃO for o título (que precisa ser bold), aplica a fonte normal
+                if (c.Name != "lbEditarViagem")
+                {
+                    c.Font = new Font("Segoe UI", 10);
+                }
+
+                if (dark)
+                {
+                    if (c is TextBox || c is DateTimePicker)
+                    {
+                        c.BackColor = Color.FromArgb(45, 45, 45);
+                        c.ForeColor = Color.White;
+                    }
+                    if (c is Label) c.ForeColor = Color.Gainsboro;
+                }
+                else
+                {
+                    if (c is TextBox || c is DateTimePicker)
+                    {
+                        c.BackColor = Color.White;
+                        c.ForeColor = Color.Black;
+                    }
+                    // Cor das labels no modo claro
+                    if (c is Label && c.Name != "lbEditarViagem")
+                        c.ForeColor = Color.FromArgb(64, 64, 64);
+                }
+
+                if (c.HasChildren) MudarCoresRecursivo(c, dark);
+            }
+        }
+
+        public void AtualizarTema(bool isDark)
+        {
+            if (isDark)
+            {
+                // 1. O Fundo da UC deve ser transparente para mostrar a imagem da Home
+                this.BackColor = Color.Transparent;
+                MudarCoresRecursivo(this, isDark);
+
+                // 2. Painel de Cadastro (Efeito Transparente)
+                panelEditarViagem.BackColor = Color.FromArgb(150, 20, 35, 30);
+                lbEditarViagem.ForeColor = Color.Gainsboro;
+
+                foreach (Control c in panelEditarViagem.Controls)
+                {
+                    if (c is Label) c.ForeColor = Color.Gainsboro;
+                    if (c is TextBox txt)
+                    {
+                        txt.BackColor = Color.FromArgb(45, 45, 45); // Textbox escura
+                        txt.ForeColor = Color.White;
+                        txt.BorderStyle = BorderStyle.FixedSingle;
+                    }
+                }
+
+
+            }
+            else // MODO CLARO
+            {
+                this.BackColor = Color.FromArgb(239, 239, 239); // O cinza clarinho de fundo da gc5
+                MudarCoresRecursivo(this, false);
+
+                // --- PAINEL DE CADASTRO ---
+
+                panelEditarViagem.BackColor = Color.White;
+
+                // Força o Negrito no título que a recursividade tirou
+                lbEditarViagem.Font = new Font("Segoe UI", 18, FontStyle.Bold);
+                lbEditarViagem.ForeColor = Color.Black;
+
+            }
+        }
+
+
+
+
+
+
         public void Carregar()
         {
             Conexao conexao = new Conexao();

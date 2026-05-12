@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_IncluirPassageiros));
             lbUCIncluirPassageiros = new Label();
             pnlSeparador1 = new Panel();
             lblTituloVagasRestantes = new Label();
-            panel2 = new Panel();
+            pnlIncluir = new Panel();
             txtValorPacote = new TextBox();
             label2 = new Label();
             txtClienteIncluirPassageiros = new TextBox();
@@ -48,24 +48,24 @@
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
-            label7 = new Label();
+            lblLista = new Label();
             panel3 = new Panel();
             lbIDViagemIncluirPassageiros = new Label();
             dgvListaDePassageiros = new DataGridView();
             btnExcluir = new DataGridViewImageColumn();
             label1 = new Label();
             lblVagasRestantes = new Label();
-            panel2.SuspendLayout();
+            pnlIncluir.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListaDePassageiros).BeginInit();
             SuspendLayout();
             // 
             // lbUCIncluirPassageiros
             // 
             lbUCIncluirPassageiros.AutoSize = true;
-            lbUCIncluirPassageiros.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbUCIncluirPassageiros.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbUCIncluirPassageiros.Location = new Point(16, 59);
             lbUCIncluirPassageiros.Name = "lbUCIncluirPassageiros";
-            lbUCIncluirPassageiros.Size = new Size(207, 32);
+            lbUCIncluirPassageiros.Size = new Size(228, 32);
             lbUCIncluirPassageiros.TabIndex = 0;
             lbUCIncluirPassageiros.Text = "Incluir Passageiros";
             // 
@@ -90,27 +90,27 @@
             lblTituloVagasRestantes.TabIndex = 2;
             lblTituloVagasRestantes.Text = "Vagas Restantes:";
             // 
-            // panel2
+            // pnlIncluir
             // 
-            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel2.BackColor = Color.White;
-            panel2.Controls.Add(txtValorPacote);
-            panel2.Controls.Add(label2);
-            panel2.Controls.Add(txtClienteIncluirPassageiros);
-            panel2.Controls.Add(btnVoltarIncluirPassageiros);
-            panel2.Controls.Add(btnIncluirPassageiro);
-            panel2.Controls.Add(panel1);
-            panel2.Controls.Add(txtNumeroDeParcelasIncluirPassageiros);
-            panel2.Controls.Add(txtValorDaEntradaIncluirPassageiros);
-            panel2.Controls.Add(txtFormaDePagamentoIncluirPassageiros);
-            panel2.Controls.Add(label6);
-            panel2.Controls.Add(label5);
-            panel2.Controls.Add(label4);
-            panel2.Controls.Add(label3);
-            panel2.Location = new Point(25, 135);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(784, 249);
-            panel2.TabIndex = 3;
+            pnlIncluir.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pnlIncluir.BackColor = Color.White;
+            pnlIncluir.Controls.Add(txtValorPacote);
+            pnlIncluir.Controls.Add(label2);
+            pnlIncluir.Controls.Add(txtClienteIncluirPassageiros);
+            pnlIncluir.Controls.Add(btnVoltarIncluirPassageiros);
+            pnlIncluir.Controls.Add(btnIncluirPassageiro);
+            pnlIncluir.Controls.Add(panel1);
+            pnlIncluir.Controls.Add(txtNumeroDeParcelasIncluirPassageiros);
+            pnlIncluir.Controls.Add(txtValorDaEntradaIncluirPassageiros);
+            pnlIncluir.Controls.Add(txtFormaDePagamentoIncluirPassageiros);
+            pnlIncluir.Controls.Add(label6);
+            pnlIncluir.Controls.Add(label5);
+            pnlIncluir.Controls.Add(label4);
+            pnlIncluir.Controls.Add(label3);
+            pnlIncluir.Location = new Point(25, 135);
+            pnlIncluir.Name = "pnlIncluir";
+            pnlIncluir.Size = new Size(784, 249);
+            pnlIncluir.TabIndex = 3;
             // 
             // txtValorPacote
             // 
@@ -237,15 +237,15 @@
             label3.TabIndex = 0;
             label3.Text = "Cliente:";
             // 
-            // label7
+            // lblLista
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(25, 406);
-            label7.Name = "label7";
-            label7.Size = new Size(223, 32);
-            label7.TabIndex = 5;
-            label7.Text = "Lista de Passageiros";
+            lblLista.AutoSize = true;
+            lblLista.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLista.Location = new Point(25, 406);
+            lblLista.Name = "lblLista";
+            lblLista.Size = new Size(241, 32);
+            lblLista.TabIndex = 5;
+            lblLista.Text = "Lista de Passageiros";
             // 
             // panel3
             // 
@@ -274,14 +274,14 @@
             dgvListaDePassageiros.BorderStyle = BorderStyle.None;
             dgvListaDePassageiros.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvListaDePassageiros.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.WhiteSmoke;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvListaDePassageiros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.WhiteSmoke;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvListaDePassageiros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvListaDePassageiros.ColumnHeadersHeight = 40;
             dgvListaDePassageiros.Columns.AddRange(new DataGridViewColumn[] { btnExcluir });
             dgvListaDePassageiros.EnableHeadersVisualStyles = false;
@@ -297,10 +297,10 @@
             // btnExcluir
             // 
             btnExcluir.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = resources.GetObject("dataGridViewCellStyle2.NullValue");
-            dataGridViewCellStyle2.Padding = new Padding(8);
-            btnExcluir.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.NullValue = resources.GetObject("dataGridViewCellStyle4.NullValue");
+            dataGridViewCellStyle4.Padding = new Padding(8);
+            btnExcluir.DefaultCellStyle = dataGridViewCellStyle4;
             btnExcluir.HeaderText = "";
             btnExcluir.Image = (Image)resources.GetObject("btnExcluir.Image");
             btnExcluir.ImageLayout = DataGridViewImageCellLayout.Zoom;
@@ -335,16 +335,16 @@
             Controls.Add(dgvListaDePassageiros);
             Controls.Add(lbIDViagemIncluirPassageiros);
             Controls.Add(panel3);
-            Controls.Add(label7);
-            Controls.Add(panel2);
+            Controls.Add(lblLista);
+            Controls.Add(pnlIncluir);
             Controls.Add(lblTituloVagasRestantes);
             Controls.Add(pnlSeparador1);
             Controls.Add(lbUCIncluirPassageiros);
             Name = "UC_IncluirPassageiros";
             Size = new Size(826, 633);
             Load += UC_IncluirPassageiros_Load;
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            pnlIncluir.ResumeLayout(false);
+            pnlIncluir.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListaDePassageiros).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -355,7 +355,7 @@
         private Label lbUCIncluirPassageiros;
         private Panel pnlSeparador1;
         private Label lblTituloVagasRestantes;
-        private Panel panel2;
+        private Panel pnlIncluir;
         private Label label6;
         private Label label5;
         private Label label4;
@@ -363,7 +363,7 @@
         private TextBox txtNumeroDeParcelasIncluirPassageiros;
         private TextBox txtValorDaEntradaIncluirPassageiros;
         private TextBox txtFormaDePagamentoIncluirPassageiros;
-        private Label label7;
+        private Label lblLista;
         private Panel panel1;
         private Panel panel3;
         private BotaoPadraoMandecas btnVoltarIncluirPassageiros;

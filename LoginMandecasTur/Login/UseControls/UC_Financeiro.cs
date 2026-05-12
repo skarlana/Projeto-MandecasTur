@@ -31,7 +31,35 @@ namespace Login.UseControls
 
         private void ConfigurarEstiloGrid()
         {
-            dgv_Financeiro.ReadOnly = true;
+            dgv_Financeiro.ReadOnly = false;
+
+            // Estilização Avançada do Grid
+            dgv_Financeiro.EnableHeadersVisualStyles = false; // Permite mudar a cor do cabeçalho
+            dgv_Financeiro.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(232, 232, 232);
+            dgv_Financeiro.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+            dgv_Financeiro.DefaultCellStyle.Padding = new Padding(15, 10, 15, 10);
+            dgv_Financeiro.ColumnHeadersDefaultCellStyle.Padding = new Padding(12, 10, 12, 10);
+            dgv_Financeiro.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // Seleciona a linha toda
+            dgv_Financeiro.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dgv_Financeiro.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 255, 127);
+            dgv_Financeiro.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            dgv_Financeiro.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 255, 127);
+
+            // 4. Muda a fonte do conteúdo da Grid também
+            dgv_Financeiro.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgv_Financeiro.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+
+            // Altura das linhas para dar "respiro" ao design
+            dgv_Financeiro.RowTemplate.Height = 35;
+
+
+
+
+
+
+            /*dgv_Financeiro.ReadOnly = true;
             dgv_Financeiro.RowHeadersVisible = false; // Tira o espaço cinza antes do Código
 
             // --- CORES MODO CLARO ---
@@ -58,8 +86,142 @@ namespace Login.UseControls
             dgv_Financeiro.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
             dgv_Financeiro.ColumnHeadersHeight = 35;
             dgv_Financeiro.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv_Financeiro.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+            dgv_Financeiro.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;*/
+
+
         }
+
+
+        private void MudarCoresRecursivo(Control container, bool dark)
+        {
+            foreach (Control c in container.Controls)
+            {
+                // Força Segoe UI em tudo, menos nos títulos que vamos tratar depois
+                if (c.Name != "lblRelatorio_Titulo")
+                    c.Font = new Font("Segoe UI", 10);
+
+                if (dark)
+                {
+                    if (c is TextBox || c is ComboBox || c is DateTimePicker)
+                    {
+                        c.BackColor = Color.FromArgb(45, 45, 45);
+                        c.ForeColor = Color.White;
+                    }
+                    // RadioButtons e Labels
+                    if (c is Label || c is RadioButton) c.ForeColor = Color.Gainsboro;
+                }
+                else
+                {
+                    if (c is TextBox || c is ComboBox || c is DateTimePicker)
+                    {
+                        c.BackColor = Color.White;
+                        c.ForeColor = Color.Black;
+                    }
+                    if (c is Label || c is RadioButton) c.ForeColor = Color.FromArgb(64, 64, 64);
+                }
+
+                if (c.HasChildren) MudarCoresRecursivo(c, dark);
+            }
+        }
+
+        public void AtualizarTema(bool isDark)
+        {
+            if (isDark)
+            {
+                this.BackColor = Color.FromArgb(15, 15, 15); // Fundo bem escuro
+                MudarCoresRecursivo(this, true);
+
+                // --- MODO ESCURO: CARDS TRANSPARENTES PARA O DESENHARCARD FUNCIONAR ---
+                Panel_Entrada.BackColor = Color.Transparent;
+                Panel_Pendentes.BackColor = Color.Transparent;
+                Panel_Vencidos.BackColor = Color.Transparent;
+
+                // Estilo Neon (Valores)
+                lblEntradas.ForeColor = Color.SpringGreen;
+                lblPendentes.ForeColor = Color.Gold;
+                lblVencidos.ForeColor = Color.Tomato;
+
+                // Painéis Laterais e Busca
+                pnlRelatorio.BackColor = Color.FromArgb(150, 20, 35, 30);
+                pnlDEBusca.BackColor = Color.FromArgb(150, 20, 35, 30);
+                pnlGerar.BackColor = Color.FromArgb(25, 45, 35); // Verde escuro
+
+                //DataGridView 
+                dgv_Financeiro.BackgroundColor = Color.FromArgb(20, 35, 30);
+                dgv_Financeiro.DefaultCellStyle.BackColor = Color.FromArgb(25, 45, 35);
+                dgv_Financeiro.DefaultCellStyle.ForeColor = Color.Gainsboro;
+
+                dgv_Financeiro.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(30, 50, 40);
+                dgv_Financeiro.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(15, 30, 25);
+                dgv_Financeiro.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                dgv_Financeiro.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(15, 30, 25); // Evita o azul no clique do topo
+
+                //Seleção Fluorescente: Um verde mais vivo (tipo o do botão buscar)
+                dgv_Financeiro.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 255, 127); // Verde SpringGreen
+                dgv_Financeiro.DefaultCellStyle.SelectionForeColor = Color.Black; // Texto preto para dar leitura no verde claro
+
+                dgv_Financeiro.EnableHeadersVisualStyles = false; // Necessário para a cor do cabeçalho pegar
+            
+        }
+            else
+            {
+                // --- MODO CLARO: VOLTANDO AO ORIGINAL ---
+                this.BackColor = Color.FromArgb(239, 239, 239);
+                MudarCoresRecursivo(this, false);
+
+                // CRUCIAL: Cards precisam ser Transparent para mostrar o efeito do DesenharCard
+                Panel_Entrada.BackColor = Color.Transparent;
+                Panel_Pendentes.BackColor = Color.Transparent;
+                Panel_Vencidos.BackColor = Color.Transparent;
+
+                // Cores das Labels (Valores)
+                lblEntradas.ForeColor = Color.SeaGreen;
+                lblPendentes.ForeColor = Color.DarkGoldenrod;
+                lblVencidos.ForeColor = Color.Firebrick;
+
+                // Painel "GERAR RELATÓRIO" volta a ser Verde Fluorescente
+                pnlGerar.BackColor = Color.FromArgb(45, 255, 145);
+                pnlRelatorio.BackColor = Color.White;
+                pnlDEBusca.BackColor = Color.White;
+
+                // --- DATAGRIDVIEW (Limpeza total do Dark Mode) ---
+                dgv_Financeiro.BackgroundColor = Color.White;
+                dgv_Financeiro.DefaultCellStyle.BackColor = Color.White;
+                dgv_Financeiro.DefaultCellStyle.ForeColor = Color.Black;
+
+                // Remove o fundo verde das linhas alternadas que apareceu na gc6
+                dgv_Financeiro.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+
+                // Seleção Fluorescente (Igual à gc5)
+                dgv_Financeiro.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 255, 127);
+                dgv_Financeiro.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+                // Cabeçalho - Reset para o cinza original
+                dgv_Financeiro.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(232, 232, 232);
+                dgv_Financeiro.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+                dgv_Financeiro.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 255, 127);
+            }
+
+            // --- AJUSTE GLOBAL DE FONTES (Para não repetir código) ---
+            float fontSizeTitulo = 14F;
+            float fontSizeValor = 16F;
+
+            lblReceita_Titulo.Font = new Font("Segoe UI", fontSizeTitulo, FontStyle.Bold);
+            lblPendente_Titulo.Font = new Font("Segoe UI", fontSizeTitulo, FontStyle.Bold);
+            lblVencido_Titulo.Font = new Font("Segoe UI", fontSizeTitulo, FontStyle.Bold);
+
+            lblEntradas.Font = new Font("Segoe UI", fontSizeValor, FontStyle.Bold);
+            lblPendentes.Font = new Font("Segoe UI", fontSizeValor, FontStyle.Bold);
+            lblVencidos.Font = new Font("Segoe UI", fontSizeValor, FontStyle.Bold);
+
+            // Força os cards a se redesenharem com as novas configurações
+            Panel_Entrada.Invalidate();
+            Panel_Pendentes.Invalidate();
+            Panel_Vencidos.Invalidate();
+        }
+
+
+
         private void dgv_Financeiro_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             // Verifica se é a coluna de status 
@@ -156,10 +318,10 @@ namespace Login.UseControls
                 dgv_Financeiro.Columns["valor_viagem"].DefaultCellStyle.Format = "C2";
             }
 
-            if (dgv_Financeiro.Columns.Contains("data_inicio_pag"))
+            if (dgv_Financeiro.Columns.Contains("data_vencimento"))
             {
-                dgv_Financeiro.Columns["data_inicio_pag"].HeaderText = "Vencimento";
-                dgv_Financeiro.Columns["data_inicio_pag"].DisplayIndex = 5;
+                dgv_Financeiro.Columns["data_vencimento"].HeaderText = "Vencimento";
+                dgv_Financeiro.Columns["data_vencimento"].DisplayIndex = 5;
             }
 
             if (dgv_Financeiro.Columns.Contains("status_pagamento"))
@@ -238,6 +400,7 @@ namespace Login.UseControls
                 object resultadoEntradas = cmd1.ExecuteScalar();
                 decimal entradas = resultadoEntradas != DBNull.Value ? Convert.ToDecimal(resultadoEntradas) : 0;
                 lblEntradas.Text = entradas.ToString("C2");
+                lblEntradas.ForeColor = Color.SeaGreen;
 
                 // 2. Contas Pendentes (Valor das viagens - Valor pago)
                 // Usamos uma subconsulta para pegar a diferença
@@ -248,6 +411,7 @@ namespace Login.UseControls
                 object resultadoPendentes = cmd2.ExecuteScalar();
                 decimal pendentes = resultadoPendentes != DBNull.Value ? Convert.ToDecimal(resultadoPendentes) : 0;
                 lblPendentes.Text = pendentes.ToString("C2");
+                lblPendentes.ForeColor = Color.DarkGoldenrod;
 
                 // 3. Vencidos (Soma o valor total das reservas que estão com data atrasada e não foram pagas)
                 string sqlVencidos = @"SELECT SUM(COALESCE(valor_unitario, 0)) 
@@ -258,6 +422,7 @@ namespace Login.UseControls
                 object resultadoVencidos = cmd3.ExecuteScalar();
                 decimal vencidos = resultadoVencidos != DBNull.Value ? Convert.ToDecimal(resultadoVencidos) : 0;
                 lblVencidos.Text = vencidos.ToString("C2");
+                lblVencidos.ForeColor = Color.Firebrick;
 
             }
             catch (Exception ex)

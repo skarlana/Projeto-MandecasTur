@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            label1 = new Label();
-            panel2 = new Panel();
+            lblRE = new Label();
+            pnlInformativo = new Panel();
             lblInformativo = new Label();
-            panel3 = new Panel();
+            panelRE = new Panel();
             dtpVencimento = new DateTimePicker();
             lbDtVencimentoRegistrarEntrada = new Label();
             panel5 = new Panel();
-            panel4 = new Panel();
+            pnlbotoes = new Panel();
             btnregistrar = new Button();
             btnCancelar = new Button();
             cbPassageiros = new ComboBox();
@@ -47,9 +47,9 @@
             label15 = new Label();
             label16 = new Label();
             label17 = new Label();
-            panel2.SuspendLayout();
-            panel3.SuspendLayout();
-            panel4.SuspendLayout();
+            pnlInformativo.SuspendLayout();
+            panelRE.SuspendLayout();
+            pnlbotoes.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -62,25 +62,25 @@
             panel1.Size = new Size(707, 2);
             panel1.TabIndex = 0;
             // 
-            // label1
+            // lblRE
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 18.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(59, 20);
-            label1.Name = "label1";
-            label1.Size = new Size(205, 35);
-            label1.TabIndex = 1;
-            label1.Text = "Registrar Entrada";
+            lblRE.AutoSize = true;
+            lblRE.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblRE.Location = new Point(59, 20);
+            lblRE.Name = "lblRE";
+            lblRE.Size = new Size(212, 32);
+            lblRE.TabIndex = 1;
+            lblRE.Text = "Registrar Entrada";
             // 
-            // panel2
+            // pnlInformativo
             // 
-            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel2.BackColor = Color.White;
-            panel2.Controls.Add(lblInformativo);
-            panel2.Location = new Point(59, 78);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(707, 71);
-            panel2.TabIndex = 2;
+            pnlInformativo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pnlInformativo.BackColor = Color.White;
+            pnlInformativo.Controls.Add(lblInformativo);
+            pnlInformativo.Location = new Point(59, 78);
+            pnlInformativo.Name = "pnlInformativo";
+            pnlInformativo.Size = new Size(707, 71);
+            pnlInformativo.TabIndex = 2;
             // 
             // lblInformativo
             // 
@@ -94,26 +94,26 @@
             lblInformativo.TextAlign = ContentAlignment.MiddleCenter;
             lblInformativo.Click += label2_Click;
             // 
-            // panel3
+            // panelRE
             // 
-            panel3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel3.BackColor = Color.White;
-            panel3.Controls.Add(dtpVencimento);
-            panel3.Controls.Add(lbDtVencimentoRegistrarEntrada);
-            panel3.Controls.Add(panel5);
-            panel3.Controls.Add(panel4);
-            panel3.Controls.Add(cbPassageiros);
-            panel3.Controls.Add(cbViagens);
-            panel3.Controls.Add(label12);
-            panel3.Controls.Add(txtValorParcela);
-            panel3.Controls.Add(txtFormaPgto);
-            panel3.Controls.Add(label15);
-            panel3.Controls.Add(label16);
-            panel3.Controls.Add(label17);
-            panel3.Location = new Point(59, 171);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(707, 268);
-            panel3.TabIndex = 3;
+            panelRE.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panelRE.BackColor = Color.White;
+            panelRE.Controls.Add(dtpVencimento);
+            panelRE.Controls.Add(lbDtVencimentoRegistrarEntrada);
+            panelRE.Controls.Add(panel5);
+            panelRE.Controls.Add(pnlbotoes);
+            panelRE.Controls.Add(cbPassageiros);
+            panelRE.Controls.Add(cbViagens);
+            panelRE.Controls.Add(label12);
+            panelRE.Controls.Add(txtValorParcela);
+            panelRE.Controls.Add(txtFormaPgto);
+            panelRE.Controls.Add(label15);
+            panelRE.Controls.Add(label16);
+            panelRE.Controls.Add(label17);
+            panelRE.Location = new Point(59, 171);
+            panelRE.Name = "panelRE";
+            panelRE.Size = new Size(707, 268);
+            panelRE.TabIndex = 3;
             // 
             // dtpVencimento
             // 
@@ -142,15 +142,15 @@
             panel5.Size = new Size(704, 2);
             panel5.TabIndex = 9;
             // 
-            // panel4
+            // pnlbotoes
             // 
-            panel4.BackColor = Color.White;
-            panel4.Controls.Add(btnregistrar);
-            panel4.Controls.Add(btnCancelar);
-            panel4.Location = new Point(0, 216);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(707, 50);
-            panel4.TabIndex = 4;
+            pnlbotoes.BackColor = Color.White;
+            pnlbotoes.Controls.Add(btnregistrar);
+            pnlbotoes.Controls.Add(btnCancelar);
+            pnlbotoes.Location = new Point(0, 216);
+            pnlbotoes.Name = "pnlbotoes";
+            pnlbotoes.Size = new Size(707, 50);
+            pnlbotoes.TabIndex = 4;
             // 
             // btnregistrar
             // 
@@ -256,17 +256,17 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(panel3);
-            Controls.Add(panel2);
-            Controls.Add(label1);
+            Controls.Add(panelRE);
+            Controls.Add(pnlInformativo);
+            Controls.Add(lblRE);
             Controls.Add(panel1);
             Name = "UC_RegistrarEntrada";
             Size = new Size(826, 648);
             Load += UC_RegistrarEntrada_Load;
-            panel2.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            panel4.ResumeLayout(false);
+            pnlInformativo.ResumeLayout(false);
+            panelRE.ResumeLayout(false);
+            panelRE.PerformLayout();
+            pnlbotoes.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -274,16 +274,16 @@
         #endregion
 
         private Panel panel1;
-        private Label label1;
-        private Panel panel2;
+        private Label lblRE;
+        private Panel pnlInformativo;
         private Label lblInformativo;
-        private Panel panel3;
+        private Panel panelRE;
         private TextBox txtValorParcela;
         private TextBox txtFormaPgto;
         private Label label15;
         private Label label16;
         private Label label17;
-        private Panel panel4;
+        private Panel pnlbotoes;
         private Button btnregistrar;
         private Button btnCancelar;
         private Label label12;

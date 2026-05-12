@@ -28,15 +28,123 @@ namespace Login.UseControls
             dvgViagens.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // Seleciona a linha toda
             dvgViagens.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+            dvgViagens.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 255, 127);
+            dvgViagens.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            dvgViagens.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 255, 127);
+
+            // 4. Muda a fonte do conteúdo da Grid também
+            dvgViagens.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dvgViagens.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+
             // Altura das linhas para dar "respiro" ao design
             dvgViagens.RowTemplate.Height = 35;
 
-            /* // 2. Adicionando dados "fakes" para teste de layout
-             dvgViagens.Rows.Add("000", "Amanda Silva", "888.456.719-00", "amanda12@gmail.com", "154289", "Administrador");
-             dvgViagens.Rows.Add("001", "William Santos", "987.333.321-44", "santos.william@gmail.com", "859556", "Administrador");
-             dvgViagens.Rows.Add("002", "Ana Souza", "456.123.769-13", "anaSouza@gmail.com", "87585s89", "Padrão");*/
-
         }
+
+        private void MudarCoresRecursivo(Control container, bool dark)
+        {
+            foreach (Control c in container.Controls)
+            {
+              
+                if (dark)
+                {
+                    if (c is TextBox || c is DateTimePicker)
+                    {
+                        c.BackColor = Color.FromArgb(45, 45, 45);
+                        c.ForeColor = Color.White;
+                    }
+                    if (c is Label) c.ForeColor = Color.Gainsboro;
+                }
+                else
+                {
+                    if (c is TextBox || c is DateTimePicker)
+                    {
+                        c.BackColor = Color.White;
+                        c.ForeColor = Color.Black;
+                    }
+                    // Cor das labels no modo claro
+                    if (c is Label)
+                        c.ForeColor = Color.FromArgb(64, 64, 64);
+                }
+
+                if (c.HasChildren) MudarCoresRecursivo(c, dark);
+            }
+        }
+
+        public void AtualizarTema(bool isDark)
+        {
+            if (isDark)
+            {
+                // 1. O Fundo da UC deve ser transparente para mostrar a imagem da Home
+                this.BackColor = Color.Transparent;
+                MudarCoresRecursivo(this, isDark);
+
+                // 2. Painel de Cadastro (Efeito Transparente)
+                pnlTitulo.BackColor = Color.FromArgb(25, 45, 35);
+                pnlCadastrarViagens.BackColor = Color.FromArgb(150, 20, 35, 30);
+                lbCadastraViagem.ForeColor = Color.Gainsboro;
+
+                foreach (Control c in pnlCadastrarViagens.Controls)
+                {
+                    if (c is Label) c.ForeColor = Color.Gainsboro;
+                    if (c is TextBox txt)
+                    {
+                        txt.BackColor = Color.FromArgb(45, 45, 45); // Textbox escura
+                        txt.ForeColor = Color.White;
+                        txt.BorderStyle = BorderStyle.FixedSingle;
+                    }
+                }
+
+                //DataGridView 
+                dvgViagens.BackgroundColor = Color.FromArgb(20, 35, 30);
+                dvgViagens.DefaultCellStyle.BackColor = Color.FromArgb(25, 45, 35);
+                dvgViagens.DefaultCellStyle.ForeColor = Color.Gainsboro;
+
+                dvgViagens.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(30, 50, 40);
+                dvgViagens.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(15, 30, 25);
+                dvgViagens.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                dvgViagens.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(15, 30, 25); // Evita o azul no clique do topo
+
+                //Seleção Fluorescente: Um verde mais vivo (tipo o do botão buscar)
+                dvgViagens.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 255, 127); // Verde SpringGreen
+                dvgViagens.DefaultCellStyle.SelectionForeColor = Color.Black; // Texto preto para dar leitura no verde claro
+
+                dvgViagens.EnableHeadersVisualStyles = false; // Necessário para a cor do cabeçalho pegar
+            }
+            else // MODO CLARO (Igual à imagem gc5.png)
+            {
+                this.BackColor = Color.FromArgb(239, 239, 239); // O cinza clarinho de fundo da gc5
+                MudarCoresRecursivo(this, false);
+
+                // --- PAINEL DE CADASTRO ---
+                pnlTitulo.BackColor = Color.FromArgb(232, 232, 232); // Cinza do cabeçalho de cadastro
+                pnlCadastrarViagens.BackColor = Color.White;
+
+                // Força o Negrito no título que a recursividade tirou
+                lbCadastraViagem.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+                lbCadastraViagem.ForeColor = Color.Black;
+
+                // --- DATAGRIDVIEW (Limpeza total do Dark Mode) ---
+                dvgViagens.BackgroundColor = Color.White;
+                dvgViagens.DefaultCellStyle.BackColor = Color.White;
+                dvgViagens.DefaultCellStyle.ForeColor = Color.Black;
+
+                // Remove o fundo verde das linhas alternadas
+                dvgViagens.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+
+                // Seleção Fluorescente (Igual à gc5)
+                dvgViagens.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 255, 127);
+                dvgViagens.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+                // Cabeçalho - Reset para o cinza original
+                dvgViagens.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(232, 232, 232);
+                dvgViagens.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+                dvgViagens.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 255, 127);
+
+            }
+        }
+
         public void AtualizarGrid()
 
         {
@@ -193,6 +301,7 @@ namespace Login.UseControls
                         // Abre o UserControl de edição passando o ID
                         UC_EditarViagem editarViagem = new UC_EditarViagem(idViagem);
                         editarViagem.Dock = DockStyle.Fill;
+                        editarViagem.AtualizarTema(Home.IsDarkMode);
 
                         pnlPrincipal.Controls.Clear();
                         pnlPrincipal.Controls.Add(editarViagem);
