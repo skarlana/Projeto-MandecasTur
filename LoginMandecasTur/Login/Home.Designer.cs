@@ -313,7 +313,7 @@
             darkModeToolStripMenuItem.Name = "darkModeToolStripMenuItem";
             darkModeToolStripMenuItem.Size = new Size(129, 22);
             darkModeToolStripMenuItem.Text = "DarkMode";
-            darkModeToolStripMenuItem.Click += darkModeToolStripMenuItem_Click;
+
             // 
             // Home
             // 

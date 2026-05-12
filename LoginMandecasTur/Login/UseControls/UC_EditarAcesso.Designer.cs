@@ -74,7 +74,6 @@
             pnlCadastro.Name = "pnlCadastro";
             pnlCadastro.Size = new Size(746, 278);
             pnlCadastro.TabIndex = 1;
-            pnlCadastro.Paint += pnlCadastro_Paint;
             // 
             // btnSalvarEditarAcesso
             // 
@@ -184,10 +183,10 @@
             // lbDadosAcesso
             // 
             lbDadosAcesso.AutoSize = true;
-            lbDadosAcesso.Font = new Font("Segoe UI", 19F);
+            lbDadosAcesso.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbDadosAcesso.Location = new Point(10, 39);
             lbDadosAcesso.Name = "lbDadosAcesso";
-            lbDadosAcesso.Size = new Size(282, 36);
+            lbDadosAcesso.Size = new Size(281, 32);
             lbDadosAcesso.TabIndex = 10;
             lbDadosAcesso.Text = "Editar Dados de Acesso";
             // 
@@ -204,6 +203,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Transparent;
             Controls.Add(lbCodigo);
             Controls.Add(lbDadosAcesso);
             Controls.Add(pnlCadastro);
@@ -235,4 +235,8 @@
         private ComboBox cbmperfil;
         private BotaoPadraoMandecas btnSalvarEditarAcesso;
     }
+
+
 }
+
+
