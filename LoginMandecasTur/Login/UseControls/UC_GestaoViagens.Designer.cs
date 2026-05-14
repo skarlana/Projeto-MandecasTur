@@ -28,21 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_GestaoViagens));
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             txtBuscaGViagens = new TextBox();
             dvgViagens = new DataGridView();
             btnEditar = new DataGridViewImageColumn();
             btnIncluir = new DataGridViewImageColumn();
             btnExcluir = new DataGridViewImageColumn();
             pnlCadastrarViagens = new Panel();
-            txtValorUnitarioCViagem = new TextBox();
-            pnlBotoesCAcesso = new Panel();
+            pnlBotoes = new Panel();
+            btnCancelar = new BotaoPadraoMandecas();
+            btnSalvar = new BotaoPadraoMandecas();
+            btnCancelarGClientes = new BotaoPadraoMandecas();
+            btnSalvarGClientes = new BotaoPadraoMandecas();
             txtCustoHospedagemCViagem = new TextBox();
-            lbValorUnitarioCViagem = new Label();
             txtQTDVagaCViagens = new TextBox();
             lbQTDVagaCViagem = new Label();
             DTPDataCViagem = new DateTimePicker();
@@ -59,8 +61,10 @@
             lbDataGViagens = new Label();
             lbDestinoGViagens = new Label();
             lblLimparFiltro = new Label();
+            btnBuscar = new BotaoPadraoMandecas();
             ((System.ComponentModel.ISupportInitialize)dvgViagens).BeginInit();
             pnlCadastrarViagens.SuspendLayout();
+            pnlBotoes.SuspendLayout();
             pnlTitulo.SuspendLayout();
             SuspendLayout();
             // 
@@ -82,14 +86,14 @@
             dvgViagens.BorderStyle = BorderStyle.None;
             dvgViagens.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dvgViagens.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.WhiteSmoke;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dvgViagens.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.WhiteSmoke;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dvgViagens.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dvgViagens.ColumnHeadersHeight = 40;
             dvgViagens.Columns.AddRange(new DataGridViewColumn[] { btnEditar, btnIncluir, btnExcluir });
             dvgViagens.EnableHeadersVisualStyles = false;
@@ -97,7 +101,7 @@
             dvgViagens.Name = "dvgViagens";
             dvgViagens.RowHeadersVisible = false;
             dvgViagens.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dvgViagens.Size = new Size(723, 134);
+            dvgViagens.Size = new Size(723, 129);
             dvgViagens.TabIndex = 6;
             dvgViagens.CellClick += dvgViagens_CellClick;
             dvgViagens.Paint += dvgViagens_Paint;
@@ -105,10 +109,10 @@
             // btnEditar
             // 
             btnEditar.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = resources.GetObject("dataGridViewCellStyle2.NullValue");
-            dataGridViewCellStyle2.Padding = new Padding(6);
-            btnEditar.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.NullValue = resources.GetObject("dataGridViewCellStyle6.NullValue");
+            dataGridViewCellStyle6.Padding = new Padding(6);
+            btnEditar.DefaultCellStyle = dataGridViewCellStyle6;
             btnEditar.HeaderText = "";
             btnEditar.Image = (Image)resources.GetObject("btnEditar.Image");
             btnEditar.ImageLayout = DataGridViewImageCellLayout.Zoom;
@@ -118,10 +122,10 @@
             // btnIncluir
             // 
             btnIncluir.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.NullValue = resources.GetObject("dataGridViewCellStyle3.NullValue");
-            dataGridViewCellStyle3.Padding = new Padding(8);
-            btnIncluir.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.NullValue = resources.GetObject("dataGridViewCellStyle7.NullValue");
+            dataGridViewCellStyle7.Padding = new Padding(8);
+            btnIncluir.DefaultCellStyle = dataGridViewCellStyle7;
             btnIncluir.HeaderText = "";
             btnIncluir.Image = (Image)resources.GetObject("btnIncluir.Image");
             btnIncluir.ImageLayout = DataGridViewImageCellLayout.Zoom;
@@ -130,10 +134,10 @@
             // btnExcluir
             // 
             btnExcluir.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.NullValue = resources.GetObject("dataGridViewCellStyle4.NullValue");
-            dataGridViewCellStyle4.Padding = new Padding(8);
-            btnExcluir.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.NullValue = resources.GetObject("dataGridViewCellStyle8.NullValue");
+            dataGridViewCellStyle8.Padding = new Padding(8);
+            btnExcluir.DefaultCellStyle = dataGridViewCellStyle8;
             btnExcluir.HeaderText = "";
             btnExcluir.Image = (Image)resources.GetObject("btnExcluir.Image");
             btnExcluir.ImageLayout = DataGridViewImageCellLayout.Zoom;
@@ -145,10 +149,8 @@
             pnlCadastrarViagens.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlCadastrarViagens.BackColor = Color.White;
             pnlCadastrarViagens.BorderStyle = BorderStyle.FixedSingle;
-            pnlCadastrarViagens.Controls.Add(txtValorUnitarioCViagem);
-            pnlCadastrarViagens.Controls.Add(pnlBotoesCAcesso);
+            pnlCadastrarViagens.Controls.Add(pnlBotoes);
             pnlCadastrarViagens.Controls.Add(txtCustoHospedagemCViagem);
-            pnlCadastrarViagens.Controls.Add(lbValorUnitarioCViagem);
             pnlCadastrarViagens.Controls.Add(txtQTDVagaCViagens);
             pnlCadastrarViagens.Controls.Add(lbQTDVagaCViagem);
             pnlCadastrarViagens.Controls.Add(DTPDataCViagem);
@@ -163,46 +165,93 @@
             pnlCadastrarViagens.Controls.Add(txtDestinoViagens);
             pnlCadastrarViagens.Controls.Add(lbDataGViagens);
             pnlCadastrarViagens.Controls.Add(lbDestinoGViagens);
-            pnlCadastrarViagens.Location = new Point(47, 263);
+            pnlCadastrarViagens.Location = new Point(47, 258);
             pnlCadastrarViagens.Name = "pnlCadastrarViagens";
             pnlCadastrarViagens.Size = new Size(724, 199);
             pnlCadastrarViagens.TabIndex = 7;
             // 
-            // txtValorUnitarioCViagem
+            // pnlBotoes
             // 
-            txtValorUnitarioCViagem.Anchor = AnchorStyles.Right;
-            txtValorUnitarioCViagem.Location = new Point(611, 113);
-            txtValorUnitarioCViagem.Name = "txtValorUnitarioCViagem";
-            txtValorUnitarioCViagem.Size = new Size(93, 23);
-            txtValorUnitarioCViagem.TabIndex = 5;
-            txtValorUnitarioCViagem.KeyDown += txtBuscaGViagens_KeyDown;
+            pnlBotoes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            pnlBotoes.Controls.Add(btnCancelar);
+            pnlBotoes.Controls.Add(btnSalvar);
+            pnlBotoes.Controls.Add(btnCancelarGClientes);
+            pnlBotoes.Controls.Add(btnSalvarGClientes);
+            pnlBotoes.Location = new Point(258, 149);
+            pnlBotoes.Name = "pnlBotoes";
+            pnlBotoes.Size = new Size(219, 47);
+            pnlBotoes.TabIndex = 16;
             // 
-            // pnlBotoesCAcesso
+            // btnCancelar
             // 
-            pnlBotoesCAcesso.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            pnlBotoesCAcesso.Location = new Point(269, 151);
-            pnlBotoesCAcesso.Name = "pnlBotoesCAcesso";
-            pnlBotoesCAcesso.Size = new Size(200, 43);
-            pnlBotoesCAcesso.TabIndex = 15;
+            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancelar.BackColor = Color.FromArgb(194, 194, 194);
+            btnCancelar.FlatAppearance.BorderSize = 0;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCancelar.ForeColor = Color.Black;
+            btnCancelar.Location = new Point(22, 18);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(82, 26);
+            btnCancelar.TabIndex = 17;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
+            // 
+            // btnSalvar
+            // 
+            btnSalvar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnSalvar.BackColor = Color.FromArgb(68, 252, 124);
+            btnSalvar.FlatAppearance.BorderSize = 0;
+            btnSalvar.FlatStyle = FlatStyle.Flat;
+            btnSalvar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSalvar.ForeColor = Color.Black;
+            btnSalvar.Location = new Point(119, 18);
+            btnSalvar.Name = "btnSalvar";
+            btnSalvar.Size = new Size(82, 26);
+            btnSalvar.TabIndex = 16;
+            btnSalvar.Text = "Salvar";
+            btnSalvar.UseVisualStyleBackColor = false;
+            btnSalvar.Click += btnSalvar_Click;
+            // 
+            // btnCancelarGClientes
+            // 
+            btnCancelarGClientes.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancelarGClientes.BackColor = Color.FromArgb(194, 194, 194);
+            btnCancelarGClientes.FlatAppearance.BorderSize = 0;
+            btnCancelarGClientes.FlatStyle = FlatStyle.Flat;
+            btnCancelarGClientes.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCancelarGClientes.ForeColor = Color.Black;
+            btnCancelarGClientes.Location = new Point(32, -42);
+            btnCancelarGClientes.Name = "btnCancelarGClientes";
+            btnCancelarGClientes.Size = new Size(82, 26);
+            btnCancelarGClientes.TabIndex = 13;
+            btnCancelarGClientes.Text = "Cancelar";
+            btnCancelarGClientes.UseVisualStyleBackColor = false;
+            // 
+            // btnSalvarGClientes
+            // 
+            btnSalvarGClientes.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnSalvarGClientes.BackColor = Color.FromArgb(68, 252, 124);
+            btnSalvarGClientes.FlatAppearance.BorderSize = 0;
+            btnSalvarGClientes.FlatStyle = FlatStyle.Flat;
+            btnSalvarGClientes.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSalvarGClientes.ForeColor = Color.Black;
+            btnSalvarGClientes.Location = new Point(123, -42);
+            btnSalvarGClientes.Name = "btnSalvarGClientes";
+            btnSalvarGClientes.Size = new Size(82, 26);
+            btnSalvarGClientes.TabIndex = 14;
+            btnSalvarGClientes.Text = "Salvar";
+            btnSalvarGClientes.UseVisualStyleBackColor = false;
             // 
             // txtCustoHospedagemCViagem
             // 
             txtCustoHospedagemCViagem.Anchor = AnchorStyles.Right;
-            txtCustoHospedagemCViagem.Location = new Point(403, 112);
+            txtCustoHospedagemCViagem.Location = new Point(502, 111);
             txtCustoHospedagemCViagem.Name = "txtCustoHospedagemCViagem";
             txtCustoHospedagemCViagem.Size = new Size(106, 23);
             txtCustoHospedagemCViagem.TabIndex = 4;
             txtCustoHospedagemCViagem.KeyDown += txtBuscaGViagens_KeyDown;
-            // 
-            // lbValorUnitarioCViagem
-            // 
-            lbValorUnitarioCViagem.Anchor = AnchorStyles.Right;
-            lbValorUnitarioCViagem.AutoSize = true;
-            lbValorUnitarioCViagem.Location = new Point(524, 116);
-            lbValorUnitarioCViagem.Name = "lbValorUnitarioCViagem";
-            lbValorUnitarioCViagem.Size = new Size(81, 15);
-            lbValorUnitarioCViagem.TabIndex = 15;
-            lbValorUnitarioCViagem.Text = "Valor Unitário:";
             // 
             // txtQTDVagaCViagens
             // 
@@ -313,7 +362,7 @@
             // 
             lblbCustoHospedagemCViagem.Anchor = AnchorStyles.Right;
             lblbCustoHospedagemCViagem.AutoSize = true;
-            lblbCustoHospedagemCViagem.Location = new Point(269, 116);
+            lblbCustoHospedagemCViagem.Location = new Point(365, 116);
             lblbCustoHospedagemCViagem.Name = "lblbCustoHospedagemCViagem";
             lblbCustoHospedagemCViagem.Size = new Size(131, 15);
             lblbCustoHospedagemCViagem.TabIndex = 5;
@@ -358,21 +407,38 @@
             lblLimparFiltro.TabIndex = 8;
             lblLimparFiltro.Text = "Limpar Filtros de Busca";
             // 
+            // btnBuscar
+            // 
+            btnBuscar.BackColor = Color.FromArgb(68, 252, 124);
+            btnBuscar.FlatAppearance.BorderSize = 0;
+            btnBuscar.FlatStyle = FlatStyle.Flat;
+            btnBuscar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBuscar.ForeColor = Color.Black;
+            btnBuscar.Location = new Point(465, 50);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.Size = new Size(75, 27);
+            btnBuscar.TabIndex = 18;
+            btnBuscar.Text = "Buscar";
+            btnBuscar.UseVisualStyleBackColor = false;
+            btnBuscar.Click += btnBuscar_Click;
+            // 
             // UC_GestaoViagens
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(btnBuscar);
             Controls.Add(lblLimparFiltro);
             Controls.Add(pnlCadastrarViagens);
             Controls.Add(dvgViagens);
             Controls.Add(txtBuscaGViagens);
             Name = "UC_GestaoViagens";
-            Size = new Size(826, 506);
+            Size = new Size(826, 501);
             Load += UC_GestaoViagens_Load;
             ((System.ComponentModel.ISupportInitialize)dvgViagens).EndInit();
             pnlCadastrarViagens.ResumeLayout(false);
             pnlCadastrarViagens.PerformLayout();
+            pnlBotoes.ResumeLayout(false);
             pnlTitulo.ResumeLayout(false);
             pnlTitulo.PerformLayout();
             ResumeLayout(false);
@@ -397,18 +463,22 @@
         private TextBox txtDestinoViagens;
         private Label lbDataGViagens;
         private Label lbDestinoGViagens;
-        private Panel pnlBotoesCAcesso;
         private BotaoPadraoMandecas btnCancelarCViagem;
         private BotaoPadraoMandecas btnSalvarCViagem;
         private DateTimePicker DTPDataCViagem;
         private TextBox txtQTDVagaCViagens;
         private Label lbQTDVagaCViagem;
-        private TextBox txtValorUnitarioCViagem;
         private TextBox txtCustoHospedagemCViagem;
-        private Label lbValorUnitarioCViagem;
         private Label lblLimparFiltro;
         private DataGridViewImageColumn btnEditar;
         private DataGridViewImageColumn btnIncluir;
         private DataGridViewImageColumn btnExcluir;
+        private Panel pnlBotoes;
+        private BotaoPadraoMandecas btnCancelarGClientes;
+        private BotaoPadraoMandecas btnSalvarGClientes;
+        
+        private BotaoPadraoMandecas btnSalvar;
+        private BotaoPadraoMandecas btnCancelar;
+        private BotaoPadraoMandecas btnBuscar;
     }
 }

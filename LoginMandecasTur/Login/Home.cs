@@ -68,9 +68,10 @@ namespace Login
 
             InitializeComponent();
 
-            MoverLinhaNav(btnGestaoClientes);
+            MoverLinhaNav(btnHome);
 
-            UC_GestaoClientes uc = new UC_GestaoClientes();
+
+            UC_DashBoard uc = new UC_DashBoard();
 
             addUserControl(uc);
 
@@ -87,7 +88,7 @@ namespace Login
         public void AplicarTemaHome()
 
         {
-       
+
             if (IsDarkMode)
             {
                 // MODO ESCURO
@@ -264,6 +265,7 @@ namespace Login
         public void BloquearMenu()
 
         {
+            btnHome.Enabled = false;
 
             btnGestaoClientes.Enabled = false;
 
@@ -282,6 +284,7 @@ namespace Login
         public void DesbloquearMenu()
 
         {
+            btnHome.Enabled = true;
 
             btnGestaoClientes.Enabled = true;
 
@@ -349,7 +352,16 @@ namespace Login
 
         }
 
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            MoverLinhaNav((Control)sender); // A mágica acontece aqui
 
+            UC_DashBoard Dash = new UC_DashBoard();
+
+            addUserControl(Dash);
+
+            Dash.AtualizarTema(IsDarkMode);
+        }
 
         private void btnGestaoClientes_Click(object sender, EventArgs e)
 
@@ -611,7 +623,8 @@ namespace Login
 
 
 
-                if (ucAberta is UC_GestaoClientes ucCli) ucCli.AtualizarTema(IsDarkMode);
+                if (ucAberta is UC_DashBoard ucDash) ucDash.AtualizarTema(IsDarkMode);
+                else if (ucAberta is UC_GestaoClientes ucCli) ucCli.AtualizarTema(IsDarkMode);
                 else if (ucAberta is UC_EditarCliente ucEC) ucEC.AtualizarTema(IsDarkMode);
                 else if (ucAberta is UC_GestaoViagens ucGV) ucGV.AtualizarTema(IsDarkMode);
                 else if (ucAberta is UC_EditarViagem ucEV) ucEV.AtualizarTema(IsDarkMode);
@@ -622,11 +635,27 @@ namespace Login
                 else if (ucAberta is UC_EditarAcesso ucEA) ucEA.AtualizarTema(IsDarkMode);
 
 
-                //else if (ucAberta is UC_Financeiro ucFin) ucFin.AtualizarTema(IsDarkMode);
-                // else if (ucAberta is UC_Viagens ucVia) ucVia.AtualizarTema(IsDarkMode);
+
             }
         }
 
+        private void imgLogoHome_Click(object sender, EventArgs e)
+        {
+            UC_DashBoard Dash = new UC_DashBoard();
+
+            addUserControl(Dash);
+
+            Dash.AtualizarTema(IsDarkMode);
+        }
+
+        private void imgNomeLogoHome_Click(object sender, EventArgs e)
+        {
+            UC_DashBoard Dash = new UC_DashBoard();
+
+            addUserControl(Dash);
+
+            Dash.AtualizarTema(IsDarkMode);
+        }
     }
 }
 

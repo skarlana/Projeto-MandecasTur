@@ -124,6 +124,45 @@
   <data name="Design sem nome" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Design sem nome.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icone_bolo_claro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icone_bolo_claro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icone_bolo_escuro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icone_bolo_escuro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icone_calendario_claro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icone_calendario_claro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icone_calendario_escuro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icone_calendario_escuro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icone_onibus_claro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icone_onibus_claro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icone_onibus_escuro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icone_onibus_escuro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icone_pessoas_claro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icone_pessoas_claro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icone_pessoas_escuro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icone_pessoas_escuro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icone_ticket_claro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icone_ticket_claro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icone_ticket_escuro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icone_ticket_escuro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icone_viajante_claro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icone_viajante_claro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icone_viajante_escuro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icone_viajante_escuro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_fundo_claro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_fundo_claro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="img_fundo_escuro" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\img_fundo_escuro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

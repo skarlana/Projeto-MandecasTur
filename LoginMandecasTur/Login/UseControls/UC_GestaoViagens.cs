@@ -46,7 +46,7 @@ namespace Login.UseControls
         {
             foreach (Control c in container.Controls)
             {
-              
+
                 if (dark)
                 {
                     if (c is TextBox || c is DateTimePicker)
@@ -210,12 +210,12 @@ namespace Login.UseControls
                     dvgViagens.Columns["tipo_transporte"].HeaderText = "Transporte";
                     dvgViagens.Columns["tipo_transporte"].DisplayIndex = 4;
                 }
-               /* if (dvgViagens.Columns.Contains("status"))
-                {
-                    dvgViagens.Columns["status"].HeaderText = "Status";
-                    
-                    dvgViagens.Columns["status"].DisplayIndex = 5;
-                }*/
+                /* if (dvgViagens.Columns.Contains("status"))
+                 {
+                     dvgViagens.Columns["status"].HeaderText = "Status";
+
+                     dvgViagens.Columns["status"].DisplayIndex = 5;
+                 }*/
 
 
 
@@ -340,31 +340,31 @@ namespace Login.UseControls
                 var confirmacao = MessageBox.Show("Tem certeza que deseja excluir?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (confirmacao == DialogResult.Yes)
                 {
-                  int idSelecionado = Convert.ToInt32(
-                  dvgViagens.Rows[e.RowIndex].Cells["id_viagem"].Value
-                   );
-                        Conexao conexao = new Conexao();
-                        using (MySqlConnection con = conexao.Conectar())
+                    int idSelecionado = Convert.ToInt32(
+                    dvgViagens.Rows[e.RowIndex].Cells["id_viagem"].Value
+                     );
+                    Conexao conexao = new Conexao();
+                    using (MySqlConnection con = conexao.Conectar())
+                    {
+                        try
                         {
-                            try
-                            {
-                                con.Open();
-                                string sqlDelete = "DELETE FROM Viagem WHERE id_viagem = @id_viagem";
-                                MySqlCommand cmd = new MySqlCommand(sqlDelete, con);
-                                cmd.Parameters.AddWithValue("@id_viagem", idSelecionado);
-                                cmd.ExecuteNonQuery();
+                            con.Open();
+                            string sqlDelete = "DELETE FROM Viagem WHERE id_viagem = @id_viagem";
+                            MySqlCommand cmd = new MySqlCommand(sqlDelete, con);
+                            cmd.Parameters.AddWithValue("@id_viagem", idSelecionado);
+                            cmd.ExecuteNonQuery();
 
-                                MessageBox.Show("Viagem excluído com sucesso!");
-                                AtualizarGrid();
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
-                            }
+                            MessageBox.Show("Viagem excluído com sucesso!");
+                            AtualizarGrid();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
                         }
                     }
                 }
-             }
+            }
+        }
 
 
         private void RealizarBusca()
@@ -442,14 +442,7 @@ namespace Login.UseControls
 
         private void btnBuscarGViagens_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtBuscaGViagens.Text))
-            {
-                MessageBox.Show("Por favor, digite um Destino ou Status para realizar a busca.", "Campo de Busca Vazio", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                txtBuscaGViagens.Focus(); // Deixa o cursor pronto para o usuário digitar
-                return; // IMPORTANTE: Para o código aqui e não tenta buscar nada no banco
-            }
-            RealizarBusca();
         }
 
         private void txtBuscaGViagens_KeyDown(object sender, KeyEventArgs e)
@@ -468,15 +461,14 @@ namespace Login.UseControls
                 else
                 {
                     // Se for qualquer outro campo (Nome, CPF, etc.), ele chama o Salvar
-                    btnSalvarCViagem.PerformClick();
+                    btnSalvar.PerformClick();
                 }
             }
         }
 
         private void btnCancelarCViagem_Click(object sender, EventArgs e)
         {
-            txtDestinoViagens.Clear(); txtTransporteCViagens.Clear(); txtQTDVagaCViagens.Clear();
-            txtCustoTransporteCViagem.Clear(); txtCustoHospedagemCViagem.Clear(); txtValorUnitarioCViagem.Clear();
+
 
         }
         private void lblLimparFiltro_Click(object sender, EventArgs e)
@@ -499,10 +491,39 @@ namespace Login.UseControls
         private void btnSalvarCViagem_Click(object sender, EventArgs e)
         {
 
+          
+
+        }
+
+        private void UC_GestaoViagens_Load(object sender, EventArgs e)
+        {
+            AtualizarGrid();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            txtDestinoViagens.Clear(); txtTransporteCViagens.Clear(); txtQTDVagaCViagens.Clear();
+            txtCustoTransporteCViagem.Clear(); txtCustoHospedagemCViagem.Clear();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtBuscaGViagens.Text))
+            {
+                MessageBox.Show("Por favor, digite um Destino ou Status para realizar a busca.", "Campo de Busca Vazio", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                txtBuscaGViagens.Focus(); // Deixa o cursor pronto para o usuário digitar
+                return; // IMPORTANTE: Para o código aqui e não tenta buscar nada no banco
+            }
+            RealizarBusca();
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
             if (string.IsNullOrWhiteSpace(txtDestinoViagens.Text) ||
-                string.IsNullOrWhiteSpace(txtTransporteCViagens.Text) ||
-                string.IsNullOrWhiteSpace(txtQTDVagaCViagens.Text))
-                
+               string.IsNullOrWhiteSpace(txtTransporteCViagens.Text) ||
+               string.IsNullOrWhiteSpace(txtQTDVagaCViagens.Text))
+
 
             {
                 MessageBox.Show("Por favor, preencha todos os campos antes de salvar!", "Campos Vazios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -530,9 +551,9 @@ namespace Login.UseControls
                 cmd.Parameters.AddWithValue("@data_viagem", DTPDataCViagem.Value);
                 cmd.Parameters.AddWithValue("@qtdd_vagas", txtQTDVagaCViagens.Text);
                 cmd.Parameters.AddWithValue("@tipo_transporte", txtTransporteCViagens.Text);
-                cmd.Parameters.AddWithValue("@custo_transporte",decimal.Parse(txtCustoTransporteCViagem.Text));
-                cmd.Parameters.AddWithValue("@custo_hospedagem",decimal.Parse(txtCustoHospedagemCViagem.Text));
-                cmd.Parameters.AddWithValue("@valor_unitario",decimal.Parse(txtValorUnitarioCViagem.Text));
+                cmd.Parameters.AddWithValue("@custo_transporte", decimal.Parse(txtCustoTransporteCViagem.Text));
+                cmd.Parameters.AddWithValue("@custo_hospedagem", decimal.Parse(txtCustoHospedagemCViagem.Text));
+
 
                 cmd.ExecuteNonQuery();
 
@@ -563,7 +584,7 @@ namespace Login.UseControls
 
             }
 
-            catch (Exception ex )
+            catch (Exception ex)
 
             {
 
@@ -579,11 +600,6 @@ namespace Login.UseControls
 
             }
 
-        }
-
-        private void UC_GestaoViagens_Load(object sender, EventArgs e)
-        {
-            AtualizarGrid();
         }
     }
 }

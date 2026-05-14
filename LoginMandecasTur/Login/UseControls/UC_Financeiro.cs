@@ -60,42 +60,6 @@ namespace Login.UseControls
             // Altura das linhas para dar "respiro" ao design
             dgv_Financeiro.RowTemplate.Height = 35;
 
-
-
-
-
-
-            /*dgv_Financeiro.ReadOnly = true;
-            dgv_Financeiro.RowHeadersVisible = false; // Tira o espaço cinza antes do Código
-
-            dgv_Financeiro.ReadOnly = true;
-            dgv_Financeiro.RowHeadersVisible = false;
-
-
-            Color verdeClaroZebrado = Color.FromArgb(235, 247, 240);
-            Color verdeMandecas = Color.FromArgb(46, 204, 113);
-            Color cinzaCabecalho = Color.FromArgb(230, 230, 235);
-
-            dgv_Financeiro.BackgroundColor = Color.White;
-            dgv_Financeiro.BorderStyle = BorderStyle.None;
-            dgv_Financeiro.AllowUserToAddRows = false;
-            dgv_Financeiro.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv_Financeiro.Font = new Font("Segoe UI", 9);
-
-            dgv_Financeiro.RowsDefaultCellStyle.BackColor = Color.White;
-            dgv_Financeiro.AlternatingRowsDefaultCellStyle.BackColor = verdeClaroZebrado;
-            dgv_Financeiro.RowsDefaultCellStyle.SelectionBackColor = verdeMandecas;
-            dgv_Financeiro.RowsDefaultCellStyle.SelectionForeColor = Color.White;
-
-            dgv_Financeiro.EnableHeadersVisualStyles = false;
-            dgv_Financeiro.ColumnHeadersVisible = true;
-            dgv_Financeiro.ColumnHeadersDefaultCellStyle.BackColor = cinzaCabecalho;
-            dgv_Financeiro.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            dgv_Financeiro.ColumnHeadersHeight = 35;
-            dgv_Financeiro.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv_Financeiro.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;*/
-
-
         }
 
 

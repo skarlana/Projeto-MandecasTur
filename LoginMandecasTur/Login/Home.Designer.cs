@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             pnlMenu = new Panel();
+            btnHome = new Button();
             pnlNav = new Panel();
             btnFuncionario = new Button();
             btnReservas = new Button();
@@ -67,6 +68,7 @@
             // pnlMenu
             // 
             pnlMenu.BackColor = Color.White;
+            pnlMenu.Controls.Add(btnHome);
             pnlMenu.Controls.Add(pnlNav);
             pnlMenu.Controls.Add(btnFuncionario);
             pnlMenu.Controls.Add(btnReservas);
@@ -78,6 +80,19 @@
             pnlMenu.Name = "pnlMenu";
             pnlMenu.Size = new Size(1218, 53);
             pnlMenu.TabIndex = 3;
+            // 
+            // btnHome
+            // 
+            btnHome.FlatAppearance.BorderSize = 0;
+            btnHome.FlatStyle = FlatStyle.Flat;
+            btnHome.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnHome.Location = new Point(3, -1);
+            btnHome.Name = "btnHome";
+            btnHome.Size = new Size(147, 50);
+            btnHome.TabIndex = 7;
+            btnHome.Text = "Home";
+            btnHome.UseVisualStyleBackColor = true;
+            btnHome.Click += btnHome_Click;
             // 
             // pnlNav
             // 
@@ -92,7 +107,7 @@
             btnFuncionario.FlatAppearance.BorderSize = 0;
             btnFuncionario.FlatStyle = FlatStyle.Flat;
             btnFuncionario.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            btnFuncionario.Location = new Point(607, 0);
+            btnFuncionario.Location = new Point(727, 0);
             btnFuncionario.Name = "btnFuncionario";
             btnFuncionario.Size = new Size(147, 51);
             btnFuncionario.TabIndex = 6;
@@ -105,7 +120,7 @@
             btnReservas.FlatAppearance.BorderSize = 0;
             btnReservas.FlatStyle = FlatStyle.Flat;
             btnReservas.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            btnReservas.Location = new Point(307, 0);
+            btnReservas.Location = new Point(453, -1);
             btnReservas.Name = "btnReservas";
             btnReservas.Size = new Size(147, 51);
             btnReservas.TabIndex = 5;
@@ -118,7 +133,7 @@
             btnFinanceiro.FlatAppearance.BorderSize = 0;
             btnFinanceiro.FlatStyle = FlatStyle.Flat;
             btnFinanceiro.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            btnFinanceiro.Location = new Point(456, 0);
+            btnFinanceiro.Location = new Point(584, -1);
             btnFinanceiro.Name = "btnFinanceiro";
             btnFinanceiro.Size = new Size(147, 51);
             btnFinanceiro.TabIndex = 4;
@@ -131,7 +146,7 @@
             btnGestaoViagens.FlatAppearance.BorderSize = 0;
             btnGestaoViagens.FlatStyle = FlatStyle.Flat;
             btnGestaoViagens.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            btnGestaoViagens.Location = new Point(156, 0);
+            btnGestaoViagens.Location = new Point(309, -1);
             btnGestaoViagens.Name = "btnGestaoViagens";
             btnGestaoViagens.Size = new Size(147, 51);
             btnGestaoViagens.TabIndex = 3;
@@ -144,7 +159,7 @@
             btnGestaoClientes.FlatAppearance.BorderSize = 0;
             btnGestaoClientes.FlatStyle = FlatStyle.Flat;
             btnGestaoClientes.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnGestaoClientes.Location = new Point(5, 0);
+            btnGestaoClientes.Location = new Point(156, -1);
             btnGestaoClientes.Name = "btnGestaoClientes";
             btnGestaoClientes.Size = new Size(147, 51);
             btnGestaoClientes.TabIndex = 2;
@@ -224,6 +239,7 @@
             // 
             // imgNomeLogoHome
             // 
+            imgNomeLogoHome.Cursor = Cursors.Hand;
             imgNomeLogoHome.Image = (Image)resources.GetObject("imgNomeLogoHome.Image");
             imgNomeLogoHome.Location = new Point(98, 32);
             imgNomeLogoHome.Name = "imgNomeLogoHome";
@@ -231,9 +247,11 @@
             imgNomeLogoHome.SizeMode = PictureBoxSizeMode.Zoom;
             imgNomeLogoHome.TabIndex = 2;
             imgNomeLogoHome.TabStop = false;
+            imgNomeLogoHome.Click += imgNomeLogoHome_Click;
             // 
             // imgLogoHome
             // 
+            imgLogoHome.Cursor = Cursors.Hand;
             imgLogoHome.Image = (Image)resources.GetObject("imgLogoHome.Image");
             imgLogoHome.Location = new Point(12, 7);
             imgLogoHome.Name = "imgLogoHome";
@@ -241,6 +259,7 @@
             imgLogoHome.SizeMode = PictureBoxSizeMode.Zoom;
             imgLogoHome.TabIndex = 1;
             imgLogoHome.TabStop = false;
+            imgLogoHome.Click += imgLogoHome_Click;
             // 
             // pnlUserName
             // 
@@ -313,7 +332,6 @@
             darkModeToolStripMenuItem.Name = "darkModeToolStripMenuItem";
             darkModeToolStripMenuItem.Size = new Size(129, 22);
             darkModeToolStripMenuItem.Text = "DarkMode";
-
             // 
             // Home
             // 
@@ -368,5 +386,6 @@
         private ContextMenuStrip cmsConfigurarMenu;
         private ToolStripMenuItem sairToolStripMenuItem;
         private ToolStripMenuItem darkModeToolStripMenuItem;
+        private Button btnHome;
     }
 }
