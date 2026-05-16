@@ -542,18 +542,30 @@ namespace Login.UseControls
                 conn.Open();
 
                 string sqlInserir = "INSERT INTO Viagem (destino, data_viagem, qtdd_vagas, tipo_transporte, custo_transporte," +
-                    " custo_hospedagem, valor_unitario) VALUES (@destino, @data_viagem, @qtdd_vagas, @tipo_transporte, @custo_transporte, " +
-                    "@custo_hospedagem, @valor_unitario)";
+                    " custo_hospedagem) VALUES (@destino, @data_viagem, @qtdd_vagas, @tipo_transporte, @custo_transporte, " +
+                    "@custo_hospedagem)";
+
+                if (!decimal.TryParse(txtCustoTransporteCViagem.Text, out decimal custoTransporte) ||
+                    !decimal.TryParse(txtCustoHospedagemCViagem.Text, out decimal custoHospedagem))
+                {
+                    MessageBox.Show("Digite valores numéricos válidos para os custos.");
+                    return;
+                }
+
+                if (!int.TryParse(txtQTDVagaCViagens.Text, out int vagas))
+                {
+                    MessageBox.Show("Quantidade de vagas inválida.");
+                    return;
+                }
 
                 MySqlCommand cmd = new MySqlCommand(sqlInserir, conn);
 
                 cmd.Parameters.AddWithValue("@destino", txtDestinoViagens.Text);
                 cmd.Parameters.AddWithValue("@data_viagem", DTPDataCViagem.Value);
-                cmd.Parameters.AddWithValue("@qtdd_vagas", txtQTDVagaCViagens.Text);
+                cmd.Parameters.AddWithValue("@qtdd_vagas", vagas);
                 cmd.Parameters.AddWithValue("@tipo_transporte", txtTransporteCViagens.Text);
-                cmd.Parameters.AddWithValue("@custo_transporte", decimal.Parse(txtCustoTransporteCViagem.Text));
-                cmd.Parameters.AddWithValue("@custo_hospedagem", decimal.Parse(txtCustoHospedagemCViagem.Text));
-
+                cmd.Parameters.AddWithValue("@custo_transporte", custoTransporte);
+                cmd.Parameters.AddWithValue("@custo_hospedagem", custoHospedagem);
 
                 cmd.ExecuteNonQuery();
 
@@ -573,31 +585,21 @@ namespace Login.UseControls
                 //vai adaptar as informações do banco e dados para o DGV.
 
                 MySqlDataAdapter adp = new MySqlDataAdapter(sqlMostrar, conn);
-
                 DataTable dt = new DataTable();
-
                 adp.Fill(dt);
-
                 dvgViagens.DataSource = dt;
-
                 AtualizarGrid();
 
             }
 
             catch (Exception ex)
-
             {
-
-                MessageBox.Show("Erro no sistema." + ex.Message);
+                MessageBox.Show("Erro no sistema." + ex.ToString());
 
             }
-
             finally
-
             {
-
                 conn.Close();
-
             }
 
         }

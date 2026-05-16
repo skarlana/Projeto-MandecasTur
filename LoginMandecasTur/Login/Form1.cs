@@ -1,4 +1,6 @@
 
+using MySql.Data.MySqlClient;
+using System.Data;
 using System.Runtime.InteropServices; // Necessário para a movimentação
 
 namespace Login
@@ -144,9 +146,58 @@ namespace Login
         //Levar para proxima tela
         private void btnEntrarLogin_Click(object sender, EventArgs e)
         {
-            Home TelaHome = new Home();
-            TelaHome.Show();
-            this.Hide();
+            if (string.IsNullOrWhiteSpace(txtUsuarioLogin.Text) || string.IsNullOrWhiteSpace(txtSenhaLogin.Text))
+            {
+                MessageBox.Show("Por favor, informe o e-mail e a senha.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Conexao conexao = new Conexao();
+            MySqlConnection conn = conexao.Conectar();
+
+            try
+            {
+                conn.Open();
+
+                // 1. Buscamos os dados do funcionário
+                string sql = "SELECT nome, perfil_acesso FROM funcionario WHERE email = @email AND senha = @senha";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@email", txtUsuarioLogin.Text);
+                cmd.Parameters.AddWithValue("@senha", txtSenhaLogin.Text);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    // 2. [NOVO] Lê a primeira linha encontrada
+                    reader.Read();
+
+                    // 3. [NOVO] Captura o valor da coluna perfil_acesso
+                    string perfil = reader["perfil_acesso"].ToString();
+                    string nomeUser = reader["nome"].ToString() ;
+
+                    // 4. [ALTERADO] Passa o perfil como argumento para o construtor da Home
+                    Home TelaHome = new Home(perfil,nomeUser);
+                    TelaHome.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("E-mail ou senha incorretos!", "Erro de Autenticação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtSenhaLogin.Clear();
+                    txtSenhaLogin.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro técnico ao autenticar: " + ex.Message, "Erro no Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open) conn.Close();
+            }
+        
         }
     }
 }

@@ -35,7 +35,6 @@
             rbCustoViagem = new RadioButton();
             rbReciboCliente = new RadioButton();
             rbListaPassageiros = new RadioButton();
-            comboBox1 = new ComboBox();
             label8 = new Label();
             botaoPadraoMandecas3 = new BotaoPadraoMandecas();
             cboViagemRelatorio = new ComboBox();
@@ -106,7 +105,6 @@
             pnlRelatorio.Controls.Add(rbCustoViagem);
             pnlRelatorio.Controls.Add(rbReciboCliente);
             pnlRelatorio.Controls.Add(rbListaPassageiros);
-            pnlRelatorio.Controls.Add(comboBox1);
             pnlRelatorio.Controls.Add(label8);
             pnlRelatorio.Controls.Add(botaoPadraoMandecas3);
             pnlRelatorio.Controls.Add(cboViagemRelatorio);
@@ -121,7 +119,7 @@
             // cboClienteRelatorio
             // 
             cboClienteRelatorio.FormattingEnabled = true;
-            cboClienteRelatorio.Location = new Point(85, 242);
+            cboClienteRelatorio.Location = new Point(85, 274);
             cboClienteRelatorio.Name = "cboClienteRelatorio";
             cboClienteRelatorio.Size = new Size(203, 23);
             cboClienteRelatorio.TabIndex = 11;
@@ -131,7 +129,7 @@
             rbCustoViagem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             rbCustoViagem.AutoSize = true;
             rbCustoViagem.Font = new Font("Segoe UI", 10F);
-            rbCustoViagem.Location = new Point(42, 172);
+            rbCustoViagem.Location = new Point(42, 181);
             rbCustoViagem.Name = "rbCustoViagem";
             rbCustoViagem.Size = new Size(246, 23);
             rbCustoViagem.TabIndex = 10;
@@ -144,7 +142,7 @@
             rbReciboCliente.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             rbReciboCliente.AutoSize = true;
             rbReciboCliente.Font = new Font("Segoe UI", 10F);
-            rbReciboCliente.Location = new Point(42, 143);
+            rbReciboCliente.Location = new Point(42, 152);
             rbReciboCliente.Name = "rbReciboCliente";
             rbReciboCliente.Size = new Size(132, 23);
             rbReciboCliente.TabIndex = 9;
@@ -157,7 +155,7 @@
             // 
             rbListaPassageiros.AutoSize = true;
             rbListaPassageiros.Font = new Font("Segoe UI", 10F);
-            rbListaPassageiros.Location = new Point(42, 113);
+            rbListaPassageiros.Location = new Point(42, 122);
             rbListaPassageiros.Name = "rbListaPassageiros";
             rbListaPassageiros.Size = new Size(149, 23);
             rbListaPassageiros.TabIndex = 8;
@@ -165,14 +163,6 @@
             rbListaPassageiros.Text = "Lista de Passageiros";
             rbListaPassageiros.UseVisualStyleBackColor = true;
             rbListaPassageiros.CheckedChanged += Lis_CheckedChanged;
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(85, 242);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(203, 23);
-            comboBox1.TabIndex = 11;
             // 
             // label8
             // 
@@ -202,7 +192,7 @@
             // cboViagemRelatorio
             // 
             cboViagemRelatorio.FormattingEnabled = true;
-            cboViagemRelatorio.Location = new Point(85, 288);
+            cboViagemRelatorio.Location = new Point(85, 234);
             cboViagemRelatorio.Name = "cboViagemRelatorio";
             cboViagemRelatorio.Size = new Size(203, 23);
             cboViagemRelatorio.TabIndex = 5;
@@ -210,7 +200,7 @@
             // lbViagemFinanceiro
             // 
             lbViagemFinanceiro.AutoSize = true;
-            lbViagemFinanceiro.Location = new Point(29, 292);
+            lbViagemFinanceiro.Location = new Point(29, 238);
             lbViagemFinanceiro.Name = "lbViagemFinanceiro";
             lbViagemFinanceiro.Size = new Size(50, 15);
             lbViagemFinanceiro.TabIndex = 2;
@@ -219,7 +209,7 @@
             // lbRelatorioFinanceiro
             // 
             lbRelatorioFinanceiro.AutoSize = true;
-            lbRelatorioFinanceiro.Location = new Point(29, 245);
+            lbRelatorioFinanceiro.Location = new Point(29, 277);
             lbRelatorioFinanceiro.Name = "lbRelatorioFinanceiro";
             lbRelatorioFinanceiro.Size = new Size(47, 15);
             lbRelatorioFinanceiro.TabIndex = 1;
@@ -485,8 +475,6 @@
         private BotaoPadraoMandecas btnAtualizar;
 
         private ComboBox cboClienteRelatorio;
-
-        private ComboBox comboBox1;
  
     }
 }

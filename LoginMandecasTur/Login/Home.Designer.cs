@@ -52,8 +52,8 @@
             imgIconUserHome = new PictureBox();
             lbUsuario = new Label();
             cmsConfigurarMenu = new ContextMenuStrip(components);
-            sairToolStripMenuItem = new ToolStripMenuItem();
             darkModeToolStripMenuItem = new ToolStripMenuItem();
+            sairToolStripMenuItem = new ToolStripMenuItem();
             pnlMenu.SuspendLayout();
             pnlNavBar.SuspendLayout();
             pnlFecharMinimizarTela.SuspendLayout();
@@ -176,7 +176,6 @@
             panelContainer.Name = "panelContainer";
             panelContainer.Size = new Size(1218, 654);
             panelContainer.TabIndex = 4;
-            panelContainer.Paint += panelContainer_Paint;
             // 
             // pnlNavBar
             // 
@@ -284,7 +283,7 @@
             imgConfigurar.SizeMode = PictureBoxSizeMode.Zoom;
             imgConfigurar.TabIndex = 4;
             imgConfigurar.TabStop = false;
-            imgConfigurar.Click += imgConfigurar_Click;
+            imgConfigurar.MouseClick += imgConfigurar_MouseClick;
             // 
             // lbUserName
             // 
@@ -317,21 +316,24 @@
             // 
             // cmsConfigurarMenu
             // 
-            cmsConfigurarMenu.Items.AddRange(new ToolStripItem[] { sairToolStripMenuItem, darkModeToolStripMenuItem });
+            cmsConfigurarMenu.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmsConfigurarMenu.Items.AddRange(new ToolStripItem[] { darkModeToolStripMenuItem, sairToolStripMenuItem });
             cmsConfigurarMenu.Name = "cmsConfigurarMenu";
-            cmsConfigurarMenu.Size = new Size(130, 48);
-            // 
-            // sairToolStripMenuItem
-            // 
-            sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            sairToolStripMenuItem.Size = new Size(129, 22);
-            sairToolStripMenuItem.Text = "Sair";
+            cmsConfigurarMenu.Size = new Size(164, 52);
             // 
             // darkModeToolStripMenuItem
             // 
             darkModeToolStripMenuItem.Name = "darkModeToolStripMenuItem";
-            darkModeToolStripMenuItem.Size = new Size(129, 22);
-            darkModeToolStripMenuItem.Text = "DarkMode";
+            darkModeToolStripMenuItem.Size = new Size(163, 24);
+            darkModeToolStripMenuItem.Text = "Green Mode";
+            darkModeToolStripMenuItem.Click += darkModeToolStripMenuItem_Click;
+            // 
+            // sairToolStripMenuItem
+            // 
+            sairToolStripMenuItem.Name = "sairToolStripMenuItem";
+            sairToolStripMenuItem.Size = new Size(163, 24);
+            sairToolStripMenuItem.Text = "Sair";
+            sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
             // 
             // Home
             // 

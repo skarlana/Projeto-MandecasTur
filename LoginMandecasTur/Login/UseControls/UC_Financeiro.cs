@@ -284,7 +284,7 @@ namespace Login.UseControls
 
             if (dgv_Financeiro.Columns.Contains("data_vencimento"))
 
-            if (dgv_Financeiro.Columns.Contains("data_inicio_pag"))
+            //if (dgv_Financeiro.Columns.Contains("data_inicio_pag"))
 
             {
                 dgv_Financeiro.Columns["data_vencimento"].HeaderText = "Vencimento";

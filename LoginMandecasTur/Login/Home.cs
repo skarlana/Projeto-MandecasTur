@@ -1,27 +1,15 @@
 ﻿using Login.UseControls;
-
 using System;
-
 using System.Collections.Generic;
-
 using System.ComponentModel;
-
 using System.Data;
-
 using System.Drawing;
-
 using System.Drawing.Drawing2D;
-
 using System.IO; // <-- ADICIONADO PARA LER AS IMAGENS DO PC
-
 using System.Linq;
-
 using System.Runtime.InteropServices;
-
 using System.Text;
-
 using System.Threading.Tasks;
-
 using System.Windows.Forms;
 
 
@@ -60,30 +48,55 @@ namespace Login
 
         #endregion
 
+        // Variável para armazenar o perfil do usuário logado
+        private string perfilUsuarioLogado;
 
+        string userName;
 
-        public Home()
-
+        // [ALTERADO] O construtor agora recebe o perfil
+        public Home(string perfil, string nomeUser)
         {
 
             InitializeComponent();
+            this.perfilUsuarioLogado = perfil; // Salva o perfil recebido
+            userName = nomeUser;
+
+            //Mostra nome do Usuario
+            ExibirNomeUser();
 
             MoverLinhaNav(btnHome);
-
-
             UC_DashBoard uc = new UC_DashBoard();
-
             addUserControl(uc);
+
+            // [INCLUÍDO] Chama a verificação de acesso
+            VerificarAcesso();
+
 
         }
 
+
+        //METODO DE PUXAR NOME USUARIO
+        private void ExibirNomeUser()
+        {
+            lbUserName.Text = userName;
+        }
+        // [NOVO] Método que esconde ou bloqueia o botão
+        private void VerificarAcesso()
+        {
+            if (perfilUsuarioLogado == "Padrão")
+            {
+                // Opção 1: Deixar invisível (Mais limpo)
+                btnFuncionario.Visible = false;
+
+                // Opção 2: Apenas desabilitar (Aparece mas não clica)
+                // btnFuncionario.Enabled = false;
+            }
+        }
 
 
         // Variável global para o sistema saber qual tema usar
 
         public static bool IsDarkMode = false;
-
-
 
         public void AplicarTemaHome()
 
@@ -139,16 +152,8 @@ namespace Login
         }
 
         private void Home_Load(object sender, EventArgs e)
-
         {
 
-            // Primeiro define o limite
-
-            // this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
-
-            // Depois define o estado
-
-            // this.WindowState = FormWindowState.Maximized;
 
         }
 
@@ -211,49 +216,21 @@ namespace Login
         private void ArredondarPainel(Panel panel, int raio)
 
         {
-
             GraphicsPath path = new GraphicsPath();
-
             path.AddArc(0, 0, raio, raio, 180, 90);
-
             path.AddArc(panel.Width - raio, 0, raio, raio, 270, 90);
-
             path.AddArc(panel.Width - raio, panel.Height - raio, raio, raio, 0, 90);
-
             path.AddArc(0, panel.Height - raio, raio, raio, 90, 90);
-
             path.CloseFigure();
-
             panel.Region = new Region(path);
-
         }
 
 
 
         private void pnlUserName_Paint(object sender, PaintEventArgs e)
-
         {
-
             ArredondarPainel((Panel)sender, 20); // Ajuste o raio conforme desejado
-
         }
-
-        private void CentralizarConteudo(Control conteudo)
-
-        {
-
-            int x = (panelContainer.Width - conteudo.Width) / 2;
-
-            int y = (panelContainer.Height - conteudo.Height) / 2;
-
-
-
-            // Math.Max(0, ...) garante que se a tela for pequena, o conteúdo não "fuja" para fora do topo
-
-            conteudo.Location = new Point(Math.Max(0, x), Math.Max(0, y));
-
-        }
-
         #endregion
 
 
@@ -261,20 +238,13 @@ namespace Login
         #region Botões de Controle - Navegação - Menu
 
 
-
         public void BloquearMenu()
-
         {
             btnHome.Enabled = false;
-
             btnGestaoClientes.Enabled = false;
-
             btnGestaoViagens.Enabled = false;
-
             btnFinanceiro.Enabled = false;
-
             btnReservas.Enabled = false;
-
             btnFuncionario.Enabled = false;
 
         }
@@ -285,15 +255,10 @@ namespace Login
 
         {
             btnHome.Enabled = true;
-
             btnGestaoClientes.Enabled = true;
-
             btnGestaoViagens.Enabled = true;
-
             btnFinanceiro.Enabled = true;
-
             btnReservas.Enabled = true;
-
             btnFuncionario.Enabled = true;
 
         }
@@ -301,78 +266,51 @@ namespace Login
 
 
         private void MoverLinhaNav(Control btn)
-
         {
-
             // Ajusta a largura da linha para ser igual à do botão clicado
-
             pnlNav.Width = btn.Width;
-
             // Move a posição da linha para alinhar com o botão
-
             pnlNav.Left = btn.Left;
-
             // Garante que a linha fique visível (caso esteja escondida)
-
             pnlNav.Visible = true;
-
         }
 
 
 
         private void addUserControl(UserControl userControl)
-
         {
-
             panelContainer.Controls.Clear();
-
-
 
             if (panelContainer.Controls.Count > 0)
 
             {
-
                 // Limpa e libera memória do controle anterior
-
                 Control oldControl = panelContainer.Controls[0];
-
                 panelContainer.Controls.Remove(oldControl);
-
                 oldControl.Dispose();
-
             }
 
 
 
             // Altere de None para Fill para o User Control ocupar todo o painel cinza
-
             userControl.Dock = DockStyle.Fill;
-
             panelContainer.Controls.Add(userControl);
-
         }
 
         private void btnHome_Click(object sender, EventArgs e)
         {
             MoverLinhaNav((Control)sender); // A mágica acontece aqui
-
             UC_DashBoard Dash = new UC_DashBoard();
-
             addUserControl(Dash);
-
             Dash.AtualizarTema(IsDarkMode);
         }
 
         private void btnGestaoClientes_Click(object sender, EventArgs e)
-
         {
 
             MoverLinhaNav((Control)sender); // A mágica acontece aqui
-
             UC_GestaoClientes Home = new UC_GestaoClientes();
-
             addUserControl(Home);
-
             Home.AtualizarTema(IsDarkMode);
         }
 
@@ -381,26 +319,18 @@ namespace Login
         private void btnGestaoViagens_Click(object sender, EventArgs e)
 
         {
-
             MoverLinhaNav((Control)sender); // A mágica acontece aqui
-
             UC_GestaoViagens Viagem = new UC_GestaoViagens();
-
             addUserControl(Viagem);
-
             Viagem.AtualizarTema(IsDarkMode);
         }
 
 
 
         private void btnFinanceiro_Click(object sender, EventArgs e)
-
         {
-
             MoverLinhaNav((Control)sender); // A mágica acontece aqui
-
             UC_Financeiro Financeiro = new UC_Financeiro();
-
             addUserControl(Financeiro);
             Financeiro.AtualizarTema(IsDarkMode);
         }
@@ -408,47 +338,24 @@ namespace Login
 
 
         private void btnReservas_Click(object sender, EventArgs e)
-
         {
-
             MoverLinhaNav((Control)sender); // A mágica acontece aqui
-
             UC_RegistrarEntrada Reservar = new UC_RegistrarEntrada();
-
             addUserControl(Reservar);
             Reservar.AtualizarTema(IsDarkMode);
             Reservar.AtualizarTema(IsDarkMode);
 
         }
 
-
-
         private void btnFuncionario_Click(object sender, EventArgs e)
-
         {
-
             MoverLinhaNav((Control)sender); // A mágica acontece aqui
-
             UC_Funcionario Funcionario = new UC_Funcionario();
-
             addUserControl(Funcionario);
             Funcionario.AtualizarTema(IsDarkMode);
         }
 
-
-
         #endregion
-
-
-
-        private void panelContainer_Paint(object sender, PaintEventArgs e)
-
-        {
-
-
-
-        }
-
 
 
         // =========================================================================
@@ -460,168 +367,84 @@ namespace Login
         private void imgConfigurar_Click(object sender, EventArgs e)
 
         {
-
-            // Substituímos o painel cortado por esse menu nativo do Windows!
-
-            MostrarMenuPerfil(sender, e);
-
         }
 
 
 
         #region Novo Menu de Perfil Flutuante
+        /*
+                private void MostrarMenuPerfil(object sender, EventArgs e)
 
-        private void MostrarMenuPerfil(object sender, EventArgs e)
+                {
 
-        {
+                    ContextMenuStrip menuPerfil = new ContextMenuStrip();
+                    menuPerfil.BackColor = Color.White;
+                    menuPerfil.ShowImageMargin = true; // Espaço para as imagens
+                    menuPerfil.Font = new Font("Segoe UI", 10);
+                    menuPerfil.ForeColor = Color.Black;
+                    menuPerfil.Cursor = Cursors.Hand;
 
-            ContextMenuStrip menuPerfil = new ContextMenuStrip();
 
-            menuPerfil.BackColor = Color.White;
 
-            menuPerfil.ShowImageMargin = true; // Espaço para as imagens
+                    // 1. OPÇÃO ÚNICA DE TEMA (Alterna entre Claro e Escuro)
 
-            menuPerfil.Font = new Font("Segoe UI", 10);
+                    ToolStripMenuItem menuTema = new ToolStripMenuItem();
 
-            menuPerfil.Cursor = Cursors.Hand;
 
+                    menuTema.Click += (s, args) =>
+                    {
+                        IsDarkMode = !IsDarkMode; // Inverte a variável global (se for true vira false, e vice-versa)
+                        AplicarTemaHome();        // Pinta a Home
+                        AtualizarTelasInternas(); // Pinta os painéis do meio
+                    };
 
 
-            // 1. OPÇÃO ÚNICA DE TEMA (Alterna entre Claro e Escuro)
 
-            ToolStripMenuItem menuTema = new ToolStripMenuItem();
+                    ToolStripSeparator linha = new ToolStripSeparator();
+                    // 2. OPÇÃO SAIR (Porta de saída)
 
+                    ToolStripMenuItem menuSair = new ToolStripMenuItem("Sair do Sistema");
+                    ToolStripMenuItem menuGreenMode = new ToolStripMenuItem("Green Mode");
 
+                    // Tenta ler como PNG ou JPG
+                    string caminhoPortaPNG = @"C:\Users\silas.sbsilva\Downloads\portadesaida.png";
+                    string caminhoPortaJPG = @"C:\Users\silas.sbsilva\Downloads\portadesaida.jpg";
 
-            /*// Configura os caminhos (tentando PNG e JPG caso o Windows tenha escondido a extensão)
 
-            string caminhoSolPNG = @"C:\Users\silas.sbsilva\Downloads\sol.png";
+                    if (File.Exists(caminhoPortaPNG)) menuSair.Image = Image.FromFile(caminhoPortaPNG);
+                    else if (File.Exists(caminhoPortaJPG)) menuSair.Image = Image.FromFile(caminhoPortaJPG);
 
-            string caminhoSolJPG = @"C:\Users\silas.sbsilva\Downloads\sol.jpg";
+                    menuSair.ForeColor = Color.Red;
+                    menuSair.Click += (s, args) => Application.Exit();
 
-            string caminhoLuaPNG = @"C:\Users\silas.sbsilva\Downloads\lua.png";
+                    // Adiciona as opções ao menu
 
-            string caminhoLuaJPG = @"C:\Users\silas.sbsilva\Downloads\lua.jpg";
+                    menuPerfil.Items.Add(menuTema);
+                    menuPerfil.Items.Add(linha);
+                    menuPerfil.Items.Add(menuSair);
 
+                    // =========================================================================
 
+                    // A MÁGICA QUE RESOLVE O MENU CORTADO:
+                    // O comando "ToolStripDropDownDirection.BelowLeft" força o menu a abrir
+                    // para a ESQUERDA do ícone, mantendo ele 100% dentro da tela!
 
-            if (IsDarkMode)
+                    // =========================================================================
 
-            {
+                    Control controleClicado = (Control)sender;
+                    menuPerfil.Show(controleClicado, new Point(controleClicado.Width, controleClicado.Height), ToolStripDropDownDirection.BelowLeft);
 
-                // Se estiver escuro, a opção é ir para o Claro (Mostra o Sol)
-
-                menuTema.Text = "Modo Claro";
-
-                if (File.Exists(caminhoSolPNG)) menuTema.Image = Image.FromFile(caminhoSolPNG);
-
-                else if (File.Exists(caminhoSolJPG)) menuTema.Image = Image.FromFile(caminhoSolJPG);
-
-            }
-
-            else
-
-            {
-
-                // Se estiver claro, a opção é ir para o Escuro (Mostra a Lua)
-
-                menuTema.Text = "Modo Escuro";
-
-                if (File.Exists(caminhoLuaPNG)) menuTema.Image = Image.FromFile(caminhoLuaPNG);
-
-                else if (File.Exists(caminhoLuaJPG)) menuTema.Image = Image.FromFile(caminhoLuaJPG);
-
-            }*/
-
-
-
-            // O que acontece ao clicar nesse botão único:
-
-            menuTema.Click += (s, args) =>
-
-            {
-
-                IsDarkMode = !IsDarkMode; // Inverte a variável global (se for true vira false, e vice-versa)
-
-                AplicarTemaHome();        // Pinta a Home
-
-                AtualizarTelasInternas(); // Pinta os painéis do meio
-
-            };
-
-
-
-            ToolStripSeparator linha = new ToolStripSeparator();
-
-
-
-            // 2. OPÇÃO SAIR (Porta de saída)
-
-            ToolStripMenuItem menuSair = new ToolStripMenuItem("Sair do Sistema");
-
-
-
-            // Tenta ler como PNG ou JPG
-
-            string caminhoPortaPNG = @"C:\Users\silas.sbsilva\Downloads\portadesaida.png";
-
-            string caminhoPortaJPG = @"C:\Users\silas.sbsilva\Downloads\portadesaida.jpg";
-
-
-
-            if (File.Exists(caminhoPortaPNG)) menuSair.Image = Image.FromFile(caminhoPortaPNG);
-
-            else if (File.Exists(caminhoPortaJPG)) menuSair.Image = Image.FromFile(caminhoPortaJPG);
-
-
-
-            menuSair.ForeColor = Color.Red;
-
-            menuSair.Click += (s, args) => Application.Exit();
-
-
-
-            // Adiciona as opções ao menu
-
-            menuPerfil.Items.Add(menuTema);
-
-            menuPerfil.Items.Add(linha);
-
-            menuPerfil.Items.Add(menuSair);
-
-
-
-            // =========================================================================
-
-            // A MÁGICA QUE RESOLVE O MENU CORTADO:
-
-            // O comando "ToolStripDropDownDirection.BelowLeft" força o menu a abrir
-
-            // para a ESQUERDA do ícone, mantendo ele 100% dentro da tela!
-
-            // =========================================================================
-
-            Control controleClicado = (Control)sender;
-
-            menuPerfil.Show(controleClicado, new Point(controleClicado.Width, controleClicado.Height), ToolStripDropDownDirection.BelowLeft);
-
-        }
+                }*/
 
         #endregion
 
         // Método auxiliar para avisar as telas do centro que a cor mudou
-
         private void AtualizarTelasInternas()
-
         {
-
             if (panelContainer.Controls.Count > 0)
 
             {
-
                 var ucAberta = panelContainer.Controls[0];
-
-
 
                 if (ucAberta is UC_DashBoard ucDash) ucDash.AtualizarTema(IsDarkMode);
                 else if (ucAberta is UC_GestaoClientes ucCli) ucCli.AtualizarTema(IsDarkMode);
@@ -642,19 +465,36 @@ namespace Login
         private void imgLogoHome_Click(object sender, EventArgs e)
         {
             UC_DashBoard Dash = new UC_DashBoard();
-
             addUserControl(Dash);
-
             Dash.AtualizarTema(IsDarkMode);
         }
 
         private void imgNomeLogoHome_Click(object sender, EventArgs e)
         {
             UC_DashBoard Dash = new UC_DashBoard();
-
             addUserControl(Dash);
-
             Dash.AtualizarTema(IsDarkMode);
+        }
+
+        private void imgConfigurar_MouseClick(object sender, MouseEventArgs e)
+        {
+            cmsConfigurarMenu.Show(imgConfigurar, e.Location);
+        }
+
+        private void darkModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IsDarkMode = !IsDarkMode; // Inverte a variável global (se for true vira false, e vice-versa)
+            AplicarTemaHome();        // Pinta a Home
+            AtualizarTelasInternas();
+
+        }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TelaLogin Login = new TelaLogin();
+            this.Close();
+            Login.Show();
+            
         }
     }
 }

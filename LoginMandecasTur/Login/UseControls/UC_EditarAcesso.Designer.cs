@@ -48,7 +48,8 @@
             // 
             // pnlTitulo
             // 
-            pnlTitulo.BackColor = Color.FromArgb(232, 232, 232);
+            pnlTitulo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pnlTitulo.BackColor = Color.FromArgb(68, 252, 124);
             pnlTitulo.Font = new Font("Segoe UI", 9F);
             pnlTitulo.Location = new Point(17, 78);
             pnlTitulo.Name = "pnlTitulo";
@@ -57,6 +58,7 @@
             // 
             // pnlCadastro
             // 
+            pnlCadastro.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pnlCadastro.BackColor = Color.White;
             pnlCadastro.Controls.Add(btnSalvarEditarAcesso);
             pnlCadastro.Controls.Add(cbmperfil);
@@ -92,6 +94,7 @@
             // 
             // cbmperfil
             // 
+            cbmperfil.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cbmperfil.FormattingEnabled = true;
             cbmperfil.Items.AddRange(new object[] { "Administrador", "Padrão" });
             cbmperfil.Location = new Point(228, 155);
@@ -125,6 +128,7 @@
             // 
             // txtemailacesso
             // 
+            txtemailacesso.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtemailacesso.Location = new Point(228, 109);
             txtemailacesso.Name = "txtemailacesso";
             txtemailacesso.Size = new Size(467, 23);
@@ -132,6 +136,7 @@
             // 
             // txtcpfacesso
             // 
+            txtcpfacesso.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtcpfacesso.Location = new Point(228, 71);
             txtcpfacesso.Name = "txtcpfacesso";
             txtcpfacesso.Size = new Size(467, 23);
@@ -166,6 +171,7 @@
             // 
             // txtnomeacesso
             // 
+            txtnomeacesso.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtnomeacesso.Location = new Point(228, 33);
             txtnomeacesso.Name = "txtnomeacesso";
             txtnomeacesso.Size = new Size(467, 23);
@@ -193,11 +199,11 @@
             // lbCodigo
             // 
             lbCodigo.AutoSize = true;
-            lbCodigo.Location = new Point(17, 83);
+            lbCodigo.Location = new Point(69, 83);
             lbCodigo.Name = "lbCodigo";
-            lbCodigo.Size = new Size(70, 15);
+            lbCodigo.Size = new Size(32, 15);
             lbCodigo.TabIndex = 11;
-            lbCodigo.Text = "Codigo: 002";
+            lbCodigo.Text = "label";
             // 
             // UC_EditarAcesso
             // 

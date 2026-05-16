@@ -100,10 +100,6 @@ namespace Login.UseControls
         }
 
 
-
-
-
-
         public void carregar()
         {
             Conexao conexao = new Conexao();

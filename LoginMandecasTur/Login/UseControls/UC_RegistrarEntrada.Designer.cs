@@ -79,7 +79,7 @@
             pnlInformativo.Controls.Add(lblInformativo);
             pnlInformativo.Location = new Point(59, 78);
             pnlInformativo.Name = "pnlInformativo";
-            pnlInformativo.Size = new Size(707, 71);
+            pnlInformativo.Size = new Size(707, 88);
             pnlInformativo.TabIndex = 2;
             // 
             // lblInformativo
@@ -88,7 +88,7 @@
             lblInformativo.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblInformativo.Location = new Point(0, 22);
             lblInformativo.Name = "lblInformativo";
-            lblInformativo.Size = new Size(707, 25);
+            lblInformativo.Size = new Size(707, 45);
             lblInformativo.TabIndex = 0;
             lblInformativo.Text = "Selecione a viagem e o cliente para iniciar:";
             lblInformativo.TextAlign = ContentAlignment.MiddleCenter;
@@ -110,7 +110,7 @@
             panelRE.Controls.Add(label15);
             panelRE.Controls.Add(label16);
             panelRE.Controls.Add(label17);
-            panelRE.Location = new Point(59, 171);
+            panelRE.Location = new Point(59, 195);
             panelRE.Name = "panelRE";
             panelRE.Size = new Size(707, 268);
             panelRE.TabIndex = 3;
