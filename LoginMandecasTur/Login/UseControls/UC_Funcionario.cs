@@ -277,7 +277,7 @@ namespace Login.UseControls
 
                         UC_EditarAcesso editarFuncionario = new UC_EditarAcesso(idfuncionarios);
                         editarFuncionario.Dock = DockStyle.Fill;
-                        editarFuncionario.AtualizarTema(Home.IsDarkMode);
+                        editarFuncionario.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
                         pnlPrincipal.Controls.Add(editarFuncionario);
                     }
                 }

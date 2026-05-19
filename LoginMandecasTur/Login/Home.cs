@@ -102,7 +102,7 @@ namespace Login
 
         {
 
-            if (IsDarkMode)
+            if (ConfigGreenMode.ModoEscuroAtivo)
             {
                 // MODO ESCURO
                 this.BackgroundImage = Properties.Resources.img_fundo_escuro;
@@ -131,7 +131,7 @@ namespace Login
                     btn.FlatStyle = FlatStyle.Flat;
                     btn.FlatAppearance.BorderSize = 0;
 
-                    if (IsDarkMode)
+                    if (ConfigGreenMode.ModoEscuroAtivo)
                     {
                         btn.ForeColor = Color.Gainsboro;
                         btn.BackColor = Color.Transparent;
@@ -304,7 +304,7 @@ namespace Login
             MoverLinhaNav((Control)sender); // A mágica acontece aqui
             UC_DashBoard Dash = new UC_DashBoard();
             addUserControl(Dash);
-            Dash.AtualizarTema(IsDarkMode);
+            Dash.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
         }
 
         private void btnGestaoClientes_Click(object sender, EventArgs e)
@@ -313,7 +313,7 @@ namespace Login
             MoverLinhaNav((Control)sender); // A mágica acontece aqui
             UC_GestaoClientes Home = new UC_GestaoClientes();
             addUserControl(Home);
-            Home.AtualizarTema(IsDarkMode);
+            Home.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
         }
 
 
@@ -324,7 +324,7 @@ namespace Login
             MoverLinhaNav((Control)sender); // A mágica acontece aqui
             UC_GestaoViagens Viagem = new UC_GestaoViagens();
             addUserControl(Viagem);
-            Viagem.AtualizarTema(IsDarkMode);
+            Viagem.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
         }
 
 
@@ -334,7 +334,7 @@ namespace Login
             MoverLinhaNav((Control)sender); // A mágica acontece aqui
             UC_Financeiro Financeiro = new UC_Financeiro();
             addUserControl(Financeiro);
-            Financeiro.AtualizarTema(IsDarkMode);
+            Financeiro.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
         }
 
 
@@ -344,8 +344,8 @@ namespace Login
             MoverLinhaNav((Control)sender); // A mágica acontece aqui
             UC_RegistrarEntrada Reservar = new UC_RegistrarEntrada();
             addUserControl(Reservar);
-            Reservar.AtualizarTema(IsDarkMode);
-            Reservar.AtualizarTema(IsDarkMode);
+            Reservar.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
+            
 
         }
 
@@ -354,7 +354,7 @@ namespace Login
             MoverLinhaNav((Control)sender); // A mágica acontece aqui
             UC_Funcionario Funcionario = new UC_Funcionario();
             addUserControl(Funcionario);
-            Funcionario.AtualizarTema(IsDarkMode);
+            Funcionario.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
         }
 
         #endregion
@@ -448,16 +448,16 @@ namespace Login
             {
                 var ucAberta = panelContainer.Controls[0];
 
-                if (ucAberta is UC_DashBoard ucDash) ucDash.AtualizarTema(IsDarkMode);
-                else if (ucAberta is UC_GestaoClientes ucCli) ucCli.AtualizarTema(IsDarkMode);
-                else if (ucAberta is UC_EditarCliente ucEC) ucEC.AtualizarTema(IsDarkMode);
-                else if (ucAberta is UC_GestaoViagens ucGV) ucGV.AtualizarTema(IsDarkMode);
-                else if (ucAberta is UC_EditarViagem ucEV) ucEV.AtualizarTema(IsDarkMode);
-                else if (ucAberta is UC_IncluirPassageiros ucIncluir) ucIncluir.AtualizarTema(IsDarkMode);
-                else if (ucAberta is UC_RegistrarEntrada ucRE) ucRE.AtualizarTema(IsDarkMode);
-                else if (ucAberta is UC_Financeiro ucFin) ucFin.AtualizarTema(IsDarkMode);
-                else if (ucAberta is UC_Funcionario ucFun) ucFun.AtualizarTema(IsDarkMode);
-                else if (ucAberta is UC_EditarAcesso ucEA) ucEA.AtualizarTema(IsDarkMode);
+                if (ucAberta is UC_DashBoard ucDash) ucDash.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
+                else if (ucAberta is UC_GestaoClientes ucCli) ucCli.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
+                else if (ucAberta is UC_EditarCliente ucEC) ucEC.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
+                else if (ucAberta is UC_GestaoViagens ucGV) ucGV.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
+                else if (ucAberta is UC_EditarViagem ucEV) ucEV.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
+                else if (ucAberta is UC_IncluirPassageiros ucIncluir) ucIncluir.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
+                else if (ucAberta is UC_RegistrarEntrada ucRE) ucRE.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
+                else if (ucAberta is UC_Financeiro ucFin) ucFin.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
+                else if (ucAberta is UC_Funcionario ucFun) ucFun.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
+                else if (ucAberta is UC_EditarAcesso ucEA) ucEA.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
 
 
 
@@ -485,7 +485,8 @@ namespace Login
 
         private void darkModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            IsDarkMode = !IsDarkMode; // Inverte a variável global (se for true vira false, e vice-versa)
+            ConfigGreenMode.ModoEscuroAtivo = !ConfigGreenMode.ModoEscuroAtivo;
+
             AplicarTemaHome();        // Pinta a Home
             AtualizarTelasInternas();
 

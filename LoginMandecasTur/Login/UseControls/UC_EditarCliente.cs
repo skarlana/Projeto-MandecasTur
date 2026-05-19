@@ -222,6 +222,7 @@ namespace Login.UseControls
                         // Cria a tela de funcionários para voltar
                         UC_GestaoClientes gestaoClientes = new UC_GestaoClientes();
                         gestaoClientes.Dock = DockStyle.Fill;
+                        gestaoClientes.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
                         pnlPrincipal.Controls.Add(gestaoClientes);
                     }
                 }

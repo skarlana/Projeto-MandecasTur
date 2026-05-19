@@ -442,6 +442,8 @@ namespace Login.UseControls
 
         private void UC_IncluirPassageiros_Load(object sender, EventArgs e)
         {
+            // 🟢 O ESCUDO AQUI: Assim que a tela carregar, ela força o Green Mode a rodar!
+            this.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
 
             txtClienteIncluirPassageiros.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             txtClienteIncluirPassageiros.AutoCompleteSource = AutoCompleteSource.CustomSource;
@@ -538,8 +540,8 @@ namespace Login.UseControls
 
                 if (homeForm is Home home)
                 {
-
                     home.DesbloquearMenu();
+
                     // Busca o painel onde as telas são carregadas
                     Control[] controls = homeForm.Controls.Find("panelContainer", true);
 
@@ -547,9 +549,16 @@ namespace Login.UseControls
                     {
                         pnlPrincipal.Controls.Clear();
 
-                        // Cria a tela de funcionários para voltar
+                        // Cria a tela de Gestão de Viagens para voltar
                         UC_GestaoViagens gestaoViagens = new UC_GestaoViagens();
                         gestaoViagens.Dock = DockStyle.Fill;
+
+                        // ======================================================================
+                        // 🟢 AQUI: Força a Gestão de Viagens a voltar respeitando o Green Mode
+                        // ======================================================================
+                        gestaoViagens.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
+                        // ======================================================================
+
                         pnlPrincipal.Controls.Add(gestaoViagens);
                     }
                 }
@@ -571,6 +580,13 @@ namespace Login.UseControls
 
         }
 
-     
+        private void UC_IncluirPassageiros_VisibleChanged(object sender, EventArgs e)
+        {
+            // Se a tela ficou visível para o usuário, força o Green Mode na hora!
+            if (this.Visible)
+            {
+                this.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
+            }
+        }
     }
 }
