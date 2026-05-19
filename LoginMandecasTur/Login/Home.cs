@@ -299,6 +299,8 @@ namespace Login
 
         private void btnHome_Click(object sender, EventArgs e)
         {
+         
+
             MoverLinhaNav((Control)sender); // A mágica acontece aqui
             UC_DashBoard Dash = new UC_DashBoard();
             addUserControl(Dash);

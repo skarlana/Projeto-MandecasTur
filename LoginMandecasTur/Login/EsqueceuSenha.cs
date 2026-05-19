@@ -127,12 +127,12 @@ namespace Login
         }
 
         private void txtUsuarioLogin_Leave(object sender, EventArgs e)
-        {
+        {  
             pnlLinhaUsuarioLogin.BackColor = Color.FromArgb(255, 255, 255);
         }
 
         private void txtSenhaLogin_Enter(object sender, EventArgs e)
-        {
+        { 
             txtSenhaLogin.PasswordChar = '●'; //Esconder caracteres
             pnlLinhaSenhaLogin.BackColor = Color.FromArgb(68, 252, 124);//hover
         }
@@ -175,10 +175,10 @@ namespace Login
 
                     // 3. [NOVO] Captura o valor da coluna perfil_acesso
                     string perfil = reader["perfil_acesso"].ToString();
-                    string nomeUser = reader["nome"].ToString();
+                    string nomeUser = reader["nome"].ToString() ;
 
                     // 4. [ALTERADO] Passa o perfil como argumento para o construtor da Home
-                    Home TelaHome = new Home(perfil, nomeUser);
+                    Home TelaHome = new Home(perfil,nomeUser);
                     TelaHome.Show();
                     this.Hide();
                 }
@@ -197,32 +197,7 @@ namespace Login
             {
                 if (conn.State == ConnectionState.Open) conn.Close();
             }
-
-        }
-
-        private void lbEsqueceuSenha_Click(object sender, EventArgs e)
-        {
-            TelaRecuperarSenha EsqueceuSenha = new TelaRecuperarSenha();
-            EsqueceuSenha.Show();
-            this.Hide();
-        }
-        bool senhaVisivel = false;
-        private void picOlhoMostrar_Click(object sender, EventArgs e)
-        {
-
-            if (senhaVisivel)
-            {
-                txtSenhaLogin.PasswordChar = '●'; // esconde
-                picOlhoMostrar.Image = Image.FromFile(@"..\..\..\Resources\eye.png");
-                senhaVisivel = false;
-            }
-            else
-            {
-                txtSenhaLogin.PasswordChar = '\0'; // mostra                
-                picOlhoMostrar.Image = Image.FromFile(@"..\..\..\Resources\hidden.png");
-                senhaVisivel = true;
-            }
-
+        
         }
     }
 }

@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_GestaoViagens));
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             txtBuscaGViagens = new TextBox();
             dvgViagens = new DataGridView();
             btnEditar = new DataGridViewImageColumn();
@@ -70,7 +70,7 @@
             // 
             // txtBuscaGViagens
             // 
-            txtBuscaGViagens.Location = new Point(44, 50);
+            txtBuscaGViagens.Location = new Point(49, 50);
             txtBuscaGViagens.Name = "txtBuscaGViagens";
             txtBuscaGViagens.PlaceholderText = "  Buscar por Destino ou Status";
             txtBuscaGViagens.Size = new Size(415, 23);
@@ -86,14 +86,14 @@
             dvgViagens.BorderStyle = BorderStyle.None;
             dvgViagens.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dvgViagens.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.WhiteSmoke;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dvgViagens.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dvgViagens.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dvgViagens.ColumnHeadersHeight = 40;
             dvgViagens.Columns.AddRange(new DataGridViewColumn[] { btnEditar, btnIncluir, btnExcluir });
             dvgViagens.EnableHeadersVisualStyles = false;
@@ -109,10 +109,10 @@
             // btnEditar
             // 
             btnEditar.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.NullValue = resources.GetObject("dataGridViewCellStyle6.NullValue");
-            dataGridViewCellStyle6.Padding = new Padding(6);
-            btnEditar.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = resources.GetObject("dataGridViewCellStyle2.NullValue");
+            dataGridViewCellStyle2.Padding = new Padding(6);
+            btnEditar.DefaultCellStyle = dataGridViewCellStyle2;
             btnEditar.HeaderText = "";
             btnEditar.Image = (Image)resources.GetObject("btnEditar.Image");
             btnEditar.ImageLayout = DataGridViewImageCellLayout.Zoom;
@@ -122,10 +122,10 @@
             // btnIncluir
             // 
             btnIncluir.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.NullValue = resources.GetObject("dataGridViewCellStyle7.NullValue");
-            dataGridViewCellStyle7.Padding = new Padding(8);
-            btnIncluir.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.NullValue = resources.GetObject("dataGridViewCellStyle3.NullValue");
+            dataGridViewCellStyle3.Padding = new Padding(8);
+            btnIncluir.DefaultCellStyle = dataGridViewCellStyle3;
             btnIncluir.HeaderText = "";
             btnIncluir.Image = (Image)resources.GetObject("btnIncluir.Image");
             btnIncluir.ImageLayout = DataGridViewImageCellLayout.Zoom;
@@ -134,10 +134,10 @@
             // btnExcluir
             // 
             btnExcluir.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.NullValue = resources.GetObject("dataGridViewCellStyle8.NullValue");
-            dataGridViewCellStyle8.Padding = new Padding(8);
-            btnExcluir.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.NullValue = resources.GetObject("dataGridViewCellStyle4.NullValue");
+            dataGridViewCellStyle4.Padding = new Padding(8);
+            btnExcluir.DefaultCellStyle = dataGridViewCellStyle4;
             btnExcluir.HeaderText = "";
             btnExcluir.Image = (Image)resources.GetObject("btnExcluir.Image");
             btnExcluir.ImageLayout = DataGridViewImageCellLayout.Zoom;
@@ -247,7 +247,7 @@
             // txtCustoHospedagemCViagem
             // 
             txtCustoHospedagemCViagem.Anchor = AnchorStyles.Right;
-            txtCustoHospedagemCViagem.Location = new Point(502, 111);
+            txtCustoHospedagemCViagem.Location = new Point(596, 111);
             txtCustoHospedagemCViagem.Name = "txtCustoHospedagemCViagem";
             txtCustoHospedagemCViagem.Size = new Size(106, 23);
             txtCustoHospedagemCViagem.TabIndex = 4;
@@ -335,7 +335,7 @@
             lbTransporteGViagens.AutoSize = true;
             lbTransporteGViagens.Location = new Point(360, 72);
             lbTransporteGViagens.Name = "lbTransporteGViagens";
-            lbTransporteGViagens.Size = new Size(66, 15);
+            lbTransporteGViagens.Size = new Size(65, 15);
             lbTransporteGViagens.TabIndex = 9;
             lbTransporteGViagens.Text = "Transporte:";
             // 
@@ -354,7 +354,7 @@
             lbCustoTransporteCViagem.AutoSize = true;
             lbCustoTransporteCViagem.Location = new Point(17, 116);
             lbCustoTransporteCViagem.Name = "lbCustoTransporteCViagem";
-            lbCustoTransporteCViagem.Size = new Size(117, 15);
+            lbCustoTransporteCViagem.Size = new Size(116, 15);
             lbCustoTransporteCViagem.TabIndex = 6;
             lbCustoTransporteCViagem.Text = "Custo do Transporte:";
             // 
@@ -362,7 +362,7 @@
             // 
             lblbCustoHospedagemCViagem.Anchor = AnchorStyles.Right;
             lblbCustoHospedagemCViagem.AutoSize = true;
-            lblbCustoHospedagemCViagem.Location = new Point(365, 116);
+            lblbCustoHospedagemCViagem.Location = new Point(459, 116);
             lblbCustoHospedagemCViagem.Name = "lblbCustoHospedagemCViagem";
             lblbCustoHospedagemCViagem.Size = new Size(131, 15);
             lblbCustoHospedagemCViagem.TabIndex = 5;
@@ -401,7 +401,7 @@
             // lblLimparFiltro
             // 
             lblLimparFiltro.AutoSize = true;
-            lblLimparFiltro.Location = new Point(550, 58);
+            lblLimparFiltro.Location = new Point(555, 57);
             lblLimparFiltro.Name = "lblLimparFiltro";
             lblLimparFiltro.Size = new Size(129, 15);
             lblLimparFiltro.TabIndex = 8;
@@ -414,7 +414,7 @@
             btnBuscar.FlatStyle = FlatStyle.Flat;
             btnBuscar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBuscar.ForeColor = Color.Black;
-            btnBuscar.Location = new Point(465, 50);
+            btnBuscar.Location = new Point(470, 49);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(75, 27);
             btnBuscar.TabIndex = 18;

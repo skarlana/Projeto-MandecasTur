@@ -83,15 +83,16 @@
             // 
             // btnHome
             // 
+            btnHome.BackColor = Color.Transparent;
             btnHome.FlatAppearance.BorderSize = 0;
             btnHome.FlatStyle = FlatStyle.Flat;
             btnHome.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnHome.Location = new Point(3, -1);
+            btnHome.Image = (Image)resources.GetObject("btnHome.Image");
+            btnHome.Location = new Point(5, -1);
             btnHome.Name = "btnHome";
-            btnHome.Size = new Size(147, 50);
+            btnHome.Size = new Size(60, 50);
             btnHome.TabIndex = 7;
-            btnHome.Text = "Home";
-            btnHome.UseVisualStyleBackColor = true;
+            btnHome.UseVisualStyleBackColor = false;
             btnHome.Click += btnHome_Click;
             // 
             // pnlNav
@@ -107,7 +108,7 @@
             btnFuncionario.FlatAppearance.BorderSize = 0;
             btnFuncionario.FlatStyle = FlatStyle.Flat;
             btnFuncionario.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            btnFuncionario.Location = new Point(727, 0);
+            btnFuncionario.Location = new Point(678, 0);
             btnFuncionario.Name = "btnFuncionario";
             btnFuncionario.Size = new Size(147, 51);
             btnFuncionario.TabIndex = 6;
@@ -120,7 +121,7 @@
             btnReservas.FlatAppearance.BorderSize = 0;
             btnReservas.FlatStyle = FlatStyle.Flat;
             btnReservas.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            btnReservas.Location = new Point(453, -1);
+            btnReservas.Location = new Point(377, -1);
             btnReservas.Name = "btnReservas";
             btnReservas.Size = new Size(147, 51);
             btnReservas.TabIndex = 5;
@@ -133,7 +134,7 @@
             btnFinanceiro.FlatAppearance.BorderSize = 0;
             btnFinanceiro.FlatStyle = FlatStyle.Flat;
             btnFinanceiro.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            btnFinanceiro.Location = new Point(584, -1);
+            btnFinanceiro.Location = new Point(528, -1);
             btnFinanceiro.Name = "btnFinanceiro";
             btnFinanceiro.Size = new Size(147, 51);
             btnFinanceiro.TabIndex = 4;
@@ -146,7 +147,7 @@
             btnGestaoViagens.FlatAppearance.BorderSize = 0;
             btnGestaoViagens.FlatStyle = FlatStyle.Flat;
             btnGestaoViagens.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            btnGestaoViagens.Location = new Point(309, -1);
+            btnGestaoViagens.Location = new Point(226, -1);
             btnGestaoViagens.Name = "btnGestaoViagens";
             btnGestaoViagens.Size = new Size(147, 51);
             btnGestaoViagens.TabIndex = 3;
@@ -159,7 +160,7 @@
             btnGestaoClientes.FlatAppearance.BorderSize = 0;
             btnGestaoClientes.FlatStyle = FlatStyle.Flat;
             btnGestaoClientes.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnGestaoClientes.Location = new Point(156, -1);
+            btnGestaoClientes.Location = new Point(75, -1);
             btnGestaoClientes.Name = "btnGestaoClientes";
             btnGestaoClientes.Size = new Size(147, 51);
             btnGestaoClientes.TabIndex = 2;
@@ -268,7 +269,7 @@
             pnlUserName.Controls.Add(lbUserName);
             pnlUserName.Controls.Add(imgIconUserHome);
             pnlUserName.Controls.Add(lbUsuario);
-            pnlUserName.Location = new Point(1049, 35);
+            pnlUserName.Location = new Point(1049, 33);
             pnlUserName.Name = "pnlUserName";
             pnlUserName.Size = new Size(155, 40);
             pnlUserName.TabIndex = 0;
@@ -277,7 +278,7 @@
             // imgConfigurar
             // 
             imgConfigurar.Image = (Image)resources.GetObject("imgConfigurar.Image");
-            imgConfigurar.Location = new Point(119, 8);
+            imgConfigurar.Location = new Point(119, 9);
             imgConfigurar.Name = "imgConfigurar";
             imgConfigurar.Size = new Size(22, 22);
             imgConfigurar.SizeMode = PictureBoxSizeMode.Zoom;
@@ -288,7 +289,7 @@
             // lbUserName
             // 
             lbUserName.AutoSize = true;
-            lbUserName.Location = new Point(19, 20);
+            lbUserName.Location = new Point(19, 22);
             lbUserName.Name = "lbUserName";
             lbUserName.Size = new Size(38, 15);
             lbUserName.TabIndex = 3;
@@ -297,7 +298,7 @@
             // imgIconUserHome
             // 
             imgIconUserHome.Image = (Image)resources.GetObject("imgIconUserHome.Image");
-            imgIconUserHome.Location = new Point(86, 6);
+            imgIconUserHome.Location = new Point(86, 7);
             imgIconUserHome.Name = "imgIconUserHome";
             imgIconUserHome.Size = new Size(27, 27);
             imgIconUserHome.SizeMode = PictureBoxSizeMode.Zoom;

@@ -9,6 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="EsqueceuSenha.cs" />
+    <Compile Remove="EsqueceuSenha.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="EsqueceuSenha.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MySql.Data" Version="9.7.0" />
     <PackageReference Include="QuestPDF" Version="2026.5.0" />
   </ItemGroup>

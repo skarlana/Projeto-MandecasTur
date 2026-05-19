@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaLogin));
             pnlLogin = new Panel();
-            lbEsqueceuSenha = new Label();
             lbRodape = new Label();
             imgOnibusLogin = new PictureBox();
             imgNavioLogin = new PictureBox();
@@ -52,7 +51,7 @@
             imgLogoCodsis = new PictureBox();
             lbCodsis = new Label();
             pnlCodsis = new Panel();
-            picOlhoMostrar = new PictureBox();
+            label1 = new Label();
             pnlLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgOnibusLogin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgNavioLogin).BeginInit();
@@ -63,14 +62,12 @@
             pnlFecharMinimizarTela.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgLogoCodsis).BeginInit();
             pnlCodsis.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picOlhoMostrar).BeginInit();
             SuspendLayout();
             // 
             // pnlLogin
             // 
             pnlLogin.Anchor = AnchorStyles.None;
-            pnlLogin.Controls.Add(picOlhoMostrar);
-            pnlLogin.Controls.Add(lbEsqueceuSenha);
+            pnlLogin.Controls.Add(label1);
             pnlLogin.Controls.Add(lbRodape);
             pnlLogin.Controls.Add(imgOnibusLogin);
             pnlLogin.Controls.Add(imgNavioLogin);
@@ -90,20 +87,6 @@
             pnlLogin.Size = new Size(300, 450);
             pnlLogin.TabIndex = 1;
             pnlLogin.Paint += pnlLogin_Paint;
-            // 
-            // lbEsqueceuSenha
-            // 
-            lbEsqueceuSenha.AutoSize = true;
-            lbEsqueceuSenha.BackColor = Color.Transparent;
-            lbEsqueceuSenha.Font = new Font("Segoe UI", 9.75F, FontStyle.Underline, GraphicsUnit.Point, 0);
-            lbEsqueceuSenha.ForeColor = Color.Gainsboro;
-            lbEsqueceuSenha.Location = new Point(102, 326);
-            lbEsqueceuSenha.Name = "lbEsqueceuSenha";
-            lbEsqueceuSenha.Size = new Size(101, 17);
-            lbEsqueceuSenha.TabIndex = 14;
-            lbEsqueceuSenha.Text = "Esqueci a senha";
-            lbEsqueceuSenha.TextAlign = ContentAlignment.MiddleCenter;
-            lbEsqueceuSenha.Click += lbEsqueceuSenha_Click;
             // 
             // lbRodape
             // 
@@ -177,7 +160,7 @@
             // 
             imgLockLogin.BackColor = Color.Transparent;
             imgLockLogin.Image = (Image)resources.GetObject("imgLockLogin.Image");
-            imgLockLogin.Location = new Point(53, 217);
+            imgLockLogin.Location = new Point(58, 217);
             imgLockLogin.Name = "imgLockLogin";
             imgLockLogin.Size = new Size(21, 19);
             imgLockLogin.SizeMode = PictureBoxSizeMode.Zoom;
@@ -188,7 +171,7 @@
             // 
             imgUserLogin.BackColor = Color.Transparent;
             imgUserLogin.Image = Properties.Resources.user;
-            imgUserLogin.Location = new Point(54, 174);
+            imgUserLogin.Location = new Point(58, 174);
             imgUserLogin.Name = "imgUserLogin";
             imgUserLogin.Size = new Size(21, 19);
             imgUserLogin.SizeMode = PictureBoxSizeMode.Zoom;
@@ -216,10 +199,10 @@
             txtSenhaLogin.BackColor = Color.FromArgb(10, 30, 10);
             txtSenhaLogin.BorderStyle = BorderStyle.None;
             txtSenhaLogin.ForeColor = Color.White;
-            txtSenhaLogin.Location = new Point(79, 219);
+            txtSenhaLogin.Location = new Point(84, 219);
             txtSenhaLogin.Name = "txtSenhaLogin";
             txtSenhaLogin.PlaceholderText = "Senha";
-            txtSenhaLogin.Size = new Size(146, 16);
+            txtSenhaLogin.Size = new Size(157, 16);
             txtSenhaLogin.TabIndex = 3;
             txtSenhaLogin.Enter += txtSenhaLogin_Enter;
             txtSenhaLogin.Leave += txtSenhaLogin_Leave;
@@ -229,7 +212,7 @@
             txtUsuarioLogin.BackColor = Color.FromArgb(10, 30, 10);
             txtUsuarioLogin.BorderStyle = BorderStyle.None;
             txtUsuarioLogin.ForeColor = Color.White;
-            txtUsuarioLogin.Location = new Point(80, 177);
+            txtUsuarioLogin.Location = new Point(84, 177);
             txtUsuarioLogin.Name = "txtUsuarioLogin";
             txtUsuarioLogin.PlaceholderText = "Usuário";
             txtUsuarioLogin.Size = new Size(157, 16);
@@ -268,7 +251,7 @@
             pnlFecharMinimizarTela.Controls.Add(lbRecolher);
             pnlFecharMinimizarTela.Controls.Add(lbMinimizar);
             pnlFecharMinimizarTela.Controls.Add(lbFechar);
-            pnlFecharMinimizarTela.Location = new Point(1106, 12);
+            pnlFecharMinimizarTela.Location = new Point(1108, 12);
             pnlFecharMinimizarTela.Name = "pnlFecharMinimizarTela";
             pnlFecharMinimizarTela.Size = new Size(88, 36);
             pnlFecharMinimizarTela.TabIndex = 5;
@@ -346,17 +329,18 @@
             pnlCodsis.Size = new Size(1218, 61);
             pnlCodsis.TabIndex = 8;
             // 
-            // picOlhoMostrar
+            // label1
             // 
-            picOlhoMostrar.BackColor = Color.Transparent;
-            picOlhoMostrar.Image = (Image)resources.GetObject("picOlhoMostrar.Image");
-            picOlhoMostrar.Location = new Point(227, 217);
-            picOlhoMostrar.Name = "picOlhoMostrar";
-            picOlhoMostrar.Size = new Size(21, 19);
-            picOlhoMostrar.SizeMode = PictureBoxSizeMode.Zoom;
-            picOlhoMostrar.TabIndex = 15;
-            picOlhoMostrar.TabStop = false;
-            picOlhoMostrar.Click += picOlhoMostrar_Click;
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Gainsboro;
+            label1.Location = new Point(102, 318);
+            label1.Name = "label1";
+            label1.Size = new Size(101, 17);
+            label1.TabIndex = 14;
+            label1.Text = "Esqueci a senha";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // TelaLogin
             // 
@@ -390,7 +374,6 @@
             ((System.ComponentModel.ISupportInitialize)imgLogoCodsis).EndInit();
             pnlCodsis.ResumeLayout(false);
             pnlCodsis.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picOlhoMostrar).EndInit();
             ResumeLayout(false);
         }
 
@@ -417,7 +400,6 @@
         private PictureBox imgLogoCodsis;
         private Label lbCodsis;
         private Panel pnlCodsis;
-        private Label lbEsqueceuSenha;
-        private PictureBox picOlhoMostrar;
+        private Label label1;
     }
 }
