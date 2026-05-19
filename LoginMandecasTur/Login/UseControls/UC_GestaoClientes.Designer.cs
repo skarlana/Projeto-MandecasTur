@@ -251,6 +251,7 @@
             pnlBotoes.Name = "pnlBotoes";
             pnlBotoes.Size = new Size(200, 47);
             pnlBotoes.TabIndex = 15;
+            pnlBotoes.Resize += pnlBotoes_Resize;
             // 
             // btnCancelarGClientes
             // 
@@ -338,6 +339,7 @@
             pnlCadastroCliente.Size = new Size(724, 199);
             pnlCadastroCliente.TabIndex = 3;
             pnlCadastroCliente.Paint += pnlCadastroCliente_Paint;
+            pnlCadastroCliente.Resize += pnlCadastroCliente_Resize;
             // 
             // dtpDataNascGclientes
             // 

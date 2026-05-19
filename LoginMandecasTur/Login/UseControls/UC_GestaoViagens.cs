@@ -144,33 +144,43 @@ namespace Login.UseControls
 
             }
         }
-
         public void AtualizarGrid()
-
         {
-
             Conexao conexao = new Conexao();
-
             MySqlConnection con = conexao.Conectar();
-
             try
 
             {
-
                 con.Open();
-
                 string sqlMostrar = "SELECT id_viagem, destino, data_viagem, qtdd_vagas, tipo_transporte FROM viagem ";
-
                 MySqlDataAdapter adapter = new MySqlDataAdapter(sqlMostrar, con);
-
                 DataTable dt = new DataTable();
-
                 adapter.Fill(dt);
-
                 dvgViagens.DataSource = dt;
 
-                // --- ORDENAÇÃO MANUAL DAS COLUNAS (O segredo está aqui) ---
+                // AJUSTES DOS BOTÕES DE AÇÃO
 
+                // Centralizar
+                dvgViagens.Columns["btnIncluir"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dvgViagens.Columns["btnEditar"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dvgViagens.Columns["btnExcluir"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                // Espaçamento interno
+                dvgViagens.Columns["btnIncluir"].DefaultCellStyle.Padding = new Padding(10, 0, 10, 0);
+                dvgViagens.Columns["btnEditar"].DefaultCellStyle.Padding = new Padding(10, 0, 10, 0);
+                dvgViagens.Columns["btnExcluir"].DefaultCellStyle.Padding = new Padding(10, 0, 10, 0);
+
+                // Largura fixa
+                dvgViagens.Columns["btnIncluir"].Width = 40;
+                dvgViagens.Columns["btnEditar"].Width = 40;
+                dvgViagens.Columns["btnExcluir"].Width = 40;
+
+                // Desativa AutoSize só nessas colunas
+                dvgViagens.Columns["btnIncluir"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                dvgViagens.Columns["btnEditar"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                dvgViagens.Columns["btnExcluir"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+                // --- ORDENAÇÃO MANUAL DAS COLUNAS (O segredo está aqui) 
                 // O DisplayIndex define a posição da esquerda para a direita (0 é a primeira)
 
                 if (dvgViagens.Columns.Contains("id_viagem"))
@@ -210,14 +220,12 @@ namespace Login.UseControls
                     dvgViagens.Columns["tipo_transporte"].HeaderText = "Transporte";
                     dvgViagens.Columns["tipo_transporte"].DisplayIndex = 4;
                 }
+
                 /* if (dvgViagens.Columns.Contains("status"))
                  {
                      dvgViagens.Columns["status"].HeaderText = "Status";
-
                      dvgViagens.Columns["status"].DisplayIndex = 5;
                  }*/
-
-
 
                 // 6 e 7. Ações (Botões sempre por último e colados um no outro)
 
@@ -230,18 +238,12 @@ namespace Login.UseControls
                 lblLimparFiltro.Visible = false; // Esconde a label
 
             }
-
             catch (Exception ex)
 
             {
-
                 MessageBox.Show("Erro ao carregar dados: " + ex.Message);
-
             }
-
         }
-
-
         private void dvgViagens_Paint(object sender, PaintEventArgs e)
         {
             try
@@ -254,10 +256,20 @@ namespace Login.UseControls
                 // 2. Obtém a área (retângulo) ocupada pelos cabeçalhos dessas colunas
                 Rectangle r1 = dvgViagens.GetCellDisplayRectangle(col1, -1, true);
                 Rectangle r2 = dvgViagens.GetCellDisplayRectangle(col2, -1, true);
-
+                Rectangle r3 = dvgViagens.GetCellDisplayRectangle(col3, -1, true);
 
                 // 3. Cria um retângulo único que junta as duas áreas
-                Rectangle areaAcoes = new Rectangle(r1.X, r1.Y, r1.Width + r2.Width, r1.Height);
+                // Junta TODAS as colunas
+
+                int xInicio = Math.Min(r1.X, Math.Min(r2.X, r3.X));
+                int xFim = Math.Max(r1.Right, Math.Max(r2.Right, r3.Right));
+
+                Rectangle areaAcoes = new Rectangle(
+                    xInicio,
+                    r1.Y,
+                    xFim - xInicio,
+                    r1.Height
+                );
 
                 // 4. Pinta o fundo do cabeçalho (usando a cor que você já definiu para a grid)
                 using (SolidBrush sb = new SolidBrush(dvgViagens.ColumnHeadersDefaultCellStyle.BackColor))
@@ -266,9 +278,17 @@ namespace Login.UseControls
                 }
 
                 // 5. Desenha o texto "Ações" centralizado nessa nova área
-                TextRenderer.DrawText(e.Graphics, "Ações", dvgViagens.ColumnHeadersDefaultCellStyle.Font,
-                    areaAcoes, dvgViagens.ColumnHeadersDefaultCellStyle.ForeColor,
-                    TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter);
+
+                e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+                TextRenderer.DrawText(
+                    e.Graphics,
+                    "Ações",
+                    dvgViagens.ColumnHeadersDefaultCellStyle.Font,
+                    areaAcoes,
+                    dvgViagens.ColumnHeadersDefaultCellStyle.ForeColor,
+                    TextFormatFlags.HorizontalCenter |
+                    TextFormatFlags.VerticalCenter
+                );
             }
             catch { /* Evita erros caso as colunas ainda não existam no momento da pintura */ }
 
@@ -365,93 +385,47 @@ namespace Login.UseControls
                 }
             }
         }
-
-
         private void RealizarBusca()
-
         {
-
             string textoBusca = txtBuscaGViagens.Text.Trim();
-
             Conexao conexao = new Conexao();
-
             MySqlConnection conn = conexao.Conectar();
-
             try
-
             {
-
                 // Criamos dois parâmetros diferentes (@nome e @documento)
-
                 string sql = "SELECT id_viagem, destino, data_viagem, qtdd_vagas, tipo_transporte FROM viagem " +
-
                              "WHERE destino LIKE @valor OR id_viagem LIKE @valor";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-
                 // Parametro 1: Busca pelo nome (com o texto original)
-
                 cmd.Parameters.AddWithValue("@valor", "%" + textoBusca + "%");
-
                 // Parametro 2: Busca pelo documento (com o texto limpo pela função LimparCPF)
 
-
-
                 MySqlDataAdapter adt = new MySqlDataAdapter(cmd);
-
                 DataTable dtt = new DataTable();
-
                 adt.Fill(dtt);
-
                 dvgViagens.DataSource = dtt;
 
                 if (!string.IsNullOrWhiteSpace(txtBuscaGViagens.Text))
-
                 {
-
                     lblLimparFiltro.Visible = true;
-
                 }
-
             }
-
             catch (Exception ex)
-
             {
-
                 MessageBox.Show("Erro no sistema: " + ex.Message);
-
             }
-
             finally
-
             {
-
                 conn.Close();
-
             }
-
         }
-        private void UC_GestaoClientes_Load(object sender, EventArgs e)
-        {
-            AtualizarGrid();
-            DTPDataCViagem.Value = DateTime.Now;
-        }
-
-
-
-        private void btnBuscarGViagens_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtBuscaGViagens_KeyDown(object sender, KeyEventArgs e)
         {
             //Esse código é para o ENTER funcionar como o clique
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true; // Remove o som do "beep"
-
                 // O 'sender' é o campo que o usuário está usando no momento
                 if (sender == txtBuscaGViagens)
                 {
@@ -466,11 +440,6 @@ namespace Login.UseControls
             }
         }
 
-        private void btnCancelarCViagem_Click(object sender, EventArgs e)
-        {
-
-
-        }
         private void lblLimparFiltro_Click(object sender, EventArgs e)
         {
             txtBuscaGViagens.Clear();   // Limpa o campo de busca
@@ -488,16 +457,12 @@ namespace Login.UseControls
             lblLimparFiltro.Font = new Font(lblLimparFiltro.Font, FontStyle.Regular);   // Remove sublinhado
         }
 
-        private void btnSalvarCViagem_Click(object sender, EventArgs e)
-        {
-
-          
-
-        }
-
         private void UC_GestaoViagens_Load(object sender, EventArgs e)
         {
             AtualizarGrid();
+            DTPDataCViagem.Value = DateTime.Now;
+
+            CentralizarBotoes();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -511,13 +476,11 @@ namespace Login.UseControls
             if (string.IsNullOrWhiteSpace(txtBuscaGViagens.Text))
             {
                 MessageBox.Show("Por favor, digite um Destino ou Status para realizar a busca.", "Campo de Busca Vazio", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 txtBuscaGViagens.Focus(); // Deixa o cursor pronto para o usuário digitar
                 return; // IMPORTANTE: Para o código aqui e não tenta buscar nada no banco
             }
             RealizarBusca();
         }
-
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtDestinoViagens.Text) ||
@@ -536,11 +499,8 @@ namespace Login.UseControls
             MySqlConnection conn = conexao.Conectar();
 
             try
-
             {
-
                 conn.Open();
-
                 string sqlInserir = "INSERT INTO Viagem (destino, data_viagem, qtdd_vagas, tipo_transporte, custo_transporte," +
                     " custo_hospedagem) VALUES (@destino, @data_viagem, @qtdd_vagas, @tipo_transporte, @custo_transporte, " +
                     "@custo_hospedagem)";
@@ -602,6 +562,17 @@ namespace Login.UseControls
                 conn.Close();
             }
 
+        }
+
+        private void CentralizarBotoes()
+        {
+            pnlBotoes.Left = (pnlCadastrarViagens.Width - pnlBotoes.Width) / 2;
+        }
+
+
+        private void pnlCadastrarViagens_Resize(object sender, EventArgs e)
+        {
+            CentralizarBotoes();
         }
     }
 }

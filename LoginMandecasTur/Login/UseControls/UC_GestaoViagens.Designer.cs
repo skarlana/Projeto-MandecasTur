@@ -169,6 +169,7 @@
             pnlCadastrarViagens.Name = "pnlCadastrarViagens";
             pnlCadastrarViagens.Size = new Size(724, 199);
             pnlCadastrarViagens.TabIndex = 7;
+            pnlCadastrarViagens.Resize += pnlCadastrarViagens_Resize;
             // 
             // pnlBotoes
             // 
@@ -190,7 +191,7 @@
             btnCancelar.FlatStyle = FlatStyle.Flat;
             btnCancelar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCancelar.ForeColor = Color.Black;
-            btnCancelar.Location = new Point(22, 18);
+            btnCancelar.Location = new Point(22, 12);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(82, 26);
             btnCancelar.TabIndex = 17;
@@ -206,7 +207,7 @@
             btnSalvar.FlatStyle = FlatStyle.Flat;
             btnSalvar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSalvar.ForeColor = Color.Black;
-            btnSalvar.Location = new Point(119, 18);
+            btnSalvar.Location = new Point(119, 12);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(82, 26);
             btnSalvar.TabIndex = 16;
@@ -335,7 +336,7 @@
             lbTransporteGViagens.AutoSize = true;
             lbTransporteGViagens.Location = new Point(360, 72);
             lbTransporteGViagens.Name = "lbTransporteGViagens";
-            lbTransporteGViagens.Size = new Size(65, 15);
+            lbTransporteGViagens.Size = new Size(66, 15);
             lbTransporteGViagens.TabIndex = 9;
             lbTransporteGViagens.Text = "Transporte:";
             // 
@@ -354,7 +355,7 @@
             lbCustoTransporteCViagem.AutoSize = true;
             lbCustoTransporteCViagem.Location = new Point(17, 116);
             lbCustoTransporteCViagem.Name = "lbCustoTransporteCViagem";
-            lbCustoTransporteCViagem.Size = new Size(116, 15);
+            lbCustoTransporteCViagem.Size = new Size(117, 15);
             lbCustoTransporteCViagem.TabIndex = 6;
             lbCustoTransporteCViagem.Text = "Custo do Transporte:";
             // 

@@ -31,7 +31,7 @@ namespace Login.UseControls
             dvgClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // Seleciona a linha toda
             dvgClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            
+
             dvgClientes.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 255, 127);
             dvgClientes.DefaultCellStyle.SelectionForeColor = Color.Black;
 
@@ -114,7 +114,7 @@ namespace Login.UseControls
                 dvgClientes.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(15, 30, 25);
                 dvgClientes.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
                 dvgClientes.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(15, 30, 25); // Evita o azul no clique do topo
-                
+
                 //Seleção Fluorescente: Um verde mais vivo (tipo o do botão buscar)
                 dvgClientes.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 255, 127); // Verde SpringGreen
                 dvgClientes.DefaultCellStyle.SelectionForeColor = Color.Black; // Texto preto para dar leitura no verde claro
@@ -154,7 +154,7 @@ namespace Login.UseControls
             }
         }
 
-        
+
 
         public void AtualizarGrid()
         {
@@ -243,6 +243,8 @@ namespace Login.UseControls
         {
             AtualizarGrid();
             dtpDataNascGclientes.Value = DateTime.Now;
+
+            CentralizarBotoes();
         }
 
         private void dvgClientes_Paint(object sender, PaintEventArgs e)
@@ -507,6 +509,22 @@ namespace Login.UseControls
                 }
             }
         }
+
+        private void CentralizarBotoes()
+        {
+            pnlBotoes.Left = (pnlCadastroCliente.Width - pnlBotoes.Width) / 2;
+        }
+
+
+        private void pnlCadastroCliente_Resize(object sender, EventArgs e)
+        {
+            CentralizarBotoes();
+        }
+
+        private void pnlBotoes_Resize(object sender, EventArgs e)
+        {
+            CentralizarBotoes();
+        }
     }
-    
+
 }
