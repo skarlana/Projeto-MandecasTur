@@ -287,12 +287,10 @@ namespace Login.UseControls
 
                 if (homeForm is Home home)
                 {
-
                     home.BloquearMenu();
                     Control[] controls = homeForm.Controls.Find("panelContainer", true);
                     if (controls.Length > 0 && controls[0] is Panel pnlPrincipal)
                     {
-
                         // Pega o ID da viagem da linha clicada
                         int idViagem = Convert.ToInt32(
                             dvgViagens.Rows[e.RowIndex].Cells["id_viagem"].Value
@@ -301,22 +299,29 @@ namespace Login.UseControls
                         // Abre o UserControl de edição passando o ID
                         UC_EditarViagem editarViagem = new UC_EditarViagem(idViagem);
                         editarViagem.Dock = DockStyle.Fill;
-                        editarViagem.AtualizarTema(Home.IsDarkMode);
+
+                        // ======================================================================
+                        // 🟢 AJUSTADO AQUI: Trocamos o antigo 'Home.IsDarkMode' pela nossa nova classe global
+                        // ======================================================================
+                        editarViagem.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
+                        // ======================================================================
 
                         pnlPrincipal.Controls.Clear();
                         pnlPrincipal.Controls.Add(editarViagem);
-
                     }
                 }
             }
             // --- LÓGICA DO INCLUIR (Note que agora ele é independente) ---
             else if (dvgViagens.Columns[e.ColumnIndex].Name == "btnIncluir")
             {
+                // CORRIGIDO: Tiramos o "Form" daqui para sumir com o erro CS0136
+                homeForm = this.ParentForm;
+
                 if (homeForm is Home home)
                 {
-
                     home.BloquearMenu();
                     Control[] controls = homeForm.Controls.Find("panelContainer", true);
+
                     if (controls.Length > 0 && controls[0] is Panel pnlPrincipal)
                     {
                         // Pega o ID da viagem da linha clicada
@@ -327,9 +332,13 @@ namespace Login.UseControls
                         pnlPrincipal.Controls.Clear();
                         UC_IncluirPassageiros IncluirPassageiros = new UC_IncluirPassageiros();
                         IncluirPassageiros.Dock = DockStyle.Fill;
+
+                        // Aplica o Green Mode na subtela usando a classe que você acabou de recriar
+                        IncluirPassageiros.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
+
                         pnlPrincipal.Controls.Add(IncluirPassageiros);
 
-                        // 4. CHAMA O MÉTODO QUE CARREGA TUDO (O segredo está aqui!)
+                        // 4. CHAMA O MÉTODO QUE CARREGA TUDO
                         IncluirPassageiros.CarregarInformacoes(idIncluirPassageiro);
                     }
                 }

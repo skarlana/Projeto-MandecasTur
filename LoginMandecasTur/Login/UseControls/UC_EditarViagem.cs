@@ -186,6 +186,10 @@ namespace Login.UseControls
         private void UC_EditarViagem_Load(object sender, EventArgs e)
         {
             Carregar();
+
+            // 🟢 O ESCUDO AQUI: Assim que a tela carregar, ela força o Green Mode a rodar!
+            this.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
+
             dtpDataViagemEditarViagem.Value = DateTime.Now;
             lbIDViagem.Text = id_EditarViagem.ToString();
         }
@@ -196,7 +200,6 @@ namespace Login.UseControls
 
             if (homeForm is Home home)
             {
-
                 home.DesbloquearMenu();
                 // Encontra o panelContainer
                 Control[] controls = homeForm.Controls.Find("panelContainer", true);
@@ -205,10 +208,17 @@ namespace Login.UseControls
                 {
                     pnlPrincipal.Controls.Clear();
 
-                    // Volta para o UC_GestaoClientes
-                    UC_GestaoViagens EditarViagem = new UC_GestaoViagens();
-                    EditarViagem.Dock = DockStyle.Fill;
-                    pnlPrincipal.Controls.Add(EditarViagem);
+                    // Volta para o UC_GestaoViagens
+                    UC_GestaoViagens gestaoViagens = new UC_GestaoViagens();
+                    gestaoViagens.Dock = DockStyle.Fill;
+
+                    // ======================================================================
+                    // 🟢 GREEN MODE AQUI: Garante que ao cancelar a edição, a Gestão de Viagens volte escura
+                    // ======================================================================
+                    gestaoViagens.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
+                    // ======================================================================
+
+                    pnlPrincipal.Controls.Add(gestaoViagens);
                 }
             }
         }
@@ -216,6 +226,15 @@ namespace Login.UseControls
         private void lbIDViagem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void UC_EditarViagem_VisibleChanged(object sender, EventArgs e)
+        {
+            // Se a tela ficou visível para o usuário, força o Green Mode na hora!
+            if (this.Visible)
+            {
+                this.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
+            }
         }
     }
 }

@@ -236,7 +236,7 @@
             // panelEditarViagem
             // 
             panelEditarViagem.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panelEditarViagem.BackColor = Color.White;
+            panelEditarViagem.BackColor = Color.Transparent;
             panelEditarViagem.Controls.Add(dtpDataViagemEditarViagem);
             panelEditarViagem.Controls.Add(txtQtdDeViagem);
             panelEditarViagem.Controls.Add(btnCancelarEditarViagem);
@@ -290,6 +290,7 @@
             Name = "UC_EditarViagem";
             Size = new Size(826, 506);
             Load += UC_EditarViagem_Load;
+            VisibleChanged += UC_EditarViagem_VisibleChanged;
             panelEditarViagem.ResumeLayout(false);
             panelEditarViagem.PerformLayout();
             ResumeLayout(false);

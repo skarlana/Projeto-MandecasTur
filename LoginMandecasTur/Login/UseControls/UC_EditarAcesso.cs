@@ -94,28 +94,6 @@ namespace Login.UseControls
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public void carregar()
         {
             Conexao conexao = new Conexao();
@@ -210,6 +188,7 @@ namespace Login.UseControls
                     pnlPrincipal.Controls.Clear();
                     UC_Funcionario atFuncionario = new UC_Funcionario();
                     atFuncionario.Dock = DockStyle.Fill;
+                    atFuncionario.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
                     pnlPrincipal.Controls.Add(atFuncionario);
                 }
             }

@@ -304,7 +304,7 @@ namespace Login.UseControls
 
                         UC_EditarCliente editarCliente = new UC_EditarCliente(idCliente);
                         editarCliente.Dock = DockStyle.Fill;
-                        editarCliente.AtualizarTema(Home.IsDarkMode);
+                        editarCliente.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
                         pnlPrincipal.Controls.Add(editarCliente);
                     }
                 }

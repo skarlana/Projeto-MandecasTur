@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_IncluirPassageiros));
             lbUCIncluirPassageiros = new Label();
             pnlSeparador1 = new Panel();
@@ -93,7 +93,7 @@
             // pnlIncluir
             // 
             pnlIncluir.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            pnlIncluir.BackColor = Color.White;
+            pnlIncluir.BackColor = Color.Transparent;
             pnlIncluir.Controls.Add(txtValorPacote);
             pnlIncluir.Controls.Add(label2);
             pnlIncluir.Controls.Add(txtClienteIncluirPassageiros);
@@ -274,14 +274,14 @@
             dgvListaDePassageiros.BorderStyle = BorderStyle.None;
             dgvListaDePassageiros.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvListaDePassageiros.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.WhiteSmoke;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvListaDePassageiros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvListaDePassageiros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvListaDePassageiros.ColumnHeadersHeight = 40;
             dgvListaDePassageiros.Columns.AddRange(new DataGridViewColumn[] { btnExcluir });
             dgvListaDePassageiros.EnableHeadersVisualStyles = false;
@@ -297,10 +297,10 @@
             // btnExcluir
             // 
             btnExcluir.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.NullValue = resources.GetObject("dataGridViewCellStyle4.NullValue");
-            dataGridViewCellStyle4.Padding = new Padding(8);
-            btnExcluir.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = resources.GetObject("dataGridViewCellStyle2.NullValue");
+            dataGridViewCellStyle2.Padding = new Padding(8);
+            btnExcluir.DefaultCellStyle = dataGridViewCellStyle2;
             btnExcluir.HeaderText = "";
             btnExcluir.Image = (Image)resources.GetObject("btnExcluir.Image");
             btnExcluir.ImageLayout = DataGridViewImageCellLayout.Zoom;
@@ -343,6 +343,7 @@
             Name = "UC_IncluirPassageiros";
             Size = new Size(826, 633);
             Load += UC_IncluirPassageiros_Load;
+            VisibleChanged += UC_IncluirPassageiros_VisibleChanged;
             pnlIncluir.ResumeLayout(false);
             pnlIncluir.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListaDePassageiros).EndInit();
