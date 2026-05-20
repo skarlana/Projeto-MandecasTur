@@ -277,19 +277,19 @@
             txtBuscaFinanceiro.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtBuscaFinanceiro.Location = new Point(226, 21);
             txtBuscaFinanceiro.Name = "txtBuscaFinanceiro";
+            txtBuscaFinanceiro.PlaceholderText = "Busca por Nome ou Destino";
             txtBuscaFinanceiro.Size = new Size(265, 23);
             txtBuscaFinanceiro.TabIndex = 1;
             // 
             // cboStatus
             // 
             cboStatus.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            cboStatus.DrawMode = DrawMode.OwnerDrawFixed;
             cboStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cboStatus.FormattingEnabled = true;
-            cboStatus.Items.AddRange(new object[] { "Filtrar por Status", "Pago", "Pendente", "Vencido" });
+            cboStatus.Items.AddRange(new object[] { "Todos", "Pago", "Pendente", "Vencido" });
             cboStatus.Location = new Point(17, 20);
             cboStatus.Name = "cboStatus";
-            cboStatus.Size = new Size(188, 24);
+            cboStatus.Size = new Size(188, 23);
             cboStatus.TabIndex = 0;
             cboStatus.SelectedIndexChanged += cboStatus_SelectedIndexChanged;
             // 
@@ -425,6 +425,7 @@
             Name = "UC_Financeiro";
             Size = new Size(1172, 577);
             Load += UC_Financeiro_Load;
+            VisibleChanged += UC_Financeiro_VisibleChanged;
             panel1.ResumeLayout(false);
             pnlRelatorio.ResumeLayout(false);
             pnlRelatorio.PerformLayout();

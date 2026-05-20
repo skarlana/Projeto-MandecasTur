@@ -24,7 +24,14 @@ namespace Login.UseControls
         public UC_Financeiro()
         {
             InitializeComponent();
+
+
             ConfigurarEstiloGrid();
+
+            cboStatus.Items.Clear();
+            cboStatus.Items.AddRange(new object[] { "Todos", "Pago", "Pendente", "Vencido" });
+            cboStatus.SelectedIndex = 0;
+
             AtualizarGrid();
             AtualizarCards();
 
@@ -132,8 +139,8 @@ namespace Login.UseControls
                 dgv_Financeiro.DefaultCellStyle.SelectionForeColor = Color.Black; // Texto preto para dar leitura no verde claro
 
                 dgv_Financeiro.EnableHeadersVisualStyles = false; // Necessário para a cor do cabeçalho pegar
-            
-        }
+
+            }
             else
             {
                 // --- MODO CLARO: VOLTANDO AO ORIGINAL ---
@@ -309,22 +316,23 @@ namespace Login.UseControls
             try
             {
                 con.Open();
+                // Unificamos o CASE: Regra padrão para o que aparece na tela
                 string sql = @"SELECT 
-                                    r.id_reserva, 
-                                    c.nome AS nome_cliente, 
-                                    v.destino AS nome_viagem,
-                                    COALESCE(r.valor_unitario, 0) AS valor_viagem,
-                                    (SELECT COALESCE(SUM(f.valor_parcela), 0) FROM financeiro f WHERE f.id_reserva = r.id_reserva) AS total_pago,
-                                    r.data_vencimento,
-                                    CASE 
-                                        WHEN r.status_pagamento = 'Pago' THEN 'Em Dia'
-                                        WHEN r.data_vencimento < CURDATE() AND r.data_vencimento != 'Pago' THEN 'Vencido'
-                                        ELSE 'Pendente'
-                                    END AS status_pagamento
-                                   FROM reserva r
-                                   LEFT JOIN cliente c ON r.id_cliente = c.id_cliente
-                                   LEFT JOIN viagem v ON r.id_viagem = v.id_viagem
-                                   ORDER BY r.id_reserva DESC";
+                    r.id_reserva, 
+                    c.nome AS nome_cliente, 
+                    v.destino AS nome_viagem,
+                    COALESCE(r.valor_unitario, 0) AS valor_viagem,
+                    (SELECT COALESCE(SUM(f.valor_parcela), 0) FROM financeiro f WHERE f.id_reserva = r.id_reserva) AS total_pago,
+                    r.data_vencimento,
+                    CASE 
+                        WHEN r.data_vencimento < CURDATE() AND (SELECT COALESCE(SUM(f.valor_parcela), 0) FROM financeiro f WHERE f.id_reserva = r.id_reserva) < r.valor_unitario THEN 'Vencido'
+                        WHEN r.status_pagamento = 'Em Dia' THEN 'Pago'
+                        ELSE 'Pendente'
+                    END AS status_pagamento
+                   FROM reserva r
+                   LEFT JOIN cliente c ON r.id_cliente = c.id_cliente
+                   LEFT JOIN viagem v ON r.id_viagem = v.id_viagem
+                   ORDER BY r.id_reserva DESC";
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(sql, con);
                 DataTable dt = new DataTable();
@@ -362,22 +370,18 @@ namespace Login.UseControls
                 lblPendentes.Text = pendentes.ToString("C2");
                 lblPendentes.ForeColor = Color.DarkGoldenrod;
 
-                string sqlVencidos = @"SELECT SUM(COALESCE(valor_unitario, 0)) FROM reserva WHERE status_pagamento != 'Pago' AND data_vencimento < CURDATE()";
+                // Ajustado para bater com a regra correta de vencimento do banco
+                string sqlVencidos = @"SELECT SUM(COALESCE(valor_unitario, 0)) FROM reserva WHERE status_pagamento != 'Em Dia' AND data_vencimento < CURDATE()";
                 MySqlCommand cmd3 = new MySqlCommand(sqlVencidos, con);
                 object resultadoVencidos = cmd3.ExecuteScalar();
                 decimal vencidos = resultadoVencidos != DBNull.Value ? Convert.ToDecimal(resultadoVencidos) : 0;
                 lblVencidos.Text = vencidos.ToString("C2");
-
                 lblVencidos.ForeColor = Color.Firebrick;
-
             }
             catch (Exception ex)
             {
-                // Silencioso ou um aviso simples para não atrapalhar
                 Console.WriteLine("Erro nos cards: " + ex.Message);
-
             }
-            
             finally { if (con.State == ConnectionState.Open) con.Close(); }
         }
 
@@ -389,37 +393,90 @@ namespace Login.UseControls
             try
             {
                 con.Open();
-                string sqlBusca = @"SELECT 
-                                r.id_reserva, 
-                                c.nome AS nome_cliente, 
-                                v.destino AS nome_viagem, 
-                                r.valor_entrada, 
-                                r.data_vencimento, 
-                                r.status_pagamento 
-                              FROM reserva r
-                              INNER JOIN cliente c ON r.id_cliente = c.id_cliente
-                              INNER JOIN viagem v ON r.id_viagem = v.id_viagem
-                              WHERE 1=1";
 
-                if (cboStatus.SelectedIndex != -1 && cboStatus.Text != "Todos") sqlBusca += " AND r.status_pagamento = @status";
-                if (!string.IsNullOrWhiteSpace(txtBuscaFinanceiro.Text)) sqlBusca += " AND (c.nome LIKE @busca OR v.destino LIKE @busca)";
+                // 1. Criamos a query. Note que deixei o CASE exatamente igual ao do seu AtualizarGrid()
+                string sqlBusca = @"SELECT 
+                        r.id_reserva, 
+                        c.nome AS nome_cliente, 
+                        v.destino AS nome_viagem,
+                        COALESCE(r.valor_unitario, 0) AS valor_viagem,
+                        (SELECT COALESCE(SUM(f.valor_parcela), 0) FROM financeiro f WHERE f.id_reserva = r.id_reserva) AS total_pago,
+                        r.data_vencimento,
+                        CASE 
+                            WHEN r.data_vencimento < CURDATE() AND (SELECT COALESCE(SUM(f.valor_parcela), 0) FROM financeiro f WHERE f.id_reserva = r.id_reserva) < r.valor_unitario THEN 'Vencido'
+                            WHEN r.status_pagamento = 'Em Dia' THEN 'Pago'
+                            ELSE 'Pendente'
+                        END AS status_final
+                   FROM reserva r
+                   LEFT JOIN cliente c ON r.id_cliente = c.id_cliente
+                   LEFT JOIN viagem v ON r.id_viagem = v.id_viagem
+                   WHERE 1=1";
+
+                // 2. FILTRO DE TEXTO: Se o usuário digitou algo
+                bool temBuscaTexto = !string.IsNullOrWhiteSpace(txtBuscaFinanceiro.Text) &&
+                                     txtBuscaFinanceiro.Text != "Busca por Nome ou Destino";
+
+                if (temBuscaTexto)
+                {
+                    sqlBusca += " AND (c.nome LIKE @busca OR v.destino LIKE @busca)";
+                }
+
+                // 3. 🟢 O SEGREDO: FILTRO DE COMBOBOX VIA HAVING
+                // O HAVING filtra direto no apelido 'status_final' gerado pelo CASE. É tiro certeiro!
+                if (cboStatus.SelectedIndex != -1 && cboStatus.Text != "Todos")
+                {
+                    string statusSelecionado = cboStatus.Text.Trim();
+
+                    if (statusSelecionado == "Pago")
+                    {
+                        sqlBusca += " HAVING status_final = 'Pago'";
+                    }
+                    else if (statusSelecionado == "Vencido")
+                    {
+                        sqlBusca += " HAVING status_final = 'Vencido'";
+                    }
+                    else if (statusSelecionado == "Pendente")
+                    {
+                        sqlBusca += " HAVING status_final = 'Pendente'";
+                    }
+                }
+
+                // 4. Ordenação vem por último
+                sqlBusca += " ORDER BY r.id_reserva DESC";
 
                 MySqlCommand cmd = new MySqlCommand(sqlBusca, con);
-                cmd.Parameters.AddWithValue("@status", cboStatus.Text);
-                cmd.Parameters.AddWithValue("@busca", "%" + txtBuscaFinanceiro.Text + "%");
+
+                if (temBuscaTexto)
+                {
+                    cmd.Parameters.AddWithValue("@busca", "%" + txtBuscaFinanceiro.Text.Trim() + "%");
+                }
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
-                dgv_Financeiro.DataSource = dt;
 
-                if (!string.IsNullOrWhiteSpace(txtBuscaFinanceiro.Text) || (cboStatus.SelectedIndex != -1 && cboStatus.Text != "Todos"))
+                // Clona a tabela para trocar o nome da coluna para o C# não reclamar no ConfigurarColunas
+                if (dt.Columns.Contains("status_final"))
+                {
+                    dt.Columns["status_final"].ColumnName = "status_pagamento";
+                }
+
+                dgv_Financeiro.DataSource = dt;
+                ConfigurarColunas(); // Mantém seu visual e cores intactos
+
+                if (temBuscaTexto || (cboStatus.SelectedIndex != -1 && cboStatus.Text != "Todos"))
                 {
                     lblLimparFiltro.Visible = true;
                 }
             }
-            catch (Exception ex) { MessageBox.Show("Erro na busca: " + ex.Message); }
-            finally { if (con != null && con.State == ConnectionState.Open) con.Close(); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro na busca: " + ex.Message, "Erro de Busca", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (con != null && con.State == ConnectionState.Open) con.Close();
+            }
         }
 
         private void CarregarViagens()
@@ -481,7 +538,10 @@ namespace Login.UseControls
         private void btnAtualizar_Click(object sender, EventArgs e) { AtualizarGrid(); AtualizarCards(); }
         private void dgv_Financeiro_CellContentClick(object sender, DataGridViewCellEventArgs e) { AtualizarGrid(); }
 
-        private void cboStatus_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void cboStatus_SelectedIndexChanged(object sender, EventArgs e) 
+        {
+            RealizarBusca();
+        }
         private void Lis_CheckedChanged(object sender, EventArgs e) { }
         private void radioButton2_CheckedChanged(object sender, EventArgs e) { }
 
@@ -550,7 +610,8 @@ namespace Login.UseControls
 
                         page.Content().PaddingVertical(1, Unit.Centimetre).Table(table =>
                         {
-                            table.ColumnsDefinition(columns => {
+                            table.ColumnsDefinition(columns =>
+                            {
                                 columns.RelativeColumn(3); columns.RelativeColumn(2);
                                 columns.RelativeColumn(2); columns.RelativeColumn(2);
                             });
@@ -746,5 +807,11 @@ namespace Login.UseControls
         }
 
         #endregion
+
+        private void UC_Financeiro_VisibleChanged(object sender, EventArgs e)
+        {
+            // Garante que o tema atualizado (Green Mode ou Claro) seja aplicado sem bugs de renderização
+            AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
+        }
     }
 }
