@@ -60,7 +60,7 @@ namespace Login.UseControls
             if (isDark)
             {
                 // 1. O Fundo da UC deve ser transparente para mostrar a imagem da Home
-                this.BackColor = Color.Transparent;
+                this.BackColor = Color.FromArgb(20, 35, 30);
                 MudarCoresRecursivo(this, isDark);
 
                 // 2. Painel de Cadastro (Efeito Transparente)
@@ -96,11 +96,6 @@ namespace Login.UseControls
             }
         }
 
-
-
-
-
-
         public void Carregar()
         {
             Conexao conexao = new Conexao();
@@ -124,7 +119,6 @@ namespace Login.UseControls
                     dtpDataViagemEditarViagem.Value = Convert.ToDateTime(reader["data_viagem"].ToString());
                     txtQtdDeViagem.Text = reader["qtdd_vagas"].ToString();
                     txtTransporte.Text = reader["tipo_transporte"].ToString();
-                    txtValorUnitario.Text = reader["valor_unitario"].ToString();
                     txtCustoDoTransporte.Text = reader["custo_transporte"].ToString();
                     txtCustoDaHospedagem.Text = reader["custo_hospedagem"].ToString();
 
@@ -151,7 +145,6 @@ namespace Login.UseControls
                 cmd.Parameters.AddWithValue("@tipo_transporte", txtTransporte.Text);
                 cmd.Parameters.AddWithValue("@custo_transporte", txtCustoDoTransporte.Text);
                 cmd.Parameters.AddWithValue("@custo_hospedagem", txtCustoDaHospedagem.Text);
-                cmd.Parameters.AddWithValue("@valor_unitario", txtValorUnitario.Text);
                 cmd.Parameters.AddWithValue("@id_viagem", id_EditarViagem);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Viagem atualizada com sucesso!");
@@ -192,9 +185,10 @@ namespace Login.UseControls
 
             dtpDataViagemEditarViagem.Value = DateTime.Now;
             lbIDViagem.Text = id_EditarViagem.ToString();
+            CentralizarBotoes();
         }
 
-        private void btnCancelarEditarViagem_Click(object sender, EventArgs e)
+        private void btnVoltarEditarViagem_Click(object sender, EventArgs e)
         {
             Form homeForm = this.ParentForm;
 
@@ -222,11 +216,7 @@ namespace Login.UseControls
                 }
             }
         }
-
-        private void lbIDViagem_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void UC_EditarViagem_VisibleChanged(object sender, EventArgs e)
         {
@@ -235,6 +225,16 @@ namespace Login.UseControls
             {
                 this.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
             }
+        }
+
+        private void CentralizarBotoes()
+        {
+            pnlBotoes.Left = (panelEditarViagem.Width - pnlBotoes.Width) / 2;
+        }
+
+        private void panelEditarViagem_Resize(object sender, EventArgs e)
+        {
+            CentralizarBotoes();
         }
     }
 }

@@ -86,7 +86,7 @@ namespace Login.UseControls
             if (isDark)
             {
                 // 1. O Fundo da UC deve ser transparente para mostrar a imagem da Home
-                this.BackColor = Color.Transparent;
+                this.BackColor = Color.FromArgb(20, 35, 30);
                 MudarCoresRecursivo(this, isDark);
 
                 // 2. Painel de Cadastro (Efeito Transparente)
@@ -480,15 +480,6 @@ namespace Login.UseControls
 
         }
 
-        private void btnCancelarGClientes_Click(object sender, EventArgs e)
-        {
-            txtNomeGClientes.Clear();
-            txtEmailGClientes.Clear();
-            txtTelefoneGClientes.Clear();
-            txtCPFGClientes.Clear();
-
-        }
-
         private void txtBuscaGCliente_KeyDown(object sender, KeyEventArgs e)
         {
             //Esse código é para o ENTER funcionar como o clique
@@ -521,9 +512,13 @@ namespace Login.UseControls
             CentralizarBotoes();
         }
 
-        private void pnlBotoes_Resize(object sender, EventArgs e)
+
+        private void btnLimparGClientes_Click(object sender, EventArgs e)
         {
-            CentralizarBotoes();
+            txtNomeGClientes.Clear();
+            txtEmailGClientes.Clear();
+            txtTelefoneGClientes.Clear();
+            txtCPFGClientes.Clear();
         }
     }
 

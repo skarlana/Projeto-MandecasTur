@@ -40,8 +40,8 @@
             btnExcluir = new DataGridViewImageColumn();
             pnlCadastrarViagens = new Panel();
             pnlBotoes = new Panel();
-            btnCancelar = new BotaoPadraoMandecas();
             btnSalvar = new BotaoPadraoMandecas();
+            btnLimparGViagens = new BotaoPadraoDois();
             btnCancelarGClientes = new BotaoPadraoMandecas();
             btnSalvarGClientes = new BotaoPadraoMandecas();
             txtCustoHospedagemCViagem = new TextBox();
@@ -174,30 +174,14 @@
             // pnlBotoes
             // 
             pnlBotoes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            pnlBotoes.Controls.Add(btnCancelar);
             pnlBotoes.Controls.Add(btnSalvar);
+            pnlBotoes.Controls.Add(btnLimparGViagens);
             pnlBotoes.Controls.Add(btnCancelarGClientes);
             pnlBotoes.Controls.Add(btnSalvarGClientes);
             pnlBotoes.Location = new Point(258, 149);
             pnlBotoes.Name = "pnlBotoes";
             pnlBotoes.Size = new Size(219, 47);
             pnlBotoes.TabIndex = 16;
-            // 
-            // btnCancelar
-            // 
-            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnCancelar.BackColor = Color.FromArgb(194, 194, 194);
-            btnCancelar.FlatAppearance.BorderSize = 0;
-            btnCancelar.FlatStyle = FlatStyle.Flat;
-            btnCancelar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCancelar.ForeColor = Color.Black;
-            btnCancelar.Location = new Point(22, 12);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(82, 26);
-            btnCancelar.TabIndex = 17;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = false;
-            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnSalvar
             // 
@@ -214,6 +198,21 @@
             btnSalvar.Text = "Salvar";
             btnSalvar.UseVisualStyleBackColor = false;
             btnSalvar.Click += btnSalvar_Click;
+            // 
+            // btnLimparGViagens
+            // 
+            btnLimparGViagens.BackColor = Color.FromArgb(194, 194, 194);
+            btnLimparGViagens.FlatAppearance.BorderSize = 0;
+            btnLimparGViagens.FlatStyle = FlatStyle.Flat;
+            btnLimparGViagens.Font = new Font("Segoe UI Semibold", 10F);
+            btnLimparGViagens.ForeColor = Color.Black;
+            btnLimparGViagens.Location = new Point(28, 12);
+            btnLimparGViagens.Name = "btnLimparGViagens";
+            btnLimparGViagens.Size = new Size(82, 26);
+            btnLimparGViagens.TabIndex = 17;
+            btnLimparGViagens.Text = "Limpar";
+            btnLimparGViagens.UseVisualStyleBackColor = false;
+            btnLimparGViagens.Click += btnLimparGViagens_Click;
             // 
             // btnCancelarGClientes
             // 
@@ -252,22 +251,23 @@
             txtCustoHospedagemCViagem.Name = "txtCustoHospedagemCViagem";
             txtCustoHospedagemCViagem.Size = new Size(106, 23);
             txtCustoHospedagemCViagem.TabIndex = 4;
+            txtCustoHospedagemCViagem.TextAlign = HorizontalAlignment.Center;
             txtCustoHospedagemCViagem.KeyDown += txtBuscaGViagens_KeyDown;
             // 
             // txtQTDVagaCViagens
             // 
-            txtQTDVagaCViagens.Anchor = AnchorStyles.Right;
-            txtQTDVagaCViagens.Location = new Point(633, 70);
+            txtQTDVagaCViagens.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtQTDVagaCViagens.Location = new Point(101, 111);
             txtQTDVagaCViagens.Name = "txtQTDVagaCViagens";
-            txtQTDVagaCViagens.Size = new Size(71, 23);
+            txtQTDVagaCViagens.Size = new Size(88, 23);
             txtQTDVagaCViagens.TabIndex = 2;
             txtQTDVagaCViagens.KeyDown += txtBuscaGViagens_KeyDown;
             // 
             // lbQTDVagaCViagem
             // 
-            lbQTDVagaCViagem.Anchor = AnchorStyles.Right;
+            lbQTDVagaCViagem.Anchor = AnchorStyles.Left;
             lbQTDVagaCViagem.AutoSize = true;
-            lbQTDVagaCViagem.Location = new Point(550, 73);
+            lbQTDVagaCViagem.Location = new Point(11, 114);
             lbQTDVagaCViagem.Name = "lbQTDVagaCViagem";
             lbQTDVagaCViagem.Size = new Size(77, 15);
             lbQTDVagaCViagem.TabIndex = 13;
@@ -277,9 +277,9 @@
             // 
             DTPDataCViagem.Anchor = AnchorStyles.Right;
             DTPDataCViagem.Format = DateTimePickerFormat.Short;
-            DTPDataCViagem.Location = new Point(242, 67);
+            DTPDataCViagem.Location = new Point(359, 67);
             DTPDataCViagem.Name = "DTPDataCViagem";
-            DTPDataCViagem.Size = new Size(110, 23);
+            DTPDataCViagem.Size = new Size(118, 23);
             DTPDataCViagem.TabIndex = 12;
             // 
             // pnlTitulo
@@ -324,7 +324,7 @@
             // txtTransporteCViagens
             // 
             txtTransporteCViagens.Anchor = AnchorStyles.Right;
-            txtTransporteCViagens.Location = new Point(427, 67);
+            txtTransporteCViagens.Location = new Point(592, 67);
             txtTransporteCViagens.Name = "txtTransporteCViagens";
             txtTransporteCViagens.Size = new Size(110, 23);
             txtTransporteCViagens.TabIndex = 1;
@@ -334,30 +334,32 @@
             // 
             lbTransporteGViagens.Anchor = AnchorStyles.Right;
             lbTransporteGViagens.AutoSize = true;
-            lbTransporteGViagens.Location = new Point(360, 72);
+            lbTransporteGViagens.Location = new Point(520, 72);
             lbTransporteGViagens.Name = "lbTransporteGViagens";
-            lbTransporteGViagens.Size = new Size(66, 15);
+            lbTransporteGViagens.Size = new Size(65, 15);
             lbTransporteGViagens.TabIndex = 9;
             lbTransporteGViagens.Text = "Transporte:";
             // 
             // txtCustoTransporteCViagem
             // 
-            txtCustoTransporteCViagem.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtCustoTransporteCViagem.Location = new Point(138, 111);
+            txtCustoTransporteCViagem.Anchor = AnchorStyles.Right;
+            txtCustoTransporteCViagem.Location = new Point(320, 112);
             txtCustoTransporteCViagem.Name = "txtCustoTransporteCViagem";
             txtCustoTransporteCViagem.Size = new Size(116, 23);
             txtCustoTransporteCViagem.TabIndex = 3;
+            
             txtCustoTransporteCViagem.KeyDown += txtBuscaGViagens_KeyDown;
             // 
             // lbCustoTransporteCViagem
             // 
-            lbCustoTransporteCViagem.Anchor = AnchorStyles.Left;
+            lbCustoTransporteCViagem.Anchor = AnchorStyles.Right;
             lbCustoTransporteCViagem.AutoSize = true;
-            lbCustoTransporteCViagem.Location = new Point(17, 116);
+            lbCustoTransporteCViagem.Location = new Point(202, 116);
             lbCustoTransporteCViagem.Name = "lbCustoTransporteCViagem";
-            lbCustoTransporteCViagem.Size = new Size(117, 15);
+            lbCustoTransporteCViagem.Size = new Size(116, 15);
             lbCustoTransporteCViagem.TabIndex = 6;
             lbCustoTransporteCViagem.Text = "Custo do Transporte:";
+            lbCustoTransporteCViagem.Click += lbCustoTransporteCViagem_Click;
             // 
             // lblbCustoHospedagemCViagem
             // 
@@ -374,7 +376,7 @@
             txtDestinoViagens.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtDestinoViagens.Location = new Point(70, 67);
             txtDestinoViagens.Name = "txtDestinoViagens";
-            txtDestinoViagens.Size = new Size(119, 23);
+            txtDestinoViagens.Size = new Size(219, 23);
             txtDestinoViagens.TabIndex = 0;
             txtDestinoViagens.KeyDown += txtBuscaGViagens_KeyDown;
             // 
@@ -382,7 +384,7 @@
             // 
             lbDataGViagens.Anchor = AnchorStyles.Right;
             lbDataGViagens.AutoSize = true;
-            lbDataGViagens.Location = new Point(202, 72);
+            lbDataGViagens.Location = new Point(319, 72);
             lbDataGViagens.Name = "lbDataGViagens";
             lbDataGViagens.Size = new Size(34, 15);
             lbDataGViagens.TabIndex = 2;
@@ -395,9 +397,9 @@
             lbDestinoGViagens.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbDestinoGViagens.Location = new Point(11, 72);
             lbDestinoGViagens.Name = "lbDestinoGViagens";
-            lbDestinoGViagens.Size = new Size(58, 15);
+            lbDestinoGViagens.Size = new Size(50, 15);
             lbDestinoGViagens.TabIndex = 1;
-            lbDestinoGViagens.Text = "* Destino:";
+            lbDestinoGViagens.Text = "Destino:";
             // 
             // lblLimparFiltro
             // 
@@ -479,7 +481,7 @@
         private BotaoPadraoMandecas btnSalvarGClientes;
         
         private BotaoPadraoMandecas btnSalvar;
-        private BotaoPadraoMandecas btnCancelar;
         private BotaoPadraoMandecas btnBuscar;
+        private BotaoPadraoDois btnLimparGViagens;
     }
 }

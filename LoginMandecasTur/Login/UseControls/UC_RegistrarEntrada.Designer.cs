@@ -35,10 +35,10 @@
             panelRE = new Panel();
             dtpVencimento = new DateTimePicker();
             lbDtVencimentoRegistrarEntrada = new Label();
+            pnlBotoes = new Panel();
+            btnRegistrarReservas = new BotaoPadraoMandecas();
+            btnLimparReservas = new BotaoPadraoDois();
             panel5 = new Panel();
-            pnlbotoes = new Panel();
-            btnregistrar = new Button();
-            btnCancelar = new Button();
             cbPassageiros = new ComboBox();
             cbViagens = new ComboBox();
             label12 = new Label();
@@ -49,7 +49,7 @@
             label17 = new Label();
             pnlInformativo.SuspendLayout();
             panelRE.SuspendLayout();
-            pnlbotoes.SuspendLayout();
+            pnlBotoes.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -100,8 +100,8 @@
             panelRE.BackColor = Color.White;
             panelRE.Controls.Add(dtpVencimento);
             panelRE.Controls.Add(lbDtVencimentoRegistrarEntrada);
+            panelRE.Controls.Add(pnlBotoes);
             panelRE.Controls.Add(panel5);
-            panelRE.Controls.Add(pnlbotoes);
             panelRE.Controls.Add(cbPassageiros);
             panelRE.Controls.Add(cbViagens);
             panelRE.Controls.Add(label12);
@@ -112,8 +112,9 @@
             panelRE.Controls.Add(label17);
             panelRE.Location = new Point(59, 195);
             panelRE.Name = "panelRE";
-            panelRE.Size = new Size(707, 268);
+            panelRE.Size = new Size(707, 279);
             panelRE.TabIndex = 3;
+            panelRE.Resize += panelRE_Resize;
             // 
             // dtpVencimento
             // 
@@ -133,6 +134,46 @@
             lbDtVencimentoRegistrarEntrada.TabIndex = 10;
             lbDtVencimentoRegistrarEntrada.Text = "Data de Vencimento:";
             // 
+            // pnlBotoes
+            // 
+            pnlBotoes.BackColor = Color.White;
+            pnlBotoes.Controls.Add(btnRegistrarReservas);
+            pnlBotoes.Controls.Add(btnLimparReservas);
+            pnlBotoes.Location = new Point(223, 222);
+            pnlBotoes.Name = "pnlBotoes";
+            pnlBotoes.Size = new Size(309, 50);
+            pnlBotoes.TabIndex = 4;
+            // 
+            // btnRegistrarReservas
+            // 
+            btnRegistrarReservas.BackColor = Color.FromArgb(68, 252, 124);
+            btnRegistrarReservas.FlatAppearance.BorderSize = 0;
+            btnRegistrarReservas.FlatStyle = FlatStyle.Flat;
+            btnRegistrarReservas.Font = new Font("Segoe UI Semibold", 11F);
+            btnRegistrarReservas.ForeColor = Color.Black;
+            btnRegistrarReservas.Location = new Point(124, 13);
+            btnRegistrarReservas.Name = "btnRegistrarReservas";
+            btnRegistrarReservas.Size = new Size(165, 26);
+            btnRegistrarReservas.TabIndex = 13;
+            btnRegistrarReservas.Text = "Registrar Pagamento";
+            btnRegistrarReservas.UseVisualStyleBackColor = false;
+            btnRegistrarReservas.Click += btnRegistrarReservas_Click;
+            // 
+            // btnLimparReservas
+            // 
+            btnLimparReservas.BackColor = Color.FromArgb(194, 194, 194);
+            btnLimparReservas.FlatAppearance.BorderSize = 0;
+            btnLimparReservas.FlatStyle = FlatStyle.Flat;
+            btnLimparReservas.Font = new Font("Segoe UI Semibold", 10F);
+            btnLimparReservas.ForeColor = Color.Black;
+            btnLimparReservas.Location = new Point(36, 13);
+            btnLimparReservas.Name = "btnLimparReservas";
+            btnLimparReservas.Size = new Size(82, 26);
+            btnLimparReservas.TabIndex = 12;
+            btnLimparReservas.Text = "Limpar";
+            btnLimparReservas.UseVisualStyleBackColor = false;
+            btnLimparReservas.Click += btnLimparReservas_Click;
+            // 
             // panel5
             // 
             panel5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -141,40 +182,6 @@
             panel5.Name = "panel5";
             panel5.Size = new Size(704, 2);
             panel5.TabIndex = 9;
-            // 
-            // pnlbotoes
-            // 
-            pnlbotoes.BackColor = Color.White;
-            pnlbotoes.Controls.Add(btnregistrar);
-            pnlbotoes.Controls.Add(btnCancelar);
-            pnlbotoes.Location = new Point(0, 216);
-            pnlbotoes.Name = "pnlbotoes";
-            pnlbotoes.Size = new Size(707, 50);
-            pnlbotoes.TabIndex = 4;
-            // 
-            // btnregistrar
-            // 
-            btnregistrar.BackColor = Color.LimeGreen;
-            btnregistrar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnregistrar.Location = new Point(365, 11);
-            btnregistrar.Name = "btnregistrar";
-            btnregistrar.Size = new Size(160, 30);
-            btnregistrar.TabIndex = 1;
-            btnregistrar.Text = "Registrar Pagamento";
-            btnregistrar.UseVisualStyleBackColor = false;
-            btnregistrar.Click += btnregistrar_Click;
-            // 
-            // btnCancelar
-            // 
-            btnCancelar.BackColor = Color.Silver;
-            btnCancelar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCancelar.Location = new Point(254, 11);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(85, 30);
-            btnCancelar.TabIndex = 0;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = false;
-            btnCancelar.Click += btnCancelar_Click;
             // 
             // cbPassageiros
             // 
@@ -256,6 +263,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Transparent;
             Controls.Add(panelRE);
             Controls.Add(pnlInformativo);
             Controls.Add(lblRE);
@@ -266,7 +274,7 @@
             pnlInformativo.ResumeLayout(false);
             panelRE.ResumeLayout(false);
             panelRE.PerformLayout();
-            pnlbotoes.ResumeLayout(false);
+            pnlBotoes.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -283,14 +291,14 @@
         private Label label15;
         private Label label16;
         private Label label17;
-        private Panel pnlbotoes;
-        private Button btnregistrar;
-        private Button btnCancelar;
+        private Panel pnlBotoes;
         private Label label12;
         private ComboBox cbPassageiros;
         private ComboBox cbViagens;
         private Panel panel5;
         private Label lbDtVencimentoRegistrarEntrada;
         private DateTimePicker dtpVencimento;
+        private BotaoPadraoDois btnLimparReservas;
+        private BotaoPadraoMandecas btnRegistrarReservas;
     }
 }

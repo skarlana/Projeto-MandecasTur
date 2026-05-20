@@ -48,7 +48,7 @@
             txtTelefoneGClientes = new TextBox();
             pnlSeparador2 = new Panel();
             pnlBotoes = new Panel();
-            btnCancelarGClientes = new BotaoPadraoMandecas();
+            btnLimparGClientes = new BotaoPadraoDois();
             btnSalvarGClientes = new BotaoPadraoMandecas();
             pnlSeparador = new Panel();
             pnlTitulo = new Panel();
@@ -120,7 +120,7 @@
             // 
             btnEditar.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = resources.GetObject("dataGridViewCellStyle2.NullValue");
+            dataGridViewCellStyle2.NullValue = null;
             dataGridViewCellStyle2.Padding = new Padding(8);
             btnEditar.DefaultCellStyle = dataGridViewCellStyle2;
             btnEditar.HeaderText = "";
@@ -133,7 +133,7 @@
             // 
             btnExcluir.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.NullValue = resources.GetObject("dataGridViewCellStyle3.NullValue");
+            dataGridViewCellStyle3.NullValue = null;
             dataGridViewCellStyle3.Padding = new Padding(8);
             btnExcluir.DefaultCellStyle = dataGridViewCellStyle3;
             btnExcluir.HeaderText = "";
@@ -245,29 +245,28 @@
             // pnlBotoes
             // 
             pnlBotoes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            pnlBotoes.Controls.Add(btnCancelarGClientes);
+            pnlBotoes.BackColor = Color.Transparent;
+            pnlBotoes.Controls.Add(btnLimparGClientes);
             pnlBotoes.Controls.Add(btnSalvarGClientes);
             pnlBotoes.Location = new Point(279, 147);
             pnlBotoes.Name = "pnlBotoes";
             pnlBotoes.Size = new Size(200, 47);
             pnlBotoes.TabIndex = 15;
-            pnlBotoes.Resize += pnlBotoes_Resize;
             // 
-            // btnCancelarGClientes
+            // btnLimparGClientes
             // 
-            btnCancelarGClientes.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnCancelarGClientes.BackColor = Color.FromArgb(194, 194, 194);
-            btnCancelarGClientes.FlatAppearance.BorderSize = 0;
-            btnCancelarGClientes.FlatStyle = FlatStyle.Flat;
-            btnCancelarGClientes.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCancelarGClientes.ForeColor = Color.Black;
-            btnCancelarGClientes.Location = new Point(13, 11);
-            btnCancelarGClientes.Name = "btnCancelarGClientes";
-            btnCancelarGClientes.Size = new Size(82, 26);
-            btnCancelarGClientes.TabIndex = 13;
-            btnCancelarGClientes.Text = "Cancelar";
-            btnCancelarGClientes.UseVisualStyleBackColor = false;
-            btnCancelarGClientes.Click += btnCancelarGClientes_Click;
+            btnLimparGClientes.BackColor = Color.FromArgb(194, 194, 194);
+            btnLimparGClientes.FlatAppearance.BorderSize = 0;
+            btnLimparGClientes.FlatStyle = FlatStyle.Flat;
+            btnLimparGClientes.Font = new Font("Segoe UI Semibold", 10F);
+            btnLimparGClientes.ForeColor = Color.Black;
+            btnLimparGClientes.Location = new Point(15, 11);
+            btnLimparGClientes.Name = "btnLimparGClientes";
+            btnLimparGClientes.Size = new Size(82, 26);
+            btnLimparGClientes.TabIndex = 16;
+            btnLimparGClientes.Text = "Limpar";
+            btnLimparGClientes.UseVisualStyleBackColor = false;
+            btnLimparGClientes.Click += btnLimparGClientes_Click;
             // 
             // btnSalvarGClientes
             // 
@@ -402,7 +401,6 @@
         private TextBox txtTelefoneGClientes;
         private Panel pnlSeparador2;
         private Panel pnlBotoes;
-        private BotaoPadraoMandecas btnCancelarGClientes;
         private BotaoPadraoMandecas btnSalvarGClientes;
         private Panel pnlSeparador;
         private Panel pnlTitulo;
@@ -412,5 +410,6 @@
         private DataGridViewImageColumn btnExcluir;
         private DateTimePicker dtpDataNascGclientes;
         private Label lblLimparFiltro;
+        private BotaoPadraoDois btnLimparGClientes;
     }
 }

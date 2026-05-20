@@ -63,7 +63,7 @@ namespace Login.UseControls
             if (isDark)
             {
                 // 1. O Fundo da UC deve ser transparente para mostrar a imagem da Home
-                this.BackColor = Color.Transparent;
+                this.BackColor = Color.FromArgb(20, 35, 30);
                 MudarCoresRecursivo(this, isDark);
 
                 // 2. Painel de Cadastro (Efeito Transparente)
@@ -81,7 +81,7 @@ namespace Login.UseControls
                     }
                 }
 
-                
+
             }
             else // MODO CLARO
             {
@@ -197,9 +197,11 @@ namespace Login.UseControls
         {
             carregar();
             lbIDCliente.Text = id_usuario.ToString(); //Aparece ID
+
+            CentralizarBotoes();
         }
 
-        private void btnCancelarEditarCliente_Click(object sender, EventArgs e)
+        private void btnVoltarEditarCliente_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show("As alterações não foram salvas. Tem certeza que deseja sair?", "Confirmar Saída", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -227,28 +229,19 @@ namespace Login.UseControls
                     }
                 }
             }
-            // Se o usuário clicar em 'Não', o código simplesmente não entra no IF 
-            // e nada acontece, mantendo ele na tela de edição.
+
         }
-        /* // Pega o formulário principal
-         Form homeForm = this.ParentForm;
 
-         if (homeForm != null)
-         {
-             // Encontra o panelContainer
-             Control[] controls = homeForm.Controls.Find("panelContainer", true);
 
-             if (controls.Length > 0 && controls[0] is Panel pnlPrincipal)
-             {
-                 pnlPrincipal.Controls.Clear();
+        private void CentralizarBotoes()
+        {
+            pnlBotoes.Left = (panelEditarCliente.Width - pnlBotoes.Width) / 2;
+        }
 
-                 // Volta para o UC_GestaoClientes
-                 UC_GestaoClientes gestaoClientes = new UC_GestaoClientes();
-                 gestaoClientes.Dock = DockStyle.Fill;
-                 pnlPrincipal.Controls.Add(gestaoClientes);
-             }
-         }*/
-
+        private void panelEditarCliente_Resize(object sender, EventArgs e)
+        {
+            CentralizarBotoes();
+        }
     }
-    
+
 }

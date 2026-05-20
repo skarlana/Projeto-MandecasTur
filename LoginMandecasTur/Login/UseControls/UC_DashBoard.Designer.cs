@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_DashBoard));
             pnlCard_Viagens = new Panel();
             pic_viajante = new PictureBox();
             panel4 = new Panel();
@@ -327,7 +328,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
-            BackgroundImage = Properties.Resources.img_fundo_claro;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             Controls.Add(btnB3);
             Controls.Add(pnlBase);

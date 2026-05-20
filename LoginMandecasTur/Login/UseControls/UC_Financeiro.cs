@@ -1,5 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.Cmp;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,14 +10,12 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using QuestPDF.Fluent;
-using QuestPDF.Helpers;
-using QuestPDF.Infrastructure;
-using System.IO;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 using Color = System.Drawing.Color;
 
 namespace Login.UseControls
@@ -519,11 +520,14 @@ namespace Login.UseControls
 
         private void UC_Financeiro_Load(object sender, EventArgs e)
         {
-            CarregarClientes();
+            cboClienteRelatorio.DataSource = null;
+            cboClienteRelatorio.Enabled = false;
             CarregarViagens();
             AtualizarGrid();
             AtualizarCards();
             lblVencidos.ForeColor = Color.Black;
+
+            AtualizarEstadoComboCliente();
         }
 
         private void lblLimparFiltro_Click(object sender, EventArgs e)
@@ -538,12 +542,24 @@ namespace Login.UseControls
         private void btnAtualizar_Click(object sender, EventArgs e) { AtualizarGrid(); AtualizarCards(); }
         private void dgv_Financeiro_CellContentClick(object sender, DataGridViewCellEventArgs e) { AtualizarGrid(); }
 
-        private void cboStatus_SelectedIndexChanged(object sender, EventArgs e) 
+        private void cboStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
             RealizarBusca();
         }
-        private void Lis_CheckedChanged(object sender, EventArgs e) { }
-        private void radioButton2_CheckedChanged(object sender, EventArgs e) { }
+        private void Lis_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarEstadoComboCliente();
+        }
+
+        private void rbReciboCliente_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarEstadoComboCliente();
+        }
+
+        private void rbCustoViagem_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarEstadoComboCliente();
+        }
 
         private void botaoPadraoMandecas3_Click(object sender, EventArgs e)
         {
@@ -559,6 +575,7 @@ namespace Login.UseControls
 
         private void GerarListaPassageiros()
         {
+
             if (cboViagemRelatorio.SelectedIndex == -1)
             {
                 MessageBox.Show("Selecione uma Viagem para gerar a lista.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -661,7 +678,7 @@ namespace Login.UseControls
                 using (MySqlConnection conn = new Conexao().Conectar())
                 {
                     conn.Open();
-                    string sql = @"SELECT c.nome, r.data_vencimento AS data_inicio, f.valor_parcela, f.num_parcela, f.data_pagamento, f.forma_pagamento 
+                    string sql = @"SELECT c.nome, r.data_vencimento AS data_inicio, f.valor_parcela, f.num_parcela, f.data_pagamento, r.forma_pagamento 
                                    FROM financeiro f 
                                    INNER JOIN reserva r ON f.id_reserva = r.id_reserva 
                                    INNER JOIN cliente c ON r.id_cliente = c.id_cliente 
@@ -744,8 +761,18 @@ namespace Login.UseControls
                 using (MySqlConnection conn = new Conexao().Conectar())
                 {
                     conn.Open();
-                    string sql = @"SELECT destino, custo_transporte, custo_hospedagem, gastos_extras, observacoes_gastos 
-                                   FROM viagem WHERE id_viagem = @id";
+                    string sql = @"
+                    SELECT 
+                     v.destino, 
+                     v.custo_transporte, 
+                     v.custo_hospedagem, 
+                     COALESCE(SUM(f.gastos_extras), 0) AS gastos_extras
+                     FROM viagem v
+                     LEFT JOIN reserva r ON r.id_viagem = v.id_viagem
+                     LEFT JOIN financeiro f ON f.id_reserva = r.id_reserva
+                     WHERE v.id_viagem = @id
+                     GROUP BY v.id_viagem";
+
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@id", cboViagemRelatorio.SelectedValue);
                     new MySqlDataAdapter(cmd).Fill(dt);
@@ -796,7 +823,8 @@ namespace Login.UseControls
                             });
 
                             col.Item().PaddingTop(20).Text("Observações:").SemiBold();
-                            col.Item().Text(d["observacoes_gastos"] != DBNull.Value ? d["observacoes_gastos"].ToString() : "Nenhuma observação registrada.");
+                            col.Item().Text("Nenhuma observação registrada.");
+
                         });
                     });
                 }).GeneratePdf(sfd.FileName);
@@ -813,5 +841,67 @@ namespace Login.UseControls
             // Garante que o tema atualizado (Green Mode ou Claro) seja aplicado sem bugs de renderização
             AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
         }
+
+        private void cboViagemRelatorio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            // Só faz isso se for recibo
+            if (!rbReciboCliente.Checked) return;
+
+            if (cboViagemRelatorio.SelectedIndex != -1)
+            {
+                CarregarClientesDaViagem(Convert.ToInt32(cboViagemRelatorio.SelectedValue));
+            }
+
+        }
+
+        private void CarregarClientesDaViagem(int idViagem)
+        {
+            using (MySqlConnection conn = new Conexao().Conectar())
+            {
+                conn.Open();
+
+                string sql = @"
+            SELECT c.id_cliente, c.nome 
+            FROM reserva r
+            INNER JOIN cliente c ON r.id_cliente = c.id_cliente
+            WHERE r.id_viagem = @id";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", idViagem);
+
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                cboClienteRelatorio.DataSource = dt;
+                cboClienteRelatorio.DisplayMember = "nome";
+                cboClienteRelatorio.ValueMember = "id_cliente";
+                cboClienteRelatorio.SelectedIndex = -1;
+            }
+        }
+
+        private void AtualizarEstadoComboCliente()
+        {
+            if (rbReciboCliente.Checked)
+            {
+                cboClienteRelatorio.Enabled = true;
+
+                // 🔥 SE JÁ TEM VIAGEM SELECIONADA, CARREGA
+                if (cboViagemRelatorio.SelectedIndex != -1)
+                {
+                    CarregarClientesDaViagem(Convert.ToInt32(cboViagemRelatorio.SelectedValue));
+                }
+            }
+            else
+            {
+                cboClienteRelatorio.Enabled = false;
+                cboClienteRelatorio.SelectedIndex = -1;
+                cboClienteRelatorio.DataSource = null;
+                cboClienteRelatorio.Items.Clear();
+            }
+        }
+
+
     }
 }

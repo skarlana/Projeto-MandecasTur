@@ -30,10 +30,11 @@
         {
             pnlTitulo = new Panel();
             pnlCadastro = new Panel();
+            pnlBotoes = new Panel();
+            btnVoltarEditarAcesso = new BotaoPadraoDois();
             btnSalvarEditarAcesso = new BotaoPadraoMandecas();
             cbmperfil = new ComboBox();
             pnlEditarCadastro = new Panel();
-            btnVoltar = new BotaoPadraoMandecas();
             txtemailacesso = new TextBox();
             txtcpfacesso = new TextBox();
             lbPerfilAcesso = new Label();
@@ -42,8 +43,10 @@
             txtnomeacesso = new TextBox();
             lbNome = new Label();
             lbDadosAcesso = new Label();
+            label1 = new Label();
             lbCodigo = new Label();
             pnlCadastro.SuspendLayout();
+            pnlBotoes.SuspendLayout();
             SuspendLayout();
             // 
             // pnlTitulo
@@ -60,10 +63,9 @@
             // 
             pnlCadastro.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pnlCadastro.BackColor = Color.White;
-            pnlCadastro.Controls.Add(btnSalvarEditarAcesso);
+            pnlCadastro.Controls.Add(pnlBotoes);
             pnlCadastro.Controls.Add(cbmperfil);
             pnlCadastro.Controls.Add(pnlEditarCadastro);
-            pnlCadastro.Controls.Add(btnVoltar);
             pnlCadastro.Controls.Add(txtemailacesso);
             pnlCadastro.Controls.Add(txtcpfacesso);
             pnlCadastro.Controls.Add(lbPerfilAcesso);
@@ -74,8 +76,34 @@
             pnlCadastro.Font = new Font("Segoe UI", 9F);
             pnlCadastro.Location = new Point(82, 122);
             pnlCadastro.Name = "pnlCadastro";
-            pnlCadastro.Size = new Size(746, 278);
+            pnlCadastro.Size = new Size(746, 261);
             pnlCadastro.TabIndex = 1;
+            pnlCadastro.Resize += pnlCadastro_Resize;
+            // 
+            // pnlBotoes
+            // 
+            pnlBotoes.BackColor = Color.Transparent;
+            pnlBotoes.Controls.Add(btnVoltarEditarAcesso);
+            pnlBotoes.Controls.Add(btnSalvarEditarAcesso);
+            pnlBotoes.Location = new Point(312, 210);
+            pnlBotoes.Name = "pnlBotoes";
+            pnlBotoes.Size = new Size(200, 48);
+            pnlBotoes.TabIndex = 15;
+            // 
+            // btnVoltarEditarAcesso
+            // 
+            btnVoltarEditarAcesso.BackColor = Color.FromArgb(194, 194, 194);
+            btnVoltarEditarAcesso.FlatAppearance.BorderSize = 0;
+            btnVoltarEditarAcesso.FlatStyle = FlatStyle.Flat;
+            btnVoltarEditarAcesso.Font = new Font("Segoe UI Semibold", 10F);
+            btnVoltarEditarAcesso.ForeColor = Color.Black;
+            btnVoltarEditarAcesso.Location = new Point(12, 12);
+            btnVoltarEditarAcesso.Name = "btnVoltarEditarAcesso";
+            btnVoltarEditarAcesso.Size = new Size(82, 26);
+            btnVoltarEditarAcesso.TabIndex = 15;
+            btnVoltarEditarAcesso.Text = "Voltar";
+            btnVoltarEditarAcesso.UseVisualStyleBackColor = false;
+            btnVoltarEditarAcesso.Click += btnVoltarEditarAcesso_Click;
             // 
             // btnSalvarEditarAcesso
             // 
@@ -84,9 +112,9 @@
             btnSalvarEditarAcesso.FlatStyle = FlatStyle.Flat;
             btnSalvarEditarAcesso.Font = new Font("Segoe UI Semibold", 11F);
             btnSalvarEditarAcesso.ForeColor = Color.Black;
-            btnSalvarEditarAcesso.Location = new Point(376, 228);
+            btnSalvarEditarAcesso.Location = new Point(102, 12);
             btnSalvarEditarAcesso.Name = "btnSalvarEditarAcesso";
-            btnSalvarEditarAcesso.Size = new Size(94, 36);
+            btnSalvarEditarAcesso.Size = new Size(82, 26);
             btnSalvarEditarAcesso.TabIndex = 14;
             btnSalvarEditarAcesso.Text = "Salvar";
             btnSalvarEditarAcesso.UseVisualStyleBackColor = false;
@@ -106,25 +134,10 @@
             // 
             pnlEditarCadastro.BackColor = Color.FromArgb(232, 232, 232);
             pnlEditarCadastro.Font = new Font("Segoe UI", 9F);
-            pnlEditarCadastro.Location = new Point(0, 208);
+            pnlEditarCadastro.Location = new Point(0, 203);
             pnlEditarCadastro.Name = "pnlEditarCadastro";
             pnlEditarCadastro.Size = new Size(746, 2);
             pnlEditarCadastro.TabIndex = 1;
-            // 
-            // btnVoltar
-            // 
-            btnVoltar.BackColor = Color.FromArgb(194, 194, 194);
-            btnVoltar.FlatAppearance.BorderSize = 0;
-            btnVoltar.FlatStyle = FlatStyle.Flat;
-            btnVoltar.Font = new Font("Segoe UI Semibold", 11F);
-            btnVoltar.ForeColor = Color.Black;
-            btnVoltar.Location = new Point(266, 228);
-            btnVoltar.Name = "btnVoltar";
-            btnVoltar.Size = new Size(94, 36);
-            btnVoltar.TabIndex = 13;
-            btnVoltar.Text = "Voltar";
-            btnVoltar.UseVisualStyleBackColor = false;
-            btnVoltar.Click += btnVoltar_Click;
             // 
             // txtemailacesso
             // 
@@ -196,14 +209,23 @@
             lbDadosAcesso.TabIndex = 10;
             lbDadosAcesso.Text = "Editar Dados de Acesso";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(17, 83);
+            label1.Name = "label1";
+            label1.Size = new Size(132, 15);
+            label1.TabIndex = 12;
+            label1.Text = "Código do Funcionário:";
+            // 
             // lbCodigo
             // 
             lbCodigo.AutoSize = true;
-            lbCodigo.Location = new Point(69, 83);
+            lbCodigo.Location = new Point(170, 83);
             lbCodigo.Name = "lbCodigo";
-            lbCodigo.Size = new Size(32, 15);
-            lbCodigo.TabIndex = 11;
-            lbCodigo.Text = "label";
+            lbCodigo.Size = new Size(38, 15);
+            lbCodigo.TabIndex = 13;
+            lbCodigo.Text = "label2";
             // 
             // UC_EditarAcesso
             // 
@@ -211,6 +233,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
             Controls.Add(lbCodigo);
+            Controls.Add(label1);
             Controls.Add(lbDadosAcesso);
             Controls.Add(pnlCadastro);
             Controls.Add(pnlTitulo);
@@ -219,6 +242,7 @@
             Load += UC_EditarAcesso_Load;
             pnlCadastro.ResumeLayout(false);
             pnlCadastro.PerformLayout();
+            pnlBotoes.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -235,11 +259,13 @@
         private Label lbEmail;
         private Label lbCPF;
         private Label lbDadosAcesso;
-        private Label lbCodigo;
-        private BotaoPadraoMandecas btnVoltar;
         private Panel pnlEditarCadastro;
         private ComboBox cbmperfil;
         private BotaoPadraoMandecas btnSalvarEditarAcesso;
+        private Panel pnlBotoes;
+        private BotaoPadraoDois btnVoltarEditarAcesso;
+        private Label label1;
+        private Label lbCodigo;
     }
 
 

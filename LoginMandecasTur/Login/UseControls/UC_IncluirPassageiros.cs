@@ -9,15 +9,18 @@ using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static QuestPDF.Helpers.Colors;
 
 namespace Login.UseControls
 {
     public partial class UC_IncluirPassageiros : UserControl
     {
+        
         public int IdViagemSelecionada { get; set; }
         public UC_IncluirPassageiros()
         {
             InitializeComponent();
+           
 
             dgvListaDePassageiros.ReadOnly = false;
 
@@ -85,7 +88,7 @@ namespace Login.UseControls
             if (isDark)
             {
                 // 1. O Fundo da UC deve ser transparente para mostrar a imagem da Home
-                this.BackColor = Color.Transparent;
+                this.BackColor = Color.FromArgb(20, 35, 30);
                 MudarCoresRecursivo(this, isDark);
 
                 // 2. Painel de Cadastro (Efeito Transparente)
@@ -126,7 +129,7 @@ namespace Login.UseControls
                 MudarCoresRecursivo(this, false);
 
                 // --- PAINEL DE CADASTRO ---
-                pnlIncluir.BackColor = Color.FromArgb(232, 232, 232); // Cinza do cabeçalho de cadastro
+                pnlIncluir.BackColor = Color.FromArgb(255, 255, 255); // Cinza do cabeçalho de cadastro
 
                 // Força o Negrito no título que a recursividade tirou
                 lbUCIncluirPassageiros.Font = new Font("Segoe UI", 18, FontStyle.Bold);
@@ -155,15 +158,14 @@ namespace Login.UseControls
             }
         }
 
-
-
-
-
-
-
         public void CarregarInformacoes(int id)
         {
             this.IdViagemSelecionada = id;
+
+
+           // MOSTRAR O ID NA TELA
+            lbIDViagemIncluirPassageiros.Text = id.ToString();
+
 
             // Agora executamos as buscas com o ID garantido
             CarregarSugestoesClientes();
@@ -174,7 +176,6 @@ namespace Login.UseControls
 
         public void AtualizarGrid()
         {
-
 
             Conexao conexao = new Conexao();
             MySqlConnection con = conexao.Conectar();
@@ -352,11 +353,13 @@ namespace Login.UseControls
             try
             {
                 con.Open();
-                // SQL que faz a conta direto no banco:
+
                 string sql = @"SELECT 
-                        (v.vagas - (SELECT COUNT(*) FROM reserva r WHERE r.id_viagem = v.id_viagem)) AS disponiveis
-                      FROM viagem v
-                      WHERE v.id_viagem = @idViagem";
+                (v.qtdd_vagas - 
+                (SELECT COUNT(*) FROM reserva r WHERE r.id_viagem = v.id_viagem)) AS disponiveis
+              FROM viagem v
+              WHERE v.id_viagem = @idViagem";
+
                 MySqlCommand cmd = new MySqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@idViagem", IdViagemSelecionada);
 
@@ -366,19 +369,19 @@ namespace Login.UseControls
                 {
                     lblTituloVagasRestantes.Text = resultado.ToString();
 
-                    // Um toque extra: se as vagas acabarem, fica vermelho!
                     int vagas = Convert.ToInt32(resultado);
-                    lblTituloVagasRestantes.ForeColor = (vagas <= 0) ? Color.Red : Color.LimeGreen;
+                    lblTituloVagasRestantes.ForeColor = (vagas <= 0) ? Color.Red : Color.Green;
                 }
             }
             catch (Exception ex)
             {
-                // Se der erro aqui, a gente ignora pra não travar a tela
+                MessageBox.Show("Erro ao calcular vagas: " + ex.Message);
             }
             finally
             {
                 if (con.State == ConnectionState.Open) con.Close();
             }
+        
         }
 
 
@@ -448,6 +451,7 @@ namespace Login.UseControls
             txtClienteIncluirPassageiros.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             txtClienteIncluirPassageiros.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
+            CentralizarBotoes();
 
             /* CarregarSugestoesClientes();
              CalcularVagas();
@@ -529,7 +533,7 @@ namespace Login.UseControls
             }
         }
 
-        private void btnVoltarIncluirPassageiros_Click(object sender, EventArgs e)
+        private void btnVoltarIncluirPassageiros_Click_1(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show("Tem certeza que deseja sair?", "Confirmar Saída", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -566,6 +570,7 @@ namespace Login.UseControls
 
         }
 
+
         private void txtClienteIncluirPassageiros_KeyDown_1(object sender, KeyEventArgs e)
         {
             // Verifica se a tecla pressionada foi o Enter
@@ -587,6 +592,16 @@ namespace Login.UseControls
             {
                 this.AtualizarTema(ConfigGreenMode.ModoEscuroAtivo);
             }
+        }
+
+        private void CentralizarBotoes()
+        {
+            pnlBotoes.Left = (pnlIncluir.Width - pnlBotoes.Width) / 2;
+        }
+
+        private void pnlIncluir_Resize(object sender, EventArgs e)
+        {
+            CentralizarBotoes();
         }
     }
 }

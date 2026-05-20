@@ -72,6 +72,13 @@ namespace Login
             VerificarAcesso();
 
 
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            this.SetStyle(ControlStyles.UserPaint, true);
+            this.UpdateStyles();
+
+
+
         }
 
 
@@ -153,7 +160,17 @@ namespace Login
 
         private void Home_Load(object sender, EventArgs e)
         {
+            panelContainer.GetType()
+            .GetProperty("DoubleBuffered",
+            System.Reflection.BindingFlags.Instance |
+             System.Reflection.BindingFlags.NonPublic)
+            .SetValue(panelContainer, true, null);
 
+            typeof(Panel).InvokeMember("DoubleBuffered",
+            System.Reflection.BindingFlags.SetProperty |
+            System.Reflection.BindingFlags.Instance |
+             System.Reflection.BindingFlags.NonPublic,
+            null, panelContainer, new object[] { true });
 
         }
 
@@ -279,22 +296,24 @@ namespace Login
 
         private void addUserControl(UserControl userControl)
         {
-            panelContainer.Controls.Clear();
+        
+            panelContainer.SuspendLayout(); // 🔥 trava o layout
 
+            // remove só se existir
             if (panelContainer.Controls.Count > 0)
-
             {
-                // Limpa e libera memória do controle anterior
                 Control oldControl = panelContainer.Controls[0];
                 panelContainer.Controls.Remove(oldControl);
                 oldControl.Dispose();
             }
 
-
-
-            // Altere de None para Fill para o User Control ocupar todo o painel cinza
             userControl.Dock = DockStyle.Fill;
+            userControl.BackColor = panelContainer.BackColor; // 🔥 evita branco
+
             panelContainer.Controls.Add(userControl);
+
+            panelContainer.ResumeLayout(); // 🔥 libera layout
+        
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -360,85 +379,8 @@ namespace Login
         #endregion
 
 
-        // =========================================================================
+    
 
-        // AQUI COMEÇA A NOVA LÓGICA DO MENU FLUTUANTE QUE SUBSTITUIU A ANTIGA
-
-        // =========================================================================
-
-        private void imgConfigurar_Click(object sender, EventArgs e)
-
-        {
-        }
-
-
-
-        #region Novo Menu de Perfil Flutuante
-        /*
-                private void MostrarMenuPerfil(object sender, EventArgs e)
-
-                {
-
-                    ContextMenuStrip menuPerfil = new ContextMenuStrip();
-                    menuPerfil.BackColor = Color.White;
-                    menuPerfil.ShowImageMargin = true; // Espaço para as imagens
-                    menuPerfil.Font = new Font("Segoe UI", 10);
-                    menuPerfil.ForeColor = Color.Black;
-                    menuPerfil.Cursor = Cursors.Hand;
-
-
-
-                    // 1. OPÇÃO ÚNICA DE TEMA (Alterna entre Claro e Escuro)
-
-                    ToolStripMenuItem menuTema = new ToolStripMenuItem();
-
-
-                    menuTema.Click += (s, args) =>
-                    {
-                        IsDarkMode = !IsDarkMode; // Inverte a variável global (se for true vira false, e vice-versa)
-                        AplicarTemaHome();        // Pinta a Home
-                        AtualizarTelasInternas(); // Pinta os painéis do meio
-                    };
-
-
-
-                    ToolStripSeparator linha = new ToolStripSeparator();
-                    // 2. OPÇÃO SAIR (Porta de saída)
-
-                    ToolStripMenuItem menuSair = new ToolStripMenuItem("Sair do Sistema");
-                    ToolStripMenuItem menuGreenMode = new ToolStripMenuItem("Green Mode");
-
-                    // Tenta ler como PNG ou JPG
-                    string caminhoPortaPNG = @"C:\Users\silas.sbsilva\Downloads\portadesaida.png";
-                    string caminhoPortaJPG = @"C:\Users\silas.sbsilva\Downloads\portadesaida.jpg";
-
-
-                    if (File.Exists(caminhoPortaPNG)) menuSair.Image = Image.FromFile(caminhoPortaPNG);
-                    else if (File.Exists(caminhoPortaJPG)) menuSair.Image = Image.FromFile(caminhoPortaJPG);
-
-                    menuSair.ForeColor = Color.Red;
-                    menuSair.Click += (s, args) => Application.Exit();
-
-                    // Adiciona as opções ao menu
-
-                    menuPerfil.Items.Add(menuTema);
-                    menuPerfil.Items.Add(linha);
-                    menuPerfil.Items.Add(menuSair);
-
-                    // =========================================================================
-
-                    // A MÁGICA QUE RESOLVE O MENU CORTADO:
-                    // O comando "ToolStripDropDownDirection.BelowLeft" força o menu a abrir
-                    // para a ESQUERDA do ícone, mantendo ele 100% dentro da tela!
-
-                    // =========================================================================
-
-                    Control controleClicado = (Control)sender;
-                    menuPerfil.Show(controleClicado, new Point(controleClicado.Width, controleClicado.Height), ToolStripDropDownDirection.BelowLeft);
-
-                }*/
-
-        #endregion
 
         // Método auxiliar para avisar as telas do centro que a cor mudou
         private void AtualizarTelasInternas()

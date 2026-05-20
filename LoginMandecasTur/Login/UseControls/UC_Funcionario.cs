@@ -82,7 +82,7 @@ namespace Login.UseControls
             if (isDark)
             {
                 // 1. O Fundo da UC deve ser transparente para mostrar a imagem da Home
-                this.BackColor = Color.Transparent;
+                this.BackColor = Color.FromArgb(20, 35, 30);
                 MudarCoresRecursivo(this, isDark);
 
                 // 2. Painel de Cadastro (Efeito Transparente)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using static QuestPDF.Helpers.Colors;
 
 namespace Login.UseControls
 {
@@ -77,7 +78,7 @@ namespace Login.UseControls
             if (isDark)
             {
                 // 1. O Fundo da UC deve ser transparente para mostrar a imagem da Home
-                this.BackColor = Color.Transparent;
+                this.BackColor = Color.FromArgb(20, 35, 30);
                 MudarCoresRecursivo(this, isDark);
 
                 // 2. Painel de Cadastro (Efeito Transparente)
@@ -473,11 +474,11 @@ namespace Login.UseControls
 
             CentralizarBotoes();
         }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnLimparGViagens_Click(object sender, EventArgs e)
         {
             txtDestinoViagens.Clear(); txtTransporteCViagens.Clear(); txtQTDVagaCViagens.Clear();
             txtCustoTransporteCViagem.Clear(); txtCustoHospedagemCViagem.Clear();
+
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -582,6 +583,11 @@ namespace Login.UseControls
         private void pnlCadastrarViagens_Resize(object sender, EventArgs e)
         {
             CentralizarBotoes();
+        }
+
+        private void lbCustoTransporteCViagem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

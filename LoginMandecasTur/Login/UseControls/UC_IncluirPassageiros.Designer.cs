@@ -33,13 +33,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_IncluirPassageiros));
             lbUCIncluirPassageiros = new Label();
             pnlSeparador1 = new Panel();
-            lblTituloVagasRestantes = new Label();
+            label = new Label();
             pnlIncluir = new Panel();
+            pnlBotoes = new Panel();
+            btnVoltarIncluirPassageiros = new BotaoPadraoDois();
+            btnIncluirPassageiro = new BotaoPadraoMandecas();
             txtValorPacote = new TextBox();
             label2 = new Label();
             txtClienteIncluirPassageiros = new TextBox();
-            btnVoltarIncluirPassageiros = new BotaoPadraoMandecas();
-            btnIncluirPassageiro = new BotaoPadraoMandecas();
             panel1 = new Panel();
             txtNumeroDeParcelasIncluirPassageiros = new TextBox();
             txtValorDaEntradaIncluirPassageiros = new TextBox();
@@ -54,8 +55,9 @@
             dgvListaDePassageiros = new DataGridView();
             btnExcluir = new DataGridViewImageColumn();
             label1 = new Label();
-            lblVagasRestantes = new Label();
+            lblTituloVagasRestantes = new Label();
             pnlIncluir.SuspendLayout();
+            pnlBotoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListaDePassageiros).BeginInit();
             SuspendLayout();
             // 
@@ -63,7 +65,7 @@
             // 
             lbUCIncluirPassageiros.AutoSize = true;
             lbUCIncluirPassageiros.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbUCIncluirPassageiros.Location = new Point(16, 59);
+            lbUCIncluirPassageiros.Location = new Point(35, 59);
             lbUCIncluirPassageiros.Name = "lbUCIncluirPassageiros";
             lbUCIncluirPassageiros.Size = new Size(228, 32);
             lbUCIncluirPassageiros.TabIndex = 0;
@@ -73,32 +75,31 @@
             // 
             pnlSeparador1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pnlSeparador1.BackColor = Color.FromArgb(68, 252, 124);
-            pnlSeparador1.Location = new Point(16, 94);
+            pnlSeparador1.Location = new Point(35, 94);
             pnlSeparador1.Name = "pnlSeparador1";
-            pnlSeparador1.Size = new Size(793, 2);
+            pnlSeparador1.Size = new Size(749, 2);
             pnlSeparador1.TabIndex = 1;
             // 
-            // lblTituloVagasRestantes
+            // label
             // 
-            lblTituloVagasRestantes.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            lblTituloVagasRestantes.AutoSize = true;
-            lblTituloVagasRestantes.BackColor = Color.Transparent;
-            lblTituloVagasRestantes.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTituloVagasRestantes.Location = new Point(625, 100);
-            lblTituloVagasRestantes.Name = "lblTituloVagasRestantes";
-            lblTituloVagasRestantes.Size = new Size(106, 17);
-            lblTituloVagasRestantes.TabIndex = 2;
-            lblTituloVagasRestantes.Text = "Vagas Restantes:";
+            label.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label.AutoSize = true;
+            label.BackColor = Color.Transparent;
+            label.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label.Location = new Point(627, 100);
+            label.Name = "label";
+            label.Size = new Size(106, 17);
+            label.TabIndex = 2;
+            label.Text = "Vagas Restantes:";
             // 
             // pnlIncluir
             // 
             pnlIncluir.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            pnlIncluir.BackColor = Color.Transparent;
+            pnlIncluir.BackColor = Color.White;
+            pnlIncluir.Controls.Add(pnlBotoes);
             pnlIncluir.Controls.Add(txtValorPacote);
             pnlIncluir.Controls.Add(label2);
             pnlIncluir.Controls.Add(txtClienteIncluirPassageiros);
-            pnlIncluir.Controls.Add(btnVoltarIncluirPassageiros);
-            pnlIncluir.Controls.Add(btnIncluirPassageiro);
             pnlIncluir.Controls.Add(panel1);
             pnlIncluir.Controls.Add(txtNumeroDeParcelasIncluirPassageiros);
             pnlIncluir.Controls.Add(txtValorDaEntradaIncluirPassageiros);
@@ -107,51 +108,35 @@
             pnlIncluir.Controls.Add(label5);
             pnlIncluir.Controls.Add(label4);
             pnlIncluir.Controls.Add(label3);
-            pnlIncluir.Location = new Point(25, 135);
+            pnlIncluir.Location = new Point(60, 129);
             pnlIncluir.Name = "pnlIncluir";
-            pnlIncluir.Size = new Size(784, 249);
+            pnlIncluir.Size = new Size(673, 249);
             pnlIncluir.TabIndex = 3;
+            pnlIncluir.Resize += pnlIncluir_Resize;
             // 
-            // txtValorPacote
+            // pnlBotoes
             // 
-            txtValorPacote.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtValorPacote.Location = new Point(194, 151);
-            txtValorPacote.Name = "txtValorPacote";
-            txtValorPacote.Size = new Size(565, 23);
-            txtValorPacote.TabIndex = 13;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(38, 154);
-            label2.Name = "label2";
-            label2.Size = new Size(92, 15);
-            label2.TabIndex = 12;
-            label2.Text = "Valor do Pacote:";
-            // 
-            // txtClienteIncluirPassageiros
-            // 
-            txtClienteIncluirPassageiros.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtClienteIncluirPassageiros.Location = new Point(194, 15);
-            txtClienteIncluirPassageiros.Name = "txtClienteIncluirPassageiros";
-            txtClienteIncluirPassageiros.Size = new Size(565, 23);
-            txtClienteIncluirPassageiros.TabIndex = 11;
-            txtClienteIncluirPassageiros.KeyDown += txtClienteIncluirPassageiros_KeyDown_1;
+            pnlBotoes.Controls.Add(btnVoltarIncluirPassageiros);
+            pnlBotoes.Controls.Add(btnIncluirPassageiro);
+            pnlBotoes.Location = new Point(236, 202);
+            pnlBotoes.Name = "pnlBotoes";
+            pnlBotoes.Size = new Size(271, 42);
+            pnlBotoes.TabIndex = 14;
             // 
             // btnVoltarIncluirPassageiros
             // 
             btnVoltarIncluirPassageiros.BackColor = Color.FromArgb(194, 194, 194);
             btnVoltarIncluirPassageiros.FlatAppearance.BorderSize = 0;
             btnVoltarIncluirPassageiros.FlatStyle = FlatStyle.Flat;
-            btnVoltarIncluirPassageiros.Font = new Font("Segoe UI Semibold", 11F);
+            btnVoltarIncluirPassageiros.Font = new Font("Segoe UI Semibold", 10F);
             btnVoltarIncluirPassageiros.ForeColor = Color.Black;
-            btnVoltarIncluirPassageiros.Location = new Point(294, 212);
+            btnVoltarIncluirPassageiros.Location = new Point(52, 8);
             btnVoltarIncluirPassageiros.Name = "btnVoltarIncluirPassageiros";
-            btnVoltarIncluirPassageiros.Size = new Size(103, 28);
+            btnVoltarIncluirPassageiros.Size = new Size(82, 26);
             btnVoltarIncluirPassageiros.TabIndex = 10;
             btnVoltarIncluirPassageiros.Text = "Voltar";
             btnVoltarIncluirPassageiros.UseVisualStyleBackColor = false;
-            btnVoltarIncluirPassageiros.Click += btnVoltarIncluirPassageiros_Click;
+            btnVoltarIncluirPassageiros.Click += btnVoltarIncluirPassageiros_Click_1;
             // 
             // btnIncluirPassageiro
             // 
@@ -160,13 +145,39 @@
             btnIncluirPassageiro.FlatStyle = FlatStyle.Flat;
             btnIncluirPassageiro.Font = new Font("Segoe UI Semibold", 11F);
             btnIncluirPassageiro.ForeColor = Color.Black;
-            btnIncluirPassageiro.Location = new Point(403, 212);
+            btnIncluirPassageiro.Location = new Point(144, 8);
             btnIncluirPassageiro.Name = "btnIncluirPassageiro";
-            btnIncluirPassageiro.Size = new Size(103, 28);
+            btnIncluirPassageiro.Size = new Size(82, 26);
             btnIncluirPassageiro.TabIndex = 9;
             btnIncluirPassageiro.Text = "Incluir";
             btnIncluirPassageiro.UseVisualStyleBackColor = false;
             btnIncluirPassageiro.Click += btnIncluirPassageiro_Click;
+            // 
+            // txtValorPacote
+            // 
+            txtValorPacote.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtValorPacote.Location = new Point(189, 151);
+            txtValorPacote.Name = "txtValorPacote";
+            txtValorPacote.Size = new Size(454, 23);
+            txtValorPacote.TabIndex = 13;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(33, 154);
+            label2.Name = "label2";
+            label2.Size = new Size(92, 15);
+            label2.TabIndex = 12;
+            label2.Text = "Valor do Pacote:";
+            // 
+            // txtClienteIncluirPassageiros
+            // 
+            txtClienteIncluirPassageiros.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtClienteIncluirPassageiros.Location = new Point(189, 15);
+            txtClienteIncluirPassageiros.Name = "txtClienteIncluirPassageiros";
+            txtClienteIncluirPassageiros.Size = new Size(454, 23);
+            txtClienteIncluirPassageiros.TabIndex = 11;
+            txtClienteIncluirPassageiros.KeyDown += txtClienteIncluirPassageiros_KeyDown_1;
             // 
             // panel1
             // 
@@ -174,37 +185,37 @@
             panel1.BackColor = Color.FromArgb(232, 232, 232);
             panel1.Location = new Point(0, 196);
             panel1.Name = "panel1";
-            panel1.Size = new Size(783, 2);
+            panel1.Size = new Size(672, 2);
             panel1.TabIndex = 8;
             // 
             // txtNumeroDeParcelasIncluirPassageiros
             // 
             txtNumeroDeParcelasIncluirPassageiros.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtNumeroDeParcelasIncluirPassageiros.Location = new Point(194, 118);
+            txtNumeroDeParcelasIncluirPassageiros.Location = new Point(189, 118);
             txtNumeroDeParcelasIncluirPassageiros.Name = "txtNumeroDeParcelasIncluirPassageiros";
-            txtNumeroDeParcelasIncluirPassageiros.Size = new Size(565, 23);
+            txtNumeroDeParcelasIncluirPassageiros.Size = new Size(454, 23);
             txtNumeroDeParcelasIncluirPassageiros.TabIndex = 7;
             // 
             // txtValorDaEntradaIncluirPassageiros
             // 
             txtValorDaEntradaIncluirPassageiros.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtValorDaEntradaIncluirPassageiros.Location = new Point(194, 85);
+            txtValorDaEntradaIncluirPassageiros.Location = new Point(189, 85);
             txtValorDaEntradaIncluirPassageiros.Name = "txtValorDaEntradaIncluirPassageiros";
-            txtValorDaEntradaIncluirPassageiros.Size = new Size(565, 23);
+            txtValorDaEntradaIncluirPassageiros.Size = new Size(454, 23);
             txtValorDaEntradaIncluirPassageiros.TabIndex = 6;
             // 
             // txtFormaDePagamentoIncluirPassageiros
             // 
             txtFormaDePagamentoIncluirPassageiros.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtFormaDePagamentoIncluirPassageiros.Location = new Point(194, 48);
+            txtFormaDePagamentoIncluirPassageiros.Location = new Point(189, 48);
             txtFormaDePagamentoIncluirPassageiros.Name = "txtFormaDePagamentoIncluirPassageiros";
-            txtFormaDePagamentoIncluirPassageiros.Size = new Size(565, 23);
+            txtFormaDePagamentoIncluirPassageiros.Size = new Size(454, 23);
             txtFormaDePagamentoIncluirPassageiros.TabIndex = 5;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(38, 121);
+            label6.Location = new Point(33, 121);
             label6.Name = "label6";
             label6.Size = new Size(116, 15);
             label6.TabIndex = 3;
@@ -213,7 +224,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(38, 85);
+            label5.Location = new Point(33, 85);
             label5.Name = "label5";
             label5.Size = new Size(95, 15);
             label5.TabIndex = 2;
@@ -222,7 +233,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(38, 51);
+            label4.Location = new Point(33, 51);
             label4.Name = "label4";
             label4.Size = new Size(124, 15);
             label4.TabIndex = 1;
@@ -231,7 +242,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(38, 18);
+            label3.Location = new Point(33, 18);
             label3.Name = "label3";
             label3.Size = new Size(47, 15);
             label3.TabIndex = 0;
@@ -241,7 +252,7 @@
             // 
             lblLista.AutoSize = true;
             lblLista.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblLista.Location = new Point(25, 406);
+            lblLista.Location = new Point(35, 406);
             lblLista.Name = "lblLista";
             lblLista.Size = new Size(241, 32);
             lblLista.TabIndex = 5;
@@ -251,15 +262,15 @@
             // 
             panel3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel3.BackColor = Color.FromArgb(68, 252, 124);
-            panel3.Location = new Point(25, 441);
+            panel3.Location = new Point(35, 441);
             panel3.Name = "panel3";
-            panel3.Size = new Size(788, 2);
+            panel3.Size = new Size(749, 2);
             panel3.TabIndex = 2;
             // 
             // lbIDViagemIncluirPassageiros
             // 
             lbIDViagemIncluirPassageiros.AutoSize = true;
-            lbIDViagemIncluirPassageiros.Location = new Point(73, 97);
+            lbIDViagemIncluirPassageiros.Location = new Point(159, 100);
             lbIDViagemIncluirPassageiros.Name = "lbIDViagemIncluirPassageiros";
             lbIDViagemIncluirPassageiros.Size = new Size(38, 15);
             lbIDViagemIncluirPassageiros.TabIndex = 8;
@@ -285,11 +296,11 @@
             dgvListaDePassageiros.ColumnHeadersHeight = 40;
             dgvListaDePassageiros.Columns.AddRange(new DataGridViewColumn[] { btnExcluir });
             dgvListaDePassageiros.EnableHeadersVisualStyles = false;
-            dgvListaDePassageiros.Location = new Point(34, 476);
+            dgvListaDePassageiros.Location = new Point(44, 467);
             dgvListaDePassageiros.Name = "dgvListaDePassageiros";
             dgvListaDePassageiros.RowHeadersVisible = false;
             dgvListaDePassageiros.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvListaDePassageiros.Size = new Size(779, 134);
+            dgvListaDePassageiros.Size = new Size(724, 134);
             dgvListaDePassageiros.TabIndex = 9;
             dgvListaDePassageiros.CellClick += dgvListaDePassageiros_CellClick_1;
             dgvListaDePassageiros.Paint += dgvListaDePassageiros_Paint_1;
@@ -310,34 +321,34 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(24, 96);
+            label1.Location = new Point(35, 100);
             label1.Name = "label1";
-            label1.Size = new Size(49, 15);
+            label1.Size = new Size(108, 15);
             label1.TabIndex = 10;
-            label1.Text = "Código:";
+            label1.Text = "Código da Viagem:";
             // 
-            // lblVagasRestantes
+            // lblTituloVagasRestantes
             // 
-            lblVagasRestantes.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            lblVagasRestantes.AutoSize = true;
-            lblVagasRestantes.Location = new Point(737, 102);
-            lblVagasRestantes.Name = "lblVagasRestantes";
-            lblVagasRestantes.Size = new Size(38, 15);
-            lblVagasRestantes.TabIndex = 11;
-            lblVagasRestantes.Text = "label8";
+            lblTituloVagasRestantes.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblTituloVagasRestantes.AutoSize = true;
+            lblTituloVagasRestantes.Location = new Point(739, 99);
+            lblTituloVagasRestantes.Name = "lblTituloVagasRestantes";
+            lblTituloVagasRestantes.Size = new Size(38, 15);
+            lblTituloVagasRestantes.TabIndex = 11;
+            lblTituloVagasRestantes.Text = "label8";
             // 
             // UC_IncluirPassageiros
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(lblVagasRestantes);
+            Controls.Add(lblTituloVagasRestantes);
             Controls.Add(label1);
             Controls.Add(dgvListaDePassageiros);
             Controls.Add(lbIDViagemIncluirPassageiros);
             Controls.Add(panel3);
             Controls.Add(lblLista);
             Controls.Add(pnlIncluir);
-            Controls.Add(lblTituloVagasRestantes);
+            Controls.Add(label);
             Controls.Add(pnlSeparador1);
             Controls.Add(lbUCIncluirPassageiros);
             Name = "UC_IncluirPassageiros";
@@ -346,6 +357,7 @@
             VisibleChanged += UC_IncluirPassageiros_VisibleChanged;
             pnlIncluir.ResumeLayout(false);
             pnlIncluir.PerformLayout();
+            pnlBotoes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvListaDePassageiros).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -355,7 +367,7 @@
 
         private Label lbUCIncluirPassageiros;
         private Panel pnlSeparador1;
-        private Label lblTituloVagasRestantes;
+        private Label label;
         private Panel pnlIncluir;
         private Label label6;
         private Label label5;
@@ -367,7 +379,6 @@
         private Label lblLista;
         private Panel panel1;
         private Panel panel3;
-        private BotaoPadraoMandecas btnVoltarIncluirPassageiros;
         private BotaoPadraoMandecas btnIncluirPassageiro;
         private Label lbIDViagemIncluirPassageiros;
         private DataGridView dgvListaDePassageiros;
@@ -376,6 +387,8 @@
         private TextBox txtClienteIncluirPassageiros;
         private TextBox txtValorPacote;
         private Label label2;
-        private Label lblVagasRestantes;
+        private Label lblTituloVagasRestantes;
+        private Panel pnlBotoes;
+        private BotaoPadraoDois btnVoltarIncluirPassageiros;
     }
 }

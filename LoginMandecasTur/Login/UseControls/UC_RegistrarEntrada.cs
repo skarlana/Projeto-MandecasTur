@@ -32,11 +32,24 @@ namespace Login.UseControls
 
                 if (dark)
                 {
-                    if (c is TextBox || c is DateTimePicker || c is ComboBox)
+                    if (c is TextBox || c is ComboBox)
                     {
                         c.BackColor = Color.FromArgb(45, 45, 45);
                         c.ForeColor = Color.White;
                     }
+
+                    if (c is DateTimePicker dtp)
+                    {
+                        dtp.BackColor = Color.FromArgb(45, 45, 45);
+                        dtp.ForeColor = Color.White;
+                        dtp.CalendarMonthBackground = Color.FromArgb(45, 45, 45);
+                        dtp.CalendarForeColor = Color.White;
+                        dtp.CalendarTitleBackColor = Color.FromArgb(30, 30, 30);
+                        dtp.CalendarTitleForeColor = Color.White;
+                    }
+
+
+
                     if (c is Label) c.ForeColor = Color.Gainsboro;
                 }
                 else
@@ -60,13 +73,13 @@ namespace Login.UseControls
             if (isDark)
             {
                 // 1. O Fundo da UC deve ser transparente para mostrar a imagem da Home
-                this.BackColor = Color.Transparent;
+                this.BackColor = Color.FromArgb(20, 35, 30);
                 MudarCoresRecursivo(this, isDark);
 
                 // 2. Painel de Cadastro (Efeito Transparente)
                 panelRE.BackColor = Color.FromArgb(150, 20, 35, 30);
                 pnlInformativo.BackColor = Color.FromArgb(150, 20, 35, 30);
-                pnlbotoes.BackColor = Color.FromArgb(150, 20, 35, 30);
+                pnlBotoes.BackColor = Color.FromArgb(150, 20, 35, 30);
                 lblRE.ForeColor = Color.Gainsboro;
                 lblInformativo.ForeColor = Color.Gainsboro;
 
@@ -92,7 +105,7 @@ namespace Login.UseControls
 
                 panelRE.BackColor = Color.White;
                 pnlInformativo.BackColor = Color.White;
-                pnlbotoes.BackColor = Color.White;
+                pnlBotoes.BackColor = Color.White;
 
 
                 // Força o Negrito no título que a recursividade tirou
@@ -266,8 +279,7 @@ namespace Login.UseControls
 
         }
 
-
-        private void btnregistrar_Click(object sender, EventArgs e)
+        private void btnRegistrarReservas_Click(object sender, EventArgs e)
         {
             // Validação básica: não deixa registrar sem valor ou sem cliente
             if (cbPassageiros.SelectedValue == null || string.IsNullOrEmpty(txtValorParcela.Text))
@@ -334,9 +346,10 @@ namespace Login.UseControls
             {
                 con.Close();
             }
+
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnLimparReservas_Click(object sender, EventArgs e)
         {
             txtValorParcela.Clear();
             txtFormaPgto.Clear();
@@ -344,7 +357,9 @@ namespace Login.UseControls
             cbPassageiros.SelectedIndex = -1;
 
             AtualizarInfoParcela();
+
         }
+
 
         private void cbPassageiros_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -354,6 +369,17 @@ namespace Login.UseControls
         private void UC_RegistrarEntrada_Load(object sender, EventArgs e)
         {
             dtpVencimento.Value = DateTime.Now.AddMonths(1);
+            CentralizarBotoes();
+        }
+
+        private void CentralizarBotoes()
+        {
+            pnlBotoes.Left = (panelRE.Width - pnlBotoes.Width) / 2;
+        }
+
+        private void panelRE_Resize(object sender, EventArgs e)
+        {
+            CentralizarBotoes();
         }
     }
 }

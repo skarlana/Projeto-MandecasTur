@@ -4,7 +4,13 @@
     <Compile Update="BotaoMandecas.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="BotaoPadraoDois.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="BotaoPadraoMandecas.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DoubleBufferedPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Update="Form1.cs">
@@ -44,9 +50,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="UseControls\UC_RegistrarEntrada.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="UseControls\UC_Relatorio.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>

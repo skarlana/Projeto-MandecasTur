@@ -136,6 +136,7 @@
             rbCustoViagem.TabStop = true;
             rbCustoViagem.Text = "Demonstrativo de Custo da Viagem";
             rbCustoViagem.UseVisualStyleBackColor = true;
+            rbCustoViagem.CheckedChanged += rbCustoViagem_CheckedChanged;
             // 
             // rbReciboCliente
             // 
@@ -149,7 +150,7 @@
             rbReciboCliente.TabStop = true;
             rbReciboCliente.Text = "Recibo de Cliente";
             rbReciboCliente.UseVisualStyleBackColor = true;
-            rbReciboCliente.CheckedChanged += radioButton2_CheckedChanged;
+            rbReciboCliente.CheckedChanged += rbReciboCliente_CheckedChanged;
             // 
             // rbListaPassageiros
             // 
@@ -196,6 +197,7 @@
             cboViagemRelatorio.Name = "cboViagemRelatorio";
             cboViagemRelatorio.Size = new Size(203, 23);
             cboViagemRelatorio.TabIndex = 5;
+            cboViagemRelatorio.SelectedIndexChanged += cboViagemRelatorio_SelectedIndexChanged;
             // 
             // lbViagemFinanceiro
             // 
@@ -277,12 +279,8 @@
             txtBuscaFinanceiro.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtBuscaFinanceiro.Location = new Point(235, 21);
             txtBuscaFinanceiro.Name = "txtBuscaFinanceiro";
-<<<<<<< HEAD
             txtBuscaFinanceiro.PlaceholderText = "Busca por Nome ou Destino";
-            txtBuscaFinanceiro.Size = new Size(265, 23);
-=======
             txtBuscaFinanceiro.Size = new Size(256, 23);
->>>>>>> 2832b43bff0573c8e24216a1893102ffc3cdd7aa
             txtBuscaFinanceiro.TabIndex = 1;
             // 
             // cboStatus
@@ -290,13 +288,8 @@
             cboStatus.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cboStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cboStatus.FormattingEnabled = true;
-<<<<<<< HEAD
-            cboStatus.Items.AddRange(new object[] { "Todos", "Pago", "Pendente", "Vencido" });
-            cboStatus.Location = new Point(17, 20);
-=======
-            cboStatus.Items.AddRange(new object[] { "Filtrar por Status", "Pago", "Pendente", "Vencido" });
+            cboStatus.Items.AddRange(new object[] { "Todos", "Pago", "Pendente", "Vencido", "Filtrar por Status", "Pago", "Pendente", "Vencido" });
             cboStatus.Location = new Point(19, 20);
->>>>>>> 2832b43bff0573c8e24216a1893102ffc3cdd7aa
             cboStatus.Name = "cboStatus";
             cboStatus.Size = new Size(188, 23);
             cboStatus.TabIndex = 0;

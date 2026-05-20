@@ -31,26 +31,26 @@
             lbEditarViagem = new Label();
             panelSeparador2 = new Panel();
             panelSeparador1 = new Panel();
-            lbIDViagem = new Label();
             txtTransporte = new TextBox();
             txtCustoDaHospedagem = new TextBox();
             txtCustoDoTransporte = new TextBox();
             txtDestino = new TextBox();
             lbCustoDaHospedagem = new Label();
             lbCustodoTransporte = new Label();
-            lbValorUnitario = new Label();
             lbTransporte = new Label();
             lbDestino = new Label();
             lbQtdDeViagem = new Label();
             lbData = new Label();
-            txtValorUnitario = new TextBox();
             btnSalvarEditarViagem = new BotaoPadraoMandecas();
-            btnCancelarEditarViagem = new BotaoPadraoMandecas();
             txtQtdDeViagem = new TextBox();
             panelEditarViagem = new Panel();
+            pnlBotoes = new Panel();
+            btnVoltarEditarViagem = new BotaoPadraoDois();
             dtpDataViagemEditarViagem = new DateTimePicker();
             label1 = new Label();
+            lbIDViagem = new Label();
             panelEditarViagem.SuspendLayout();
+            pnlBotoes.SuspendLayout();
             SuspendLayout();
             // 
             // lbEditarViagem
@@ -67,7 +67,7 @@
             // 
             panelSeparador2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panelSeparador2.BackColor = Color.FromArgb(232, 232, 232);
-            panelSeparador2.Location = new Point(3, 297);
+            panelSeparador2.Location = new Point(3, 252);
             panelSeparador2.Name = "panelSeparador2";
             panelSeparador2.Size = new Size(695, 2);
             panelSeparador2.TabIndex = 1;
@@ -81,17 +81,6 @@
             panelSeparador1.Size = new Size(749, 2);
             panelSeparador1.TabIndex = 0;
             // 
-            // lbIDViagem
-            // 
-            lbIDViagem.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            lbIDViagem.AutoSize = true;
-            lbIDViagem.Location = new Point(102, 70);
-            lbIDViagem.Name = "lbIDViagem";
-            lbIDViagem.Size = new Size(38, 15);
-            lbIDViagem.TabIndex = 10;
-            lbIDViagem.Text = "label9";
-            lbIDViagem.Click += lbIDViagem_Click;
-            // 
             // txtTransporte
             // 
             txtTransporte.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -103,7 +92,7 @@
             // txtCustoDaHospedagem
             // 
             txtCustoDaHospedagem.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtCustoDaHospedagem.Location = new Point(215, 244);
+            txtCustoDaHospedagem.Location = new Point(215, 208);
             txtCustoDaHospedagem.Name = "txtCustoDaHospedagem";
             txtCustoDaHospedagem.Size = new Size(405, 23);
             txtCustoDaHospedagem.TabIndex = 15;
@@ -111,7 +100,7 @@
             // txtCustoDoTransporte
             // 
             txtCustoDoTransporte.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtCustoDoTransporte.Location = new Point(215, 205);
+            txtCustoDoTransporte.Location = new Point(215, 169);
             txtCustoDoTransporte.Name = "txtCustoDoTransporte";
             txtCustoDoTransporte.Size = new Size(405, 23);
             txtCustoDoTransporte.TabIndex = 17;
@@ -127,7 +116,7 @@
             // lbCustoDaHospedagem
             // 
             lbCustoDaHospedagem.AutoSize = true;
-            lbCustoDaHospedagem.Location = new Point(65, 252);
+            lbCustoDaHospedagem.Location = new Point(63, 215);
             lbCustoDaHospedagem.Name = "lbCustoDaHospedagem";
             lbCustoDaHospedagem.Size = new Size(131, 15);
             lbCustoDaHospedagem.TabIndex = 9;
@@ -136,27 +125,18 @@
             // lbCustodoTransporte
             // 
             lbCustodoTransporte.AutoSize = true;
-            lbCustodoTransporte.Location = new Point(65, 213);
+            lbCustodoTransporte.Location = new Point(65, 177);
             lbCustodoTransporte.Name = "lbCustodoTransporte";
-            lbCustodoTransporte.Size = new Size(117, 15);
+            lbCustodoTransporte.Size = new Size(116, 15);
             lbCustodoTransporte.TabIndex = 8;
             lbCustodoTransporte.Text = "Custo do Transporte:";
-            // 
-            // lbValorUnitario
-            // 
-            lbValorUnitario.AutoSize = true;
-            lbValorUnitario.Location = new Point(65, 178);
-            lbValorUnitario.Name = "lbValorUnitario";
-            lbValorUnitario.Size = new Size(81, 15);
-            lbValorUnitario.TabIndex = 7;
-            lbValorUnitario.Text = "Valor Unitário:";
             // 
             // lbTransporte
             // 
             lbTransporte.AutoSize = true;
             lbTransporte.Location = new Point(65, 141);
             lbTransporte.Name = "lbTransporte";
-            lbTransporte.Size = new Size(66, 15);
+            lbTransporte.Size = new Size(65, 15);
             lbTransporte.TabIndex = 6;
             lbTransporte.Text = "Transporte:";
             // 
@@ -187,14 +167,6 @@
             lbData.TabIndex = 4;
             lbData.Text = "Data:";
             // 
-            // txtValorUnitario
-            // 
-            txtValorUnitario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtValorUnitario.Location = new Point(215, 170);
-            txtValorUnitario.Name = "txtValorUnitario";
-            txtValorUnitario.Size = new Size(405, 23);
-            txtValorUnitario.TabIndex = 13;
-            // 
             // btnSalvarEditarViagem
             // 
             btnSalvarEditarViagem.BackColor = Color.FromArgb(68, 252, 124);
@@ -202,28 +174,13 @@
             btnSalvarEditarViagem.FlatStyle = FlatStyle.Flat;
             btnSalvarEditarViagem.Font = new Font("Segoe UI Semibold", 11F);
             btnSalvarEditarViagem.ForeColor = Color.Black;
-            btnSalvarEditarViagem.Location = new Point(335, 315);
+            btnSalvarEditarViagem.Location = new Point(104, 14);
             btnSalvarEditarViagem.Name = "btnSalvarEditarViagem";
-            btnSalvarEditarViagem.Size = new Size(95, 34);
+            btnSalvarEditarViagem.Size = new Size(82, 26);
             btnSalvarEditarViagem.TabIndex = 1;
             btnSalvarEditarViagem.Text = "Salvar";
             btnSalvarEditarViagem.UseVisualStyleBackColor = false;
             btnSalvarEditarViagem.Click += btnSalvarEditarViagem_Click;
-            // 
-            // btnCancelarEditarViagem
-            // 
-            btnCancelarEditarViagem.BackColor = Color.FromArgb(194, 194, 194);
-            btnCancelarEditarViagem.FlatAppearance.BorderSize = 0;
-            btnCancelarEditarViagem.FlatStyle = FlatStyle.Flat;
-            btnCancelarEditarViagem.Font = new Font("Segoe UI Semibold", 11F);
-            btnCancelarEditarViagem.ForeColor = Color.Black;
-            btnCancelarEditarViagem.Location = new Point(234, 315);
-            btnCancelarEditarViagem.Name = "btnCancelarEditarViagem";
-            btnCancelarEditarViagem.Size = new Size(95, 34);
-            btnCancelarEditarViagem.TabIndex = 1;
-            btnCancelarEditarViagem.Text = "Voltar";
-            btnCancelarEditarViagem.UseVisualStyleBackColor = false;
-            btnCancelarEditarViagem.Click += btnCancelarEditarViagem_Click;
             // 
             // txtQtdDeViagem
             // 
@@ -237,17 +194,14 @@
             // 
             panelEditarViagem.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panelEditarViagem.BackColor = Color.Transparent;
+            panelEditarViagem.Controls.Add(pnlBotoes);
             panelEditarViagem.Controls.Add(dtpDataViagemEditarViagem);
             panelEditarViagem.Controls.Add(txtQtdDeViagem);
-            panelEditarViagem.Controls.Add(btnCancelarEditarViagem);
             panelEditarViagem.Controls.Add(panelSeparador2);
-            panelEditarViagem.Controls.Add(btnSalvarEditarViagem);
-            panelEditarViagem.Controls.Add(txtValorUnitario);
             panelEditarViagem.Controls.Add(lbData);
             panelEditarViagem.Controls.Add(lbQtdDeViagem);
             panelEditarViagem.Controls.Add(lbDestino);
             panelEditarViagem.Controls.Add(lbTransporte);
-            panelEditarViagem.Controls.Add(lbValorUnitario);
             panelEditarViagem.Controls.Add(lbCustodoTransporte);
             panelEditarViagem.Controls.Add(lbCustoDaHospedagem);
             panelEditarViagem.Controls.Add(txtDestino);
@@ -256,8 +210,33 @@
             panelEditarViagem.Controls.Add(txtTransporte);
             panelEditarViagem.Location = new Point(78, 104);
             panelEditarViagem.Name = "panelEditarViagem";
-            panelEditarViagem.Size = new Size(673, 362);
+            panelEditarViagem.Size = new Size(673, 319);
             panelEditarViagem.TabIndex = 20;
+            panelEditarViagem.Resize += panelEditarViagem_Resize;
+            // 
+            // pnlBotoes
+            // 
+            pnlBotoes.Controls.Add(btnVoltarEditarViagem);
+            pnlBotoes.Controls.Add(btnSalvarEditarViagem);
+            pnlBotoes.Location = new Point(269, 258);
+            pnlBotoes.Name = "pnlBotoes";
+            pnlBotoes.Size = new Size(200, 54);
+            pnlBotoes.TabIndex = 23;
+            // 
+            // btnVoltarEditarViagem
+            // 
+            btnVoltarEditarViagem.BackColor = Color.FromArgb(194, 194, 194);
+            btnVoltarEditarViagem.FlatAppearance.BorderSize = 0;
+            btnVoltarEditarViagem.FlatStyle = FlatStyle.Flat;
+            btnVoltarEditarViagem.Font = new Font("Segoe UI Semibold", 10F);
+            btnVoltarEditarViagem.ForeColor = Color.Black;
+            btnVoltarEditarViagem.Location = new Point(13, 14);
+            btnVoltarEditarViagem.Name = "btnVoltarEditarViagem";
+            btnVoltarEditarViagem.Size = new Size(82, 26);
+            btnVoltarEditarViagem.TabIndex = 22;
+            btnVoltarEditarViagem.Text = "Voltar";
+            btnVoltarEditarViagem.UseVisualStyleBackColor = false;
+            btnVoltarEditarViagem.Click += btnVoltarEditarViagem_Click;
             // 
             // dtpDataViagemEditarViagem
             // 
@@ -271,20 +250,29 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(51, 69);
+            label1.Location = new Point(42, 70);
             label1.Name = "label1";
-            label1.Size = new Size(49, 15);
+            label1.Size = new Size(108, 15);
             label1.TabIndex = 21;
-            label1.Text = "Código:";
+            label1.Text = "Código da Viagem:";
+            // 
+            // lbIDViagem
+            // 
+            lbIDViagem.AutoSize = true;
+            lbIDViagem.Location = new Point(154, 70);
+            lbIDViagem.Name = "lbIDViagem";
+            lbIDViagem.Size = new Size(38, 15);
+            lbIDViagem.TabIndex = 22;
+            lbIDViagem.Text = "label2";
             // 
             // UC_EditarViagem
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(lbIDViagem);
             Controls.Add(label1);
             Controls.Add(panelEditarViagem);
-            Controls.Add(lbIDViagem);
             Controls.Add(lbEditarViagem);
             Controls.Add(panelSeparador1);
             Name = "UC_EditarViagem";
@@ -293,6 +281,7 @@
             VisibleChanged += UC_EditarViagem_VisibleChanged;
             panelEditarViagem.ResumeLayout(false);
             panelEditarViagem.PerformLayout();
+            pnlBotoes.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -301,24 +290,23 @@
         private Label lbEditarViagem;
         private Panel panelSeparador1;
         private Panel panelSeparador2;
-        private Label lbIDViagem;
         private TextBox txtTransporte;
         private TextBox txtCustoDaHospedagem;
         private TextBox txtCustoDoTransporte;
         private TextBox txtDestino;
         private Label lbCustoDaHospedagem;
         private Label lbCustodoTransporte;
-        private Label lbValorUnitario;
         private Label lbTransporte;
         private Label lbDestino;
         private Label lbQtdDeViagem;
         private Label lbData;
-        private TextBox txtValorUnitario;
         private BotaoPadraoMandecas btnSalvarEditarViagem;
-        private BotaoPadraoMandecas btnCancelarEditarViagem;
         private TextBox txtQtdDeViagem;
         private Panel panelEditarViagem;
         private DateTimePicker dtpDataViagemEditarViagem;
         private Label label1;
+        private Panel pnlBotoes;
+        private BotaoPadraoDois btnVoltarEditarViagem;
+        private Label lbIDViagem;
     }
 }

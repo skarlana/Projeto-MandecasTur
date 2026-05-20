@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lbIDCliente = new Label();
             lbEditarCliente = new Label();
             panelSeparador1 = new Panel();
             panelEditarCliente = new Panel();
-            dtpDataNascimento = new DateTimePicker();
-            btnCancelarEditarCliente = new BotaoPadraoMandecas();
-            panelSeparador2 = new Panel();
+            pnlBotoes = new Panel();
+            btnVoltarEditarCliente = new BotaoPadraoDois();
             btnSalvarEditarCliente = new BotaoPadraoMandecas();
+            dtpDataNascimento = new DateTimePicker();
+            panelSeparador2 = new Panel();
             txtEmail = new TextBox();
             txtCPFEditarCliente = new TextBox();
             lbCPFEditarCliente = new Label();
@@ -46,17 +46,10 @@
             txtNomeCompleto = new TextBox();
             txtTelefoneEditarCliente = new TextBox();
             label1 = new Label();
+            lbIDCliente = new Label();
             panelEditarCliente.SuspendLayout();
+            pnlBotoes.SuspendLayout();
             SuspendLayout();
-            // 
-            // lbIDCliente
-            // 
-            lbIDCliente.AutoSize = true;
-            lbIDCliente.Location = new Point(87, 106);
-            lbIDCliente.Name = "lbIDCliente";
-            lbIDCliente.Size = new Size(38, 15);
-            lbIDCliente.TabIndex = 13;
-            lbIDCliente.Text = "label9";
             // 
             // lbEditarCliente
             // 
@@ -81,10 +74,9 @@
             // 
             panelEditarCliente.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panelEditarCliente.BackColor = Color.White;
+            panelEditarCliente.Controls.Add(pnlBotoes);
             panelEditarCliente.Controls.Add(dtpDataNascimento);
-            panelEditarCliente.Controls.Add(btnCancelarEditarCliente);
             panelEditarCliente.Controls.Add(panelSeparador2);
-            panelEditarCliente.Controls.Add(btnSalvarEditarCliente);
             panelEditarCliente.Controls.Add(txtEmail);
             panelEditarCliente.Controls.Add(txtCPFEditarCliente);
             panelEditarCliente.Controls.Add(lbCPFEditarCliente);
@@ -98,6 +90,46 @@
             panelEditarCliente.Name = "panelEditarCliente";
             panelEditarCliente.Size = new Size(673, 288);
             panelEditarCliente.TabIndex = 21;
+            panelEditarCliente.Resize += panelEditarCliente_Resize;
+            // 
+            // pnlBotoes
+            // 
+            pnlBotoes.Controls.Add(btnVoltarEditarCliente);
+            pnlBotoes.Controls.Add(btnSalvarEditarCliente);
+            pnlBotoes.Location = new Point(229, 238);
+            pnlBotoes.Name = "pnlBotoes";
+            pnlBotoes.Size = new Size(208, 43);
+            pnlBotoes.TabIndex = 18;
+            // 
+            // btnVoltarEditarCliente
+            // 
+            btnVoltarEditarCliente.BackColor = Color.FromArgb(194, 194, 194);
+            btnVoltarEditarCliente.FlatAppearance.BorderSize = 0;
+            btnVoltarEditarCliente.FlatStyle = FlatStyle.Flat;
+            btnVoltarEditarCliente.Font = new Font("Segoe UI Semibold", 10F);
+            btnVoltarEditarCliente.ForeColor = Color.Black;
+            btnVoltarEditarCliente.Location = new Point(20, 9);
+            btnVoltarEditarCliente.Name = "btnVoltarEditarCliente";
+            btnVoltarEditarCliente.Size = new Size(82, 26);
+            btnVoltarEditarCliente.TabIndex = 2;
+            btnVoltarEditarCliente.Text = "Voltar";
+            btnVoltarEditarCliente.UseVisualStyleBackColor = false;
+            btnVoltarEditarCliente.Click += btnVoltarEditarCliente_Click;
+            // 
+            // btnSalvarEditarCliente
+            // 
+            btnSalvarEditarCliente.BackColor = Color.FromArgb(68, 252, 124);
+            btnSalvarEditarCliente.FlatAppearance.BorderSize = 0;
+            btnSalvarEditarCliente.FlatStyle = FlatStyle.Flat;
+            btnSalvarEditarCliente.Font = new Font("Segoe UI Semibold", 11F);
+            btnSalvarEditarCliente.ForeColor = Color.Black;
+            btnSalvarEditarCliente.Location = new Point(111, 9);
+            btnSalvarEditarCliente.Name = "btnSalvarEditarCliente";
+            btnSalvarEditarCliente.Size = new Size(82, 26);
+            btnSalvarEditarCliente.TabIndex = 1;
+            btnSalvarEditarCliente.Text = "Salvar";
+            btnSalvarEditarCliente.UseVisualStyleBackColor = false;
+            btnSalvarEditarCliente.Click += btnSalvarEditarCliente_Click;
             // 
             // dtpDataNascimento
             // 
@@ -108,21 +140,6 @@
             dtpDataNascimento.Size = new Size(405, 23);
             dtpDataNascimento.TabIndex = 17;
             // 
-            // btnCancelarEditarCliente
-            // 
-            btnCancelarEditarCliente.BackColor = Color.FromArgb(194, 194, 194);
-            btnCancelarEditarCliente.FlatAppearance.BorderSize = 0;
-            btnCancelarEditarCliente.FlatStyle = FlatStyle.Flat;
-            btnCancelarEditarCliente.Font = new Font("Segoe UI Semibold", 11F);
-            btnCancelarEditarCliente.ForeColor = Color.Black;
-            btnCancelarEditarCliente.Location = new Point(245, 238);
-            btnCancelarEditarCliente.Name = "btnCancelarEditarCliente";
-            btnCancelarEditarCliente.Size = new Size(95, 34);
-            btnCancelarEditarCliente.TabIndex = 1;
-            btnCancelarEditarCliente.Text = "Voltar";
-            btnCancelarEditarCliente.UseVisualStyleBackColor = false;
-            btnCancelarEditarCliente.Click += btnCancelarEditarCliente_Click;
-            // 
             // panelSeparador2
             // 
             panelSeparador2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -131,21 +148,6 @@
             panelSeparador2.Name = "panelSeparador2";
             panelSeparador2.Size = new Size(673, 2);
             panelSeparador2.TabIndex = 1;
-            // 
-            // btnSalvarEditarCliente
-            // 
-            btnSalvarEditarCliente.BackColor = Color.FromArgb(68, 252, 124);
-            btnSalvarEditarCliente.FlatAppearance.BorderSize = 0;
-            btnSalvarEditarCliente.FlatStyle = FlatStyle.Flat;
-            btnSalvarEditarCliente.Font = new Font("Segoe UI Semibold", 11F);
-            btnSalvarEditarCliente.ForeColor = Color.Black;
-            btnSalvarEditarCliente.Location = new Point(346, 238);
-            btnSalvarEditarCliente.Name = "btnSalvarEditarCliente";
-            btnSalvarEditarCliente.Size = new Size(95, 34);
-            btnSalvarEditarCliente.TabIndex = 1;
-            btnSalvarEditarCliente.Text = "Salvar";
-            btnSalvarEditarCliente.UseVisualStyleBackColor = false;
-            btnSalvarEditarCliente.Click += btnSalvarEditarCliente_Click;
             // 
             // txtEmail
             // 
@@ -195,7 +197,7 @@
             lbTelefoneEditarCliente.AutoSize = true;
             lbTelefoneEditarCliente.Location = new Point(65, 141);
             lbTelefoneEditarCliente.Name = "lbTelefoneEditarCliente";
-            lbTelefoneEditarCliente.Size = new Size(55, 15);
+            lbTelefoneEditarCliente.Size = new Size(54, 15);
             lbTelefoneEditarCliente.TabIndex = 6;
             lbTelefoneEditarCliente.Text = "Telefone:";
             // 
@@ -229,18 +231,27 @@
             label1.AutoSize = true;
             label1.Location = new Point(36, 106);
             label1.Name = "label1";
-            label1.Size = new Size(49, 15);
+            label1.Size = new Size(106, 15);
             label1.TabIndex = 22;
-            label1.Text = "Código:";
+            label1.Text = "Código do Cliente:";
+            // 
+            // lbIDCliente
+            // 
+            lbIDCliente.AutoSize = true;
+            lbIDCliente.Location = new Point(155, 106);
+            lbIDCliente.Name = "lbIDCliente";
+            lbIDCliente.Size = new Size(38, 15);
+            lbIDCliente.TabIndex = 23;
+            lbIDCliente.Text = "label2";
             // 
             // UC_EditarCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(lbIDCliente);
             Controls.Add(label1);
             Controls.Add(panelEditarCliente);
-            Controls.Add(lbIDCliente);
             Controls.Add(lbEditarCliente);
             Controls.Add(panelSeparador1);
             Name = "UC_EditarCliente";
@@ -248,17 +259,15 @@
             Load += UC_EditarCliente_Load;
             panelEditarCliente.ResumeLayout(false);
             panelEditarCliente.PerformLayout();
+            pnlBotoes.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label lbIDCliente;
         private Label lbEditarCliente;
         private Panel panelSeparador1;
         private Panel panelEditarCliente;
-        private BotaoPadraoMandecas btnCancelarEditarCliente;
         private Panel panelSeparador2;
         private BotaoPadraoMandecas btnSalvarEditarCliente;
         private TextBox txtEmail;
@@ -272,5 +281,8 @@
         private TextBox txtTelefoneEditarCliente;
         private DateTimePicker dtpDataNascimento;
         private Label label1;
+        private Panel pnlBotoes;
+        private BotaoPadraoDois btnVoltarEditarCliente;
+        private Label lbIDCliente;
     }
 }
