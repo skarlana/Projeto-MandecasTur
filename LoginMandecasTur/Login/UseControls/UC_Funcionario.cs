@@ -343,6 +343,8 @@ namespace Login.UseControls
 
             AtualizarGrid();
 
+            CentralizarBotoes();
+
         }
 
 
@@ -360,7 +362,7 @@ namespace Login.UseControls
                 txtNomeCAcesso.Focus();
                 return; // Esse 'return' é CRUCIAL. Ele impede que o código abaixo seja executado.
             }
-        
+
             Conexao conexao = new Conexao();
             MySqlConnection conn = conexao.Conectar();
 
@@ -420,7 +422,7 @@ namespace Login.UseControls
         private void RealizarBusca()
         {
             string textoBusca = txtBuscaFuncionario.Text.Trim();
-            string cpfLimpo = LimparCPF(textoBusca); 
+            string cpfLimpo = LimparCPF(textoBusca);
 
             Conexao conexao = new Conexao();
             MySqlConnection conn = conexao.Conectar();
@@ -474,7 +476,7 @@ namespace Login.UseControls
         }
 
 
-     
+
         private void txtBuscaFuncionario_TextChanged(object sender, EventArgs e)
         {
             // 1. Remove tudo que não for número para processar a máscara
@@ -548,6 +550,18 @@ namespace Login.UseControls
                     btnSalvarCAcesso.PerformClick();
                 }
             }
+
+        }
+
+
+        private void CentralizarBotoes()
+        {
+            pnlBotoesCAcesso.Left = (pnlCadastraAcesso.Width - pnlBotoesCAcesso.Width) / 2;
+        }
+
+        private void pnlCadastraAcesso_Resize(object sender, EventArgs e)
+        {
+            CentralizarBotoes();
         }
     }
 }

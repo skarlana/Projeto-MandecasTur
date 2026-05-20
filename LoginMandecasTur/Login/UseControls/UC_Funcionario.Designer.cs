@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Funcionario));
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             btnBuscarFuncionario = new BotaoPadraoMandecas();
             txtBuscaFuncionario = new TextBox();
             dvgFuncionarios = new DataGridView();
@@ -96,14 +96,14 @@
             dvgFuncionarios.BorderStyle = BorderStyle.None;
             dvgFuncionarios.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dvgFuncionarios.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.WhiteSmoke;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dvgFuncionarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dvgFuncionarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dvgFuncionarios.ColumnHeadersHeight = 40;
             dvgFuncionarios.Columns.AddRange(new DataGridViewColumn[] { btnEditar, btnExcluir });
             dvgFuncionarios.EnableHeadersVisualStyles = false;
@@ -119,10 +119,10 @@
             // btnEditar
             // 
             btnEditar.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.NullValue = resources.GetObject("dataGridViewCellStyle5.NullValue");
-            dataGridViewCellStyle5.Padding = new Padding(8);
-            btnEditar.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = resources.GetObject("dataGridViewCellStyle2.NullValue");
+            dataGridViewCellStyle2.Padding = new Padding(8);
+            btnEditar.DefaultCellStyle = dataGridViewCellStyle2;
             btnEditar.HeaderText = "";
             btnEditar.Image = (Image)resources.GetObject("btnEditar.Image");
             btnEditar.ImageLayout = DataGridViewImageCellLayout.Zoom;
@@ -132,10 +132,10 @@
             // btnExcluir
             // 
             btnExcluir.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.NullValue = resources.GetObject("dataGridViewCellStyle6.NullValue");
-            dataGridViewCellStyle6.Padding = new Padding(8);
-            btnExcluir.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.NullValue = resources.GetObject("dataGridViewCellStyle3.NullValue");
+            dataGridViewCellStyle3.Padding = new Padding(8);
+            btnExcluir.DefaultCellStyle = dataGridViewCellStyle3;
             btnExcluir.HeaderText = "";
             btnExcluir.Image = (Image)resources.GetObject("btnExcluir.Image");
             btnExcluir.ImageLayout = DataGridViewImageCellLayout.Zoom;
@@ -165,6 +165,7 @@
             pnlCadastraAcesso.Name = "pnlCadastraAcesso";
             pnlCadastraAcesso.Size = new Size(724, 199);
             pnlCadastraAcesso.TabIndex = 6;
+            pnlCadastraAcesso.Resize += pnlCadastraAcesso_Resize;
             // 
             // CBPerfilAcesso
             // 

@@ -89,9 +89,9 @@
             btnAtualizar.FlatStyle = FlatStyle.Flat;
             btnAtualizar.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAtualizar.ForeColor = Color.Black;
-            btnAtualizar.Location = new Point(684, 520);
+            btnAtualizar.Location = new Point(708, 510);
             btnAtualizar.Name = "btnAtualizar";
-            btnAtualizar.Size = new Size(92, 23);
+            btnAtualizar.Size = new Size(92, 33);
             btnAtualizar.TabIndex = 9;
             btnAtualizar.Text = "Atualizar";
             btnAtualizar.UseVisualStyleBackColor = false;
@@ -111,15 +111,15 @@
             pnlRelatorio.Controls.Add(lbViagemFinanceiro);
             pnlRelatorio.Controls.Add(lbRelatorioFinanceiro);
             pnlRelatorio.Controls.Add(pnlGerar);
-            pnlRelatorio.Location = new Point(808, 80);
+            pnlRelatorio.Location = new Point(822, 80);
             pnlRelatorio.Name = "pnlRelatorio";
-            pnlRelatorio.Size = new Size(319, 424);
+            pnlRelatorio.Size = new Size(305, 424);
             pnlRelatorio.TabIndex = 1;
             // 
             // cboClienteRelatorio
             // 
             cboClienteRelatorio.FormattingEnabled = true;
-            cboClienteRelatorio.Location = new Point(85, 274);
+            cboClienteRelatorio.Location = new Point(80, 264);
             cboClienteRelatorio.Name = "cboClienteRelatorio";
             cboClienteRelatorio.Size = new Size(203, 23);
             cboClienteRelatorio.TabIndex = 11;
@@ -129,7 +129,7 @@
             rbCustoViagem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             rbCustoViagem.AutoSize = true;
             rbCustoViagem.Font = new Font("Segoe UI", 10F);
-            rbCustoViagem.Location = new Point(42, 181);
+            rbCustoViagem.Location = new Point(32, 123);
             rbCustoViagem.Name = "rbCustoViagem";
             rbCustoViagem.Size = new Size(246, 23);
             rbCustoViagem.TabIndex = 10;
@@ -142,7 +142,7 @@
             rbReciboCliente.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             rbReciboCliente.AutoSize = true;
             rbReciboCliente.Font = new Font("Segoe UI", 10F);
-            rbReciboCliente.Location = new Point(42, 152);
+            rbReciboCliente.Location = new Point(32, 181);
             rbReciboCliente.Name = "rbReciboCliente";
             rbReciboCliente.Size = new Size(132, 23);
             rbReciboCliente.TabIndex = 9;
@@ -155,7 +155,7 @@
             // 
             rbListaPassageiros.AutoSize = true;
             rbListaPassageiros.Font = new Font("Segoe UI", 10F);
-            rbListaPassageiros.Location = new Point(42, 122);
+            rbListaPassageiros.Location = new Point(32, 152);
             rbListaPassageiros.Name = "rbListaPassageiros";
             rbListaPassageiros.Size = new Size(149, 23);
             rbListaPassageiros.TabIndex = 8;
@@ -168,7 +168,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(33, 75);
+            label8.Location = new Point(24, 84);
             label8.Name = "label8";
             label8.Size = new Size(255, 20);
             label8.TabIndex = 7;
@@ -181,7 +181,7 @@
             botaoPadraoMandecas3.FlatStyle = FlatStyle.Flat;
             botaoPadraoMandecas3.Font = new Font("Segoe UI Semibold", 11F);
             botaoPadraoMandecas3.ForeColor = Color.Black;
-            botaoPadraoMandecas3.Location = new Point(112, 363);
+            botaoPadraoMandecas3.Location = new Point(100, 340);
             botaoPadraoMandecas3.Name = "botaoPadraoMandecas3";
             botaoPadraoMandecas3.Size = new Size(113, 28);
             botaoPadraoMandecas3.TabIndex = 6;
@@ -192,7 +192,7 @@
             // cboViagemRelatorio
             // 
             cboViagemRelatorio.FormattingEnabled = true;
-            cboViagemRelatorio.Location = new Point(85, 234);
+            cboViagemRelatorio.Location = new Point(80, 224);
             cboViagemRelatorio.Name = "cboViagemRelatorio";
             cboViagemRelatorio.Size = new Size(203, 23);
             cboViagemRelatorio.TabIndex = 5;
@@ -200,7 +200,7 @@
             // lbViagemFinanceiro
             // 
             lbViagemFinanceiro.AutoSize = true;
-            lbViagemFinanceiro.Location = new Point(29, 238);
+            lbViagemFinanceiro.Location = new Point(24, 228);
             lbViagemFinanceiro.Name = "lbViagemFinanceiro";
             lbViagemFinanceiro.Size = new Size(50, 15);
             lbViagemFinanceiro.TabIndex = 2;
@@ -209,7 +209,7 @@
             // lbRelatorioFinanceiro
             // 
             lbRelatorioFinanceiro.AutoSize = true;
-            lbRelatorioFinanceiro.Location = new Point(29, 277);
+            lbRelatorioFinanceiro.Location = new Point(24, 267);
             lbRelatorioFinanceiro.Name = "lbRelatorioFinanceiro";
             lbRelatorioFinanceiro.Size = new Size(47, 15);
             lbRelatorioFinanceiro.TabIndex = 1;
@@ -228,7 +228,7 @@
             // 
             lblRelatorio_Titulo.AutoSize = true;
             lblRelatorio_Titulo.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblRelatorio_Titulo.Location = new Point(85, 14);
+            lblRelatorio_Titulo.Location = new Point(80, 15);
             lblRelatorio_Titulo.Name = "lblRelatorio_Titulo";
             lblRelatorio_Titulo.Size = new Size(156, 25);
             lblRelatorio_Titulo.TabIndex = 0;
@@ -244,7 +244,7 @@
             pnlDEBusca.Controls.Add(cboStatus);
             pnlDEBusca.Location = new Point(23, 253);
             pnlDEBusca.Name = "pnlDEBusca";
-            pnlDEBusca.Size = new Size(763, 59);
+            pnlDEBusca.Size = new Size(778, 59);
             pnlDEBusca.TabIndex = 7;
             // 
             // btnBuscarFinanceiro
@@ -252,11 +252,11 @@
             btnBuscarFinanceiro.BackColor = Color.FromArgb(68, 252, 124);
             btnBuscarFinanceiro.FlatAppearance.BorderSize = 0;
             btnBuscarFinanceiro.FlatStyle = FlatStyle.Flat;
-            btnBuscarFinanceiro.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBuscarFinanceiro.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBuscarFinanceiro.ForeColor = Color.Black;
-            btnBuscarFinanceiro.Location = new Point(510, 20);
+            btnBuscarFinanceiro.Location = new Point(502, 20);
             btnBuscarFinanceiro.Name = "btnBuscarFinanceiro";
-            btnBuscarFinanceiro.Size = new Size(79, 23);
+            btnBuscarFinanceiro.Size = new Size(79, 24);
             btnBuscarFinanceiro.TabIndex = 4;
             btnBuscarFinanceiro.Text = "Buscar";
             btnBuscarFinanceiro.UseVisualStyleBackColor = false;
@@ -265,7 +265,7 @@
             // lblLimparFiltro
             // 
             lblLimparFiltro.AutoSize = true;
-            lblLimparFiltro.Location = new Point(599, 24);
+            lblLimparFiltro.Location = new Point(597, 25);
             lblLimparFiltro.Name = "lblLimparFiltro";
             lblLimparFiltro.Size = new Size(129, 15);
             lblLimparFiltro.TabIndex = 3;
@@ -275,10 +275,14 @@
             // txtBuscaFinanceiro
             // 
             txtBuscaFinanceiro.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            txtBuscaFinanceiro.Location = new Point(226, 21);
+            txtBuscaFinanceiro.Location = new Point(235, 21);
             txtBuscaFinanceiro.Name = "txtBuscaFinanceiro";
+<<<<<<< HEAD
             txtBuscaFinanceiro.PlaceholderText = "Busca por Nome ou Destino";
             txtBuscaFinanceiro.Size = new Size(265, 23);
+=======
+            txtBuscaFinanceiro.Size = new Size(256, 23);
+>>>>>>> 2832b43bff0573c8e24216a1893102ffc3cdd7aa
             txtBuscaFinanceiro.TabIndex = 1;
             // 
             // cboStatus
@@ -286,8 +290,13 @@
             cboStatus.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cboStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cboStatus.FormattingEnabled = true;
+<<<<<<< HEAD
             cboStatus.Items.AddRange(new object[] { "Todos", "Pago", "Pendente", "Vencido" });
             cboStatus.Location = new Point(17, 20);
+=======
+            cboStatus.Items.AddRange(new object[] { "Filtrar por Status", "Pago", "Pendente", "Vencido" });
+            cboStatus.Location = new Point(19, 20);
+>>>>>>> 2832b43bff0573c8e24216a1893102ffc3cdd7aa
             cboStatus.Name = "cboStatus";
             cboStatus.Size = new Size(188, 23);
             cboStatus.TabIndex = 0;
@@ -299,7 +308,7 @@
             Panel_Vencidos.BackColor = Color.Transparent;
             Panel_Vencidos.Controls.Add(lblVencidos);
             Panel_Vencidos.Controls.Add(lblVencido_Titulo);
-            Panel_Vencidos.Location = new Point(552, 80);
+            Panel_Vencidos.Location = new Point(566, 80);
             Panel_Vencidos.Name = "Panel_Vencidos";
             Panel_Vencidos.Size = new Size(234, 145);
             Panel_Vencidos.TabIndex = 5;
@@ -334,7 +343,7 @@
             Panel_Pendentes.BackColor = Color.Transparent;
             Panel_Pendentes.Controls.Add(lblPendentes);
             Panel_Pendentes.Controls.Add(lblPendente_Titulo);
-            Panel_Pendentes.Location = new Point(290, 80);
+            Panel_Pendentes.Location = new Point(295, 80);
             Panel_Pendentes.Name = "Panel_Pendentes";
             Panel_Pendentes.Size = new Size(233, 145);
             Panel_Pendentes.TabIndex = 6;
@@ -412,7 +421,7 @@
             dgv_Financeiro.Location = new Point(23, 336);
             dgv_Financeiro.Name = "dgv_Financeiro";
             dgv_Financeiro.RowHeadersVisible = false;
-            dgv_Financeiro.Size = new Size(763, 168);
+            dgv_Financeiro.Size = new Size(778, 168);
             dgv_Financeiro.TabIndex = 8;
             dgv_Financeiro.CellContentClick += dgv_Financeiro_CellContentClick;
             dgv_Financeiro.CellPainting += dgv_Financeiro_CellPainting;
