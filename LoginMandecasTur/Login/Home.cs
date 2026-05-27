@@ -24,7 +24,7 @@ namespace Login
 
     {
      
-        protected override CreateParams CreateParams
+       /* protected override CreateParams CreateParams
         {
             get
             {
@@ -32,7 +32,7 @@ namespace Login
                 cp.ExStyle |= 0x02000000; // WS_EX_COMPOSITED
                 return cp;
             }
-        }
+        }*/
      
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -72,11 +72,11 @@ namespace Login
             // [INCLUÍDO] Chama a verificação de acesso
             VerificarAcesso();
 
-
+            /*
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             this.SetStyle(ControlStyles.UserPaint, true);
-            this.UpdateStyles();
+            this.UpdateStyles();*/
 
 
 
@@ -161,7 +161,7 @@ namespace Login
 
         private void Home_Load(object sender, EventArgs e)
         {
-            panelContainer.GetType()
+           /* panelContainer.GetType()
             .GetProperty("DoubleBuffered",
             System.Reflection.BindingFlags.Instance |
              System.Reflection.BindingFlags.NonPublic)
@@ -172,7 +172,7 @@ namespace Login
             System.Reflection.BindingFlags.Instance |
              System.Reflection.BindingFlags.NonPublic,
             null, panelContainer, new object[] { true });
-
+           */
         }
 
 
